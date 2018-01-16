@@ -21,36 +21,41 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'kanso-general' ); ?></a>
+    <div class="uk-offcanvas-content">
+		<div id="kns-head" class="uk-background-cover uk-background-center-center">		
+		    <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; show-on-up: true">		
+		        <nav class="uk-navbar-container">
+		            <div class="uk-container uk-container-expand">
+		                <div uk-navbar>
+			                <div class="uk-navbar-left">
+				                <?php
+									the_custom_logo();
+								?>
+			                </div>
+			                <div class="uk-navbar-right">
+          						<?php
+									wp_nav_menu( array(
+										'theme_location' => 'menu-1',
+										'menu_id'        => 'primary-menu',
+										'menu_class'     => 'uk-navbar-nav uk-visible@m',
+										'container'      => false,
+									) );
+								?>
+				                    <ul class="uk-navbar-nav">
+			                        <li><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
+			                    </ul>			                    
+			                </div>
+		                </div>
+		            </div>
+		        </nav>
+		    </div>
+		    <div id="kns-header" class="uk-light" style="">
+			    <div id="hns-header-text">
+				    <h1 class="uk-heading-divider">Great teacher inspires</h1>
+				    <h2>become a great teacher together</h2>
+			    </div>
+		    </div>
+		</div><!-- #kns-head -->
+		
+			
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'kanso-general' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">

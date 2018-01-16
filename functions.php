@@ -163,3 +163,44 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * ナビメニューのクラスの変更
+ */
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'uk-active ';
+    }
+    return $classes;
+}
+
+
+/**
+ * ショートコードを追加するためのもの
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+
+
+/**
+ * リード文を入力するフィールドを用意する
+ */
+require get_template_directory() . '/inc/register-lead-meta.php';
+
+
+/**
+ * page menu widget additions.
+ */
+require get_template_directory() . '/inc/page-menu-widget.php';
+
+/**
+ * ウィジェットの登録
+ */
+function theme_register_widget() {
+	
+	register_widget( 'PageToc_Widget' );
+	
+	
+}
+add_action( 'widgets_init', 'theme_register_widget' );
