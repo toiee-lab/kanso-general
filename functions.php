@@ -7,6 +7,14 @@
  * @package kanso-general
  */
 
+/* FOR UPDATE */
+require 'plugin-update-checker/plugin-update-checker.php';
+$MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://raw.githubusercontent.com/toiee-lab/kanso-general/master/theme.json',
+	__FILE__,
+	'kanso-general'
+);
+
 if ( ! function_exists( 'kanso_general_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
