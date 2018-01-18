@@ -131,20 +131,81 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 
 /* ------ sidebar ------ */
-#sidebar .uk-offcanvas-bar, 
-#sidebar .uk-close,
-#sidebar h1,
-#sidebar h2,
-#sidebar h3,
-#sidebar h4,
-#sidebar p
+.uk-offcanvas-bar, 
+.uk-close,
+.uk-offcanvas-bar h1,
+.uk-offcanvas-bar h2,
+.uk-offcanvas-bar h3,
+.uk-offcanvas-bar h4,
+.uk-offcanvas-bar p
 {
 	background-color: rgba(255, 255, 255, 0.89);
 	color: black;
 }
-#sidebar a
+.uk-offcanvas-bar a
 {
-	color: #000;
-	text-decoration: underline;
+	color: #666;
+}
+.uk-offcanvas-bar .uk-nav-default>li.uk-active>a
+{
+	color: #666;
+}
+
+/* --- 目次 widget --- */
+section.pagetoc-widget p,
+section.pagetoc-widget a,
+{
+	font-size: .875rem;
+}
+.uk-offcanvas-bar p.pagetoc-widget-text
+{
+	color: #999;
+	margin-top: -15px;
+}
+
+section.pagetoc-widget li.page_item_has_children
+{
+	margin-bottom: 0.5em;
+}
+section.pagetoc-widget > ul > li.page_item_has_children > a
+{
+	border-bottom-color: rgb(229, 229, 229);
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	color: rgb(34, 34, 34);
+}
+
+section.pagetoc-widget ul.tm-nav li a {
+	color: #666;
+	font-size: .875rem;
+	text-decoration: none;
+}
+
+section.pagetoc-widget ul.tm-nav > li > a{
+	color: rgb(34, 34, 34);
+}
+
+section.pagetoc-widget > ul > li > ul li
+{
+	line-height: 2rem;
+}
+
+section.pagetoc-widget > ul > li > ul > li > ul
+{
+	margin-left: 1em;
+}
+
+section.pagetoc-widget > ul > li > ul > li > ul li
+{
+	line-height: 1.8em;
+}
+
+section.pagetoc-widget li.current_page_item > a:before
+{
+    content: "\02192";
+    margin-left: -15px;
+    padding-right: 5px;
+    color: #1e87f0;
+    font-weight: bold;
 }
 

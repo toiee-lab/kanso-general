@@ -54,7 +54,7 @@ class PageToc_Widget extends WP_Widget {
 //			echo $args['before_title'] . $title . $args['after_title'];
 			echo '<h3>' . $title . '</h3>';
 		} ?>
-        <p><?php echo $widget_text; ?></p>
+        <p class="pagetoc-widget-text"><?php echo $widget_text; ?></p>
 		<ul class="uk-nav uk-nav-default tm-nav">
 		<?php
 			
@@ -73,7 +73,10 @@ class PageToc_Widget extends WP_Widget {
 			{
 				$ex_ids .= $p->ID.',';
 			}
-			wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids)); 
+			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0) );
+
+			$ret = preg_replace('/class="(.*?)current_page_item/', 'class="$1current_page_item router-link-exact-active uk-active', $ret);
+			echo $ret;
 		?>
 		</ul>
 		<?php
