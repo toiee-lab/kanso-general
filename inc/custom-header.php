@@ -116,7 +116,7 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 				
 
 		?>
-		<?php if( is_home() || is_front_page() ): ?>
+		<?php if( is_front_page() ): ?>
 			#kns-head {
 				<?php echo $kns_head_bg_css; ?>
 			}

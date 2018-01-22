@@ -30,12 +30,14 @@
 				
 				if( is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
 					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-'.$kns_heder_text_color_cls.';';
+					$uk_nav_color  = $kns_heder_text_color_cls;
 				}
 				else {
 					$uk_sticky_add = '';
+					$uk_nav_color  = $kns_color_set['color'];
 				}
 			?>	
-		    <div id="kns-head-nav" uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-<?php echo $kns_color_set['color'];?>; <?php echo $uk_sticky_add;?> show-on-up: true" class="uk-<?php echo $kns_color_set['color'];?>">
+		    <div id="kns-head-nav" uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-<?php echo $kns_color_set['color'];?>; <?php echo $uk_sticky_add;?> show-on-up: true" class="uk-<?php echo $uk_nav_color; ?>">
 		        <nav class="uk-navbar-container">
 		            <div class="uk-container uk-container-expand">
 		                <div uk-navbar>
