@@ -106,6 +106,58 @@ function kanso_general_customize_register( $wp_customize ) {
 	);
 	
 	
+	// 色の設定 : colorsセクションに追加
+	//    カラーセット
+	$wp_customize->add_setting(
+		'kanso_general_options_colors',
+		array(
+			'default'   => '400',
+			'type'      => 'option',
+			'transport' => 'postMessage',
+		)
+	);
+	
+	$color_choices = kns_get_color_set('dummy', true);
+	
+	$wp_customize->add_control(
+		'kanso_general_options_colors',
+		array(
+			'settings' => 'kanso_general_options_colors',
+			'label'    => '全体 : ナビ色+α',
+			'description' => 'フロントページでページ途中で現れるナビの文字色、背景色と、ヘッダー画像を指定しない場合の背景の色を指定することができます。',
+			'section'  => 'colors',
+			'type'     => 'select',
+			'choices'  => $color_choices,
+			'priority' => 2
+		)
+	);
+	
+	
+	//    フロントページのヘッダー文字色
+	$wp_customize->add_setting(
+		'kanso_general_options_hcolor_front',
+		array(
+			'default'   => '400',
+			'type'      => 'option',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'kanso_general_options_hcolor_front',
+		array(
+			'settings' => 'kanso_general_options_hcolor_front',
+			'label'    => 'フロントページ : キャッチコピー文字色',
+			'section'  => 'colors',
+			'type'     => 'select',
+			'choices'  => array(
+				'light'  => '白',
+				'dark'   => '黒',
+			),
+			'priority' => 3
+		)
+	);
+
+	
 	// javascript で変更を即時に反映するための設定
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
@@ -135,6 +187,15 @@ function kanso_general_customize_register( $wp_customize ) {
 			'selector'        => '#kanso_general_options_height',
 			'render_callback' => 'kanso_general_customize_partial_height',
 		) );
+		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_hcolor_front' , array(
+			'selector'        => '#kanso_general_options_hcolor_front',
+			'render_callback' => 'kanso_general_customize_partial_frontcolor',
+		) );	
+		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_colors' , array(
+			'selector'        => '#kanso_general_options_colors',
+			'render_callback' => 'kanso_general_customize_partial_colors',
+		) );			
+	
 	}
 }
 add_action( 'customize_register', 'kanso_general_customize_register' );
@@ -168,7 +229,12 @@ function kanso_general_customize_partial_hsubtitle() {
 function kanso_general_customize_partial_height() {
 	echo get_option( 'kanso_general_options_height' );
 }
-
+function kanso_general_customize_partial_frontcolor() {
+	echo get_option( 'kanso_general_options_hcolor_front' );
+}
+function kanso_general_customize_partial_colors() {
+	echo json_decode( kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) ) );
+}
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.

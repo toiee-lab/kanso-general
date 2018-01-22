@@ -37,16 +37,6 @@ function kanso_general_custom_header_setup() {
 			'thumbnail_url' => '%s/images/headers/foods.jpg',
 			'description'   => 'フード'
 		),
-		'sea' => array(
-			'url'           => '%s/images/headers/sea.jpg',
-			'thumbnail_url' => '%s/images/headers/sea.jpg',
-			'description'   => '海'
-		),
-		'childres' => array(
-			'url'           => '%s/images/headers/childres.jpg',
-			'thumbnail_url' => '%s/images/headers/childres.jpg',
-			'description'   => '子供'
-		),
 		'paint' => array(
 			'url'           => '%s/images/headers/paint.jpg',
 			'thumbnail_url' => '%s/images/headers/paint.jpg',
@@ -111,15 +101,37 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 				color: #<?php echo esc_attr( $header_text_color ); ?>;
 			}
 		<?php endif; ?>
+		<?php
+			
+			// ヘッダーの設定を呼び出す
+			$kns_color_set = kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) );			
+			$header_img = get_header_image();
+
+			if($header_img != null)	{
+				$kns_head_bg_css = 'background-image: url('.$header_img.');';
+			}
+			else {
+				$kns_head_bg_css = $kns_color_set['head-bg'];
+			}
+				
+
+		?>
 		<?php if( is_home() || is_front_page() ): ?>
 			#kns-head {
-				background-image: url(<?php header_image(); ?>);
+				<?php echo $kns_head_bg_css; ?>
 			}
 			
 			#kns-header{
 				height: <?php echo get_option( 'kanso_general_options_height', 400 );?>px;
 			}
+		<?php else : ?>
+			#kns-head {
+				background: none;
+			}
 		<?php endif; ?>
+			.uk-navbar-container:not(.uk-navbar-transparent) {
+			    <?php echo $kns_color_set['nav-bg'];?>
+			}
 		</style>
 		<?php
 	}

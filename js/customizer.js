@@ -64,5 +64,33 @@
 		} );
 	} );
 	
+	// front page nav , header color
+	wp.customize( 'kanso_general_customize_partial_frontcolor', function( value ){
+		value.bind( function( to ){
+			
+			$( '#kns-head-nav').removeClass('uk-light');
+			$( '#kns-head-nav').removeClass('uk-dark');
+			
+			$( '#kns-head-nav').removeClass('uk-'+to);
+			
+		} );
+	} );	
+	
+	// color set を反映する
+	wp.customize( 'kanso_general_customize_partial_colors', function( value ){
+		value.bind( function( to ){
+// やらなきゃいけないけど、やらなくてもいいのかなー			
+//			$colors = eval( to );
+//			debug.print( $colors );
+			
+//			$( '#kns-head-nav').removeClass('uk-light');
+//			$( '#kns-head-nav').removeClass('uk-dark');
+			
+//			$( '#kns-head-nav').removeClass('uk-'+to);
+			
+		} );
+	} );
+	
+	
 	
 } )( jQuery );

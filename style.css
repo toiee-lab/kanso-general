@@ -21,6 +21,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
 
+
+/* ----- ナビ部分 ---- */
 #navigation
 {
 	width: 100%;
@@ -43,10 +45,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 
 /* ----- ヘッダー部分 ------ */
-#kns-head
-{
-	background-color: #666;
-}
 #kns-header
 {
 	height:400px;
@@ -54,12 +52,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	justify-content: center;
 	align-items: center;
 }
-#hns-header-text h1{
+#kns-header-text h1{
 	margin-bottom: 0;
 	text-align: center;
 }
-#hns-header-text h2{
+#kns-header-text h2{
 	margin-top: 0;
+	margin-bottom: 0;	
 	text-align: center;
 	font-size: 1.5em;
 }
@@ -73,6 +72,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 		font-size: 1.2rem;
 	}
 }
+
+
+
+
 
 /* ----- コンテンツ部分 ----- */
 
@@ -260,4 +263,42 @@ section.pagetoc-widget li.current_page_item > a:before
 	font-size: 1.5rem;
 	color: #666;
 	margin-bottom: 0.5rem;
+}
+
+
+/* ---- blog ---- */
+.entry-header h2,
+.entry-header h2 a{
+	color: #333;
+	font-size: 1.8rem;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+#main-content h2.entry-title{
+	margin-top: 2rem;
+}
+.entry-header h3.main-subtitle{
+	color: #999;
+	font-weight: 400;
+	font-size: 1.5rem;
+	margin-top: -1rem;
+	margin-bottom: 0.5rem;
+}
+article.post{
+	margin-bottom: 3rem;
+}
+.entry-meta{
+	font-size: 0.8rem;
+}
+.posted-on a{
+	color : #333;
+}
+.entry-footer{
+	font-size: 0.8rem;
+}
+.screen-reader-text{
+	display: none;
+}
+.logged-in-as a{
+	font-size: 1rem;
 }

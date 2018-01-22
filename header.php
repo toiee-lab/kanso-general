@@ -24,14 +24,18 @@
     <div class="uk-offcanvas-content">
 		<div id="kns-head" class="uk-background-cover uk-background-center-center">	
 			<?php 
-				if( is_home() || is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
-					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-light;';
+				
+				$kns_heder_text_color_cls = get_option('kanso_general_options_hcolor_front', 'light');
+				$kns_color_set = kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) );
+				
+				if( is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
+					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-'.$kns_heder_text_color_cls.';';
 				}
 				else {
 					$uk_sticky_add = '';
 				}
 			?>	
-		    <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; <?php echo $uk_sticky_add;?> show-on-up: true">
+		    <div id="kns-head-nav" uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky uk-<?php echo $kns_color_set['color'];?>; <?php echo $uk_sticky_add;?> show-on-up: true" class="uk-<?php echo $kns_color_set['color'];?>">
 		        <nav class="uk-navbar-container">
 		            <div class="uk-container uk-container-expand">
 		                <div uk-navbar>
@@ -58,11 +62,11 @@
 		        </nav>
 		    </div>
    			<?php 
-				if( is_home() || is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
+				if( is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
 			?>
-		    <div id="kns-header" class="uk-light" style="">
-			    <div id="hns-header-text">
-				    <h1 class="uk-heading-divider" id="kanso_general_options_htitle"><?php echo get_option( 'kanso_general_options_htitle' ); ?></h1>
+		    <div id="kns-header" class="uk-<?php echo $kns_heder_text_color_cls; ?>" style="">
+			    <div id="kns-header-text" class="uk-padding-small">
+				    <h1 id="kanso_general_options_htitle"><?php echo get_option( 'kanso_general_options_htitle' ); ?></h1>
 				    <h2 id="kanso_general_options_hsubtitle"><?php echo get_option( 'kanso_general_options_hsubtitle' ); ?></h2>
 			    </div>
 		    </div>

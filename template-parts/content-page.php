@@ -18,6 +18,8 @@
 			<?php the_title('<h1>', '</h1>'); ?>
 			<h2 class="main-subtitle"><?php echo get_post_meta(get_the_ID(), 'kns_lead', true);?></h2>
 			
+			<?php the_post_thumbnail(); ?>
+			
 		<?php } ?>
 						
 			<?php the_content(); ?>

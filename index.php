@@ -13,9 +13,8 @@
  */
 
 get_header(); ?>
+	<div class="uk-container uk-container-small uk-background-default" id="main-content">
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
 
 		<?php
 		if ( have_posts() ) :
@@ -23,13 +22,16 @@ get_header(); ?>
 			if ( is_home() && ! is_front_page() ) : ?>
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+					<h2 class="main-subtitle"><?php echo get_post_meta(get_queried_object_id(), 'kns_lead', true);?></h2>
 				</header>
+				<div style="margin-top: 2rem;">
 
 			<?php
 			endif;
 
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
+				echo '<hr>';
 
 				/*
 				 * Include the Post-Format-specific template for the content.
@@ -40,16 +42,23 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			the_posts_navigation(array(
+    'prev_text'           => '&lt; PREVIOUS',
+    'next_text'           => 'NEXT &gt;',
+    'screen_reader_text'  => 'Navigation',
+  ));
+			
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
+		
+				</div>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	</div><!-- #main-content -->
+
 
 <?php
 get_sidebar();
