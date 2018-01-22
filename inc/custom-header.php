@@ -76,13 +76,13 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 		 * If no custom options for text are set, let's bail.
 		 * get_header_textcolor() options: Any hex value, 'blank' to hide text. Default: add_theme_support( 'custom-header' ).
 		 */
-		if ( get_theme_support( 'custom-header', 'default-text-color' ) === $header_text_color ) {
-			return;
-		}
+//		if ( get_theme_support( 'custom-header', 'default-text-color' ) === $header_text_color ) {
+//			return;
+//		}
 
 		// If we get this far, we have custom styles. Let's do this.
 		?>
-		<style type="text/css">
+		<style type="text/css" id="custom-header">
 		<?php
 		// Has the text been hidden?
 		if ( ! display_header_text() ) :
