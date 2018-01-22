@@ -39,4 +39,30 @@
 			}
 		} );
 	} );
+	
+	
+	// site title
+	wp.cutomize( 'kanso_general_options_htitle', function( value ){
+		value.bind( function( to ){
+			$( '#kanso_general_options_htitle' ).text( to );
+		} );
+	} );
+	wp.cutomize( 'kanso_general_options_hsubtitle', function( value ){
+		value.bind( function( to ){
+			$( '#kanso_general_options_hsubtitle' ).text( to );			
+		} );		
+	} );
+	
+	// header height
+	wp.customize( 'kanso_general_options_height', function( value ){
+		value.bind( function( to ){
+			
+			$( '#kanso_general_options_height').css({
+				'height' : to
+			} );
+			
+		} );
+	} );
+	
+	
 } )( jQuery );

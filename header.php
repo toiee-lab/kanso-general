@@ -22,8 +22,16 @@
 
 <body <?php body_class(); ?>>
     <div class="uk-offcanvas-content">
-		<div id="kns-head" class="uk-background-cover uk-background-center-center">		
-		    <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; show-on-up: true">		
+		<div id="kns-head" class="uk-background-cover uk-background-center-center">	
+			<?php 
+				if( is_home() || is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
+					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-light;';
+				}
+				else {
+					$uk_sticky_add = '';
+				}
+			?>	
+		    <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; <?php echo $uk_sticky_add;?> show-on-up: true">
 		        <nav class="uk-navbar-container">
 		            <div class="uk-container uk-container-expand">
 		                <div uk-navbar>
@@ -49,12 +57,16 @@
 		            </div>
 		        </nav>
 		    </div>
+   			<?php 
+				if( is_home() || is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
+			?>
 		    <div id="kns-header" class="uk-light" style="">
 			    <div id="hns-header-text">
-				    <h1 class="uk-heading-divider">Great teacher inspires</h1>
-				    <h2>become a great teacher together</h2>
+				    <h1 class="uk-heading-divider" id="kanso_general_options_htitle"><?php echo get_option( 'kanso_general_options_htitle' ); ?></h1>
+				    <h2 id="kanso_general_options_hsubtitle"><?php echo get_option( 'kanso_general_options_hsubtitle' ); ?></h2>
 			    </div>
 		    </div>
+		    <?php } ?>			    
 		</div><!-- #kns-head -->
 		
 			

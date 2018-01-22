@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-		<div class="uk-container uk-container-small" id="main-content">
+		<div class="uk-container uk-container-small uk-background-default" id="main-content">
 
 			<?php
 			while ( have_posts() ) : the_post();

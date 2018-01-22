@@ -33,11 +33,19 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	max-width: 740px;
 }
 
+.uk-light .uk-navbar-nav>li>a{
+	color: rgba(255, 255, 255, 0.7);
+}
+.uk-light .uk-navbar-nav>li:hover>a{
+	color: rgba(255, 255, 255, 1);
+	text-shadow: 1px 1px 4px #eee;
+}
+
 
 /* ----- ヘッダー部分 ------ */
 #kns-head
 {
-	background-image: url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&w=1947&q=80);
+	background-color: #666;
 }
 #kns-header
 {
@@ -181,6 +189,13 @@ section.pagetoc-widget ul.tm-nav li a {
 	text-decoration: none;
 }
 
+section.pagetoc-widget ul.tm-nav li a:hover {
+	color: #aaa;
+	font-size: .875rem;
+	text-decoration: none;
+}
+
+
 section.pagetoc-widget ul.tm-nav > li > a{
 	color: rgb(34, 34, 34);
 }
@@ -209,3 +224,40 @@ section.pagetoc-widget li.current_page_item > a:before
     font-weight: bold;
 }
 
+
+/* --- footer --- */
+#footer {
+	color : #888;
+}
+
+#footer-copyright{
+	margin: 0;
+	text-align: right;
+	padding: 1rem;
+	font-size: 0.8rem;
+	color: #aaa;
+}
+
+#footer p,
+#footer ul,
+#footer ol {
+	font-size: 0.8rem;
+	color : #888;
+}
+#footer ul{
+	list-style: none;
+	padding-left: 0;
+}
+#footer li{
+	line-height: 1.8em;
+}
+
+#footer a{
+	color : #666;
+}
+
+#footer h3{
+	font-size: 1.5rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
