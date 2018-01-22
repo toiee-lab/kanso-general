@@ -43,7 +43,12 @@
 		                <div uk-navbar>
 			                <div class="uk-navbar-left">
 				                <?php
-									the_custom_logo();
+					                if ( has_custom_logo() ) {
+										the_custom_logo();
+									}
+									else {
+										echo '<a href="'.get_bloginfo('url').'" class="uk-link-reset uk-text-large">'.get_bloginfo( 'name', 'display' ).'</a>';
+									}
 								?>
 			                </div>
 			                <div class="uk-navbar-right">
