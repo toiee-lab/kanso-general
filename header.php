@@ -44,7 +44,8 @@
 			                <div class="uk-navbar-left">
 				                <?php
 					                if ( has_custom_logo() ) {
-										the_custom_logo();
+										$_logo_html = get_custom_logo();
+										echo str_replace('<img', '<img style="height:50px;"', $_logo_html);
 									}
 									else {
 										echo '<a href="'.get_bloginfo('url').'" class="uk-link-reset uk-text-large">'.get_bloginfo( 'name', 'display' ).'</a>';
