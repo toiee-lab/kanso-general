@@ -40,7 +40,15 @@ EOD;
 		
 		if($kns_lead)
 		{
-			update_post_meta($post_id, 'kns_lead', wp_kses($kns_lead) );
+			update_post_meta($post_id, 'kns_lead', wp_kses($kns_lead, array(
+				    'a' => array(
+				        'href' => array(),
+				        'title' => array()
+				    ),
+				    'br' => array(),
+				    'em' => array(),
+				    'strong' => array(),
+				)) );
 		}
 		else
 		{

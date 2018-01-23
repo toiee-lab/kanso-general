@@ -21,7 +21,7 @@ get_header(); ?>
 
 			if ( is_home() && ! is_front_page() ) : ?>
 				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+					<h1 class=""><?php single_post_title(); ?></h1>
 					<h2 class="main-subtitle"><?php echo get_post_meta(get_queried_object_id(), 'kns_lead', true);?></h2>
 				</header>
 				<div style="margin-top: 2rem;">
