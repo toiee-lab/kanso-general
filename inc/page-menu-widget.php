@@ -172,9 +172,7 @@ EOD;
             return $post_id;
         }
 		
-		
-		//embed タグの iframe 部分だけを取り出す
-		$exclude_menu = isset($_POST['exclude_menu']) ? $_POST['exclude_menu'] : null;		
+		$exclude_menu = isset($_POST['exclude_menu']) ? $_POST['exclude_menu'] : null;
 		$before = get_post_meta($post_id, 'exclude_menu', true);
 		
 		if($exclude_menu)

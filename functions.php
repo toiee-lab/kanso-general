@@ -211,6 +211,11 @@ require get_template_directory() . '/inc/shortcodes.php';
  * リード文を入力するフィールドを用意する
  */
 require get_template_directory() . '/inc/register-lead-meta.php';
+/**
+ * タイトルを非表示にするフィールドを用意する
+ */
+require get_template_directory() . '/inc/hide-title-meta.php';
+
 
 
 /**
