@@ -144,6 +144,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 
 /* ------ sidebar ------ */
+.uk-offcanvas-bar{
+	background-color: rgba(255, 255, 255, 0.89);	
+}
 .uk-offcanvas-bar, 
 .uk-close,
 .uk-offcanvas-bar h1,
@@ -152,7 +155,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 .uk-offcanvas-bar h4,
 .uk-offcanvas-bar p
 {
-	background-color: rgba(255, 255, 255, 0.89);
 	color: black;
 }
 .uk-offcanvas-bar a
