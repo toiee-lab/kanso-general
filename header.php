@@ -48,7 +48,7 @@
 										echo str_replace('<img', '<img style="height:50px;"', $_logo_html);
 									}
 									else {
-										echo '<a href="'.get_bloginfo('url').'" class="uk-link-reset uk-text-large">'.get_bloginfo( 'name', 'display' ).'</a>';
+										echo '<a href="'.get_bloginfo('url').'" class="uk-link-reset uk-text-large uk-margin-left ">'.get_bloginfo( 'name', 'display' ).'</a>';
 									}
 								?>
 			                </div>
