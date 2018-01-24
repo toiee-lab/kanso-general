@@ -233,3 +233,17 @@ function theme_register_widget() {
 	
 }
 add_action( 'widgets_init', 'theme_register_widget' );
+
+
+/**
+ * 編集画面の「管理ツールバー」に固定ページ一覧リンクを表示
+ */
+function kanso_general_customize_admin_bar_menu($wp_admin_bar){
+	$wp_admin_bar->add_menu( array(
+		'id'    => 'nestedpages',
+		'meta'  => array(),
+		'title' => '固定ページ一覧',
+		'href'   => home_url('/wp-admin/admin.php?page=nestedpages')
+	) );
+}
+add_action('admin_bar_menu', 'kanso_general_customize_admin_bar_menu', 9999);

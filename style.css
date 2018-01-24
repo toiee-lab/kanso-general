@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
 Description: Description
-Version: 0.5.0
+Version: 0.5.1
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -20,7 +20,12 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
-
+/* ----- wp admin ---- */
+#wp-admin-bar-nestedpages a:before
+{
+	content: "\f333";
+	top: 2px;
+}
 
 /* ----- ナビ部分 ---- */
 #navigation
@@ -129,7 +134,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @media(max-width: 420px)
 {
 	#main-content p, ul, ol{
-		font-size: 18px;
+		font-size: 17px;
 	}
 }
 
@@ -165,10 +170,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 {
 	color: #666;
 }
+.uk-offcanvas-bar .uk-close{
+	color: #999;
+}
+.uk-offcanvas-bar .uk-close:hover{
+	color: #333;
+}
 
 /* --- 目次 widget --- */
 section.pagetoc-widget p,
 section.pagetoc-widget a,
+.widget p,
+.widget a
 {
 	font-size: .875rem;
 }
@@ -196,7 +209,8 @@ section.pagetoc-widget ul.tm-nav li a {
 	text-decoration: none;
 }
 
-section.pagetoc-widget ul.tm-nav li a:hover {
+section.pagetoc-widget ul.tm-nav li a:hover,
+.uk-offcanvas-bar a:hover {
 	color: #aaa;
 	font-size: .875rem;
 	text-decoration: none;
@@ -229,6 +243,24 @@ section.pagetoc-widget li.current_page_item > a:before
     padding-right: 5px;
     color: #1e87f0;
     font-weight: bold;
+}
+
+.widget-title{
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.textwidget{
+	margin-bottom: 2rem;
+}
+.textwidget li{
+	list-style: none;
+}
+div.textwidget > ul,
+div.textwidget > ol
+{
+	padding-left: 0;
 }
 
 

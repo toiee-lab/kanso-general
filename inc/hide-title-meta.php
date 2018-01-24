@@ -17,7 +17,7 @@
 
 		wp_nonce_field( 'kns_hidetitle_meta_box', 'kns_hidetitle_meta_box_nonce' );
 		echo <<<EOD
-<p>タイトルを表示したくない場合、以下にチェックを入れてください。</p>
+<p>タイトル、サブタイトルを非表示にできます。</p>
 <p><label><input type="checkbox" name="kns_hidetitle" value="1" {$checked}> 非表示にする</label></p>
 EOD;
 
@@ -51,5 +51,5 @@ EOD;
 	}
 	function register_kns_hidetitle_meta_boxes()
 	{
-		add_meta_box('kns_hidetitle', 'タイトルの非表示', 'display_kns_hidetitle_meta_box', 'page', 'side' );
+		add_meta_box('kns_hidetitle', '【KANSO】タイトル非表示', 'display_kns_hidetitle_meta_box', 'page', 'side' );
 	}

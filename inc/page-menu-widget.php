@@ -141,7 +141,7 @@ class PageToc_Widget extends WP_Widget {
 	*/
 	function register_meta_boxes()
 	{
-		add_meta_box('exclude_menu', '固定ページ一覧の非表示', array($this, 'display_meta_box'), 'page', 'side' );
+		add_meta_box('exclude_menu', '【KANSO】目次非表示', array($this, 'display_meta_box'), 'page', 'side' );
 	}
 	function display_meta_box( $post )
 	{
@@ -153,7 +153,7 @@ class PageToc_Widget extends WP_Widget {
 						
 		wp_nonce_field( 'exclude_menu_meta_box', 'exclude_menu_meta_box_nonce' );
 		echo <<<EOD
-<p>固定ページ一覧のウィジェットに表示したくない場合、以下にチェックを入れてください。</p>
+<p>以下をチェックすると、「KANSO 固定ページ目次」ウィジェットに表示しません</p>
 <p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 非表示にする</label></p>
 EOD;
 
