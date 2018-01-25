@@ -27,10 +27,25 @@ function kanso_general_custom_header_setup() {
 	
 	// デフォルトのヘッダーイメージを用意しておく
 	register_default_headers( array(
-		'buildings' => array(
-			'url'           => '%s/images/headers/buildings.jpg',
-			'thumbnail_url' => '%s/images/headers/buildings.jpg',
-			'description'   => 'ビルディング'
+		'leaf' => array(
+			'url'           => '%s/images/headers/leaf.jpg',
+			'thumbnail_url' => '%s/images/headers/leaf.jpg',
+			'description'   => 'フード'
+		),
+		'person' => array(
+			'url'           => '%s/images/headers/person.jpg',
+			'thumbnail_url' => '%s/images/headers/person.jpg',
+			'description'   => 'フード'
+		),
+		'cafe1' => array(
+			'url'           => '%s/images/headers/cafe1.jpg',
+			'thumbnail_url' => '%s/images/headers/cafe1.jpg',
+			'description'   => 'フード'
+		),
+		'cafe2' => array(
+			'url'           => '%s/images/headers/cafe2.jpg',
+			'thumbnail_url' => '%s/images/headers/cafe2.jpg',
+			'description'   => 'フード'
 		),
 		'foods' => array(
 			'url'           => '%s/images/headers/foods.jpg',
@@ -56,7 +71,12 @@ function kanso_general_custom_header_setup() {
 			'url'           => '%s/images/headers/pen.jpg',
 			'thumbnail_url' => '%s/images/headers/pen.jpg',
 			'description'   => 'ペン'
-		)
+		),
+		'buildings' => array(
+			'url'           => '%s/images/headers/buildings.jpg',
+			'thumbnail_url' => '%s/images/headers/buildings.jpg',
+			'description'   => 'ビルディング'
+		),
 	) );
 	
 	
