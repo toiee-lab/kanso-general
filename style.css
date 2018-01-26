@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
 Description: Description
-Version: 0.5.3
+Version: 0.5.4
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -124,8 +124,11 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 /* ------ コンテンツ部分のテキストサイズ ---- */
 
-#main-content p, ul, ol{
+#main-content {
 	color: #444;
+}
+
+#main-content p, ul, ol{
 	font-size: 21px;
 	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	line-height: 1.52947;
@@ -201,6 +204,10 @@ section.pagetoc-widget > ul > li.page_item_has_children > a
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	color: rgb(34, 34, 34);
+}
+
+section.pagetoc-widget ul.tm-nav {
+	margin-bottom: 2rem;
 }
 
 section.pagetoc-widget ul.tm-nav li a {
