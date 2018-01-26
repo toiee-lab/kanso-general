@@ -1,10 +1,10 @@
 /*!
 Theme Name: kanso-general
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
-Description: Description
-Version: 0.5.4
+Theme URI: http://kansowp.toiee.jp/
+Author: toiee Lab
+Author URI: http://toiee.jp/
+Description: KANSO General は、できるだけ少ない設定、学習コストで、美しく、洗練され、オリジナリティがあるWebサイトを作るためのテーマです。シンプル・簡素 is best の精神で作られています。
+Version: 0.5.5
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -344,4 +344,28 @@ article.post{
 }
 .logged-in-as a{
 	font-size: 1rem;
+}
+
+/* ---- comment ----- */
+#main-content .comments-title {
+	font-size: 1.5rem;
+}
+#main-content .comment-content p{
+	font-size: 0.8em;
+}
+.comment-metadata,
+.comment-author
+{
+	font-size: 0.6em;
+}
+.comment-metadata
+{
+	margin-bottom: 1rem;
+}
+.comment-metadata a:not([class])
+{
+	text-decoration: none;
+}
+.reply{
+	font-size: 0.8em;
 }
