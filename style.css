@@ -86,49 +86,49 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 /* ----- コンテンツ部分 ----- */
 
-#main-content{
+.main-content{
 	margin-top: 2rem;
 	margin-bottom: 15rem;
 }
 
-#main-content h1{
+.main-content h1{
 	font-weight: bold;
 }
 
-#main-content h2.main-subtitle{
+.main-content h2.main-subtitle{
 	color: #999;
 	font-weight: normal;
 	font-size: 1.8rem;
 	margin-top: -1rem;
 }
 
-#main-content h2, h3{
+.main-content h2, h3{
 	font-weight: bold;
 }
 
-#main-content h2{
+.main-content h2{
 	margin-top: 45px;
 }
 
-#main-content h2+h3{
+.main-content h2+h3{
 	margin-top: -0.5rem;
 }
 
-#main-content h2+p{
+.main-content h2+p{
 	margin-top: -0.5rem;
 }
 
-#main-content h3+p{
+.main-content h3+p{
 	margin-top: -15px;
 }
 
 /* ------ コンテンツ部分のテキストサイズ ---- */
 
-#main-content {
+.main-content {
 	color: #444;
 }
 
-#main-content p, ul, ol{
+.main-content p, ul, ol{
 	font-size: 21px;
 	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	line-height: 1.52947;
@@ -136,12 +136,12 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 @media(max-width: 420px)
 {
-	#main-content p, ul, ol{
+	.main-content p, ul, ol{
 		font-size: 17px;
 	}
 }
 
-#main-content li{
+.main-content li{
 	margin-bottom: 0.8em;
 }
 
@@ -317,7 +317,7 @@ div.textwidget > ol
 	margin-top: 2rem;
 	margin-bottom: 0.5rem;
 }
-#main-content h2.entry-title{
+.main-content h2.entry-title{
 	margin-top: 2rem;
 }
 .entry-header h3.main-subtitle{
@@ -347,10 +347,10 @@ article.post{
 }
 
 /* ---- comment ----- */
-#main-content .comments-title {
+.main-content .comments-title {
 	font-size: 1.5rem;
 }
-#main-content .comment-content p{
+.main-content .comment-content p{
 	font-size: 0.8em;
 }
 .comment-metadata,
@@ -369,3 +369,42 @@ article.post{
 .reply{
 	font-size: 0.8em;
 }
+
+
+/* ---- shortcode ---- */
+.uk-accordion-title {
+    display: block;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #222;
+    overflow: hidden;
+}
+.uk-accordion-title:hover,
+.uk-accordion-title:focus {
+    color: #666;
+    text-decoration: none;
+    outline: none;
+}
+.uk-accordion-content,
+.uk-accordion-content p {
+	color : #666;	
+	font-size: 1rem;
+}
+ul.kns-li-content,
+ul.kns-li-content li p
+{
+	color : #666;
+	font-size: 1rem;
+
+}
+.uk-card-body p{
+	font-size: 1rem;
+}
+.uk-card-title {
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+.uk-card-title a{
+	color : #444;
+}
+

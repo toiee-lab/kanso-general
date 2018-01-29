@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<div class="uk-container uk-container-small uk-background-default" id="main-content">
+	<div class="uk-container uk-container-small uk-background-default main-content">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -42,7 +42,7 @@ get_header(); ?>
 
 		endif; ?>
 
-	</div><!-- #main-content -->
+	</div><!-- .main-content -->
 
 <?php
 get_sidebar();
