@@ -77,7 +77,7 @@ add_shortcode( 'uk-button' , function ( $atts , $content ){
 		'href'   => '#',
 		'style'  => 'default',
 		'size'   => 'large',
-		'width'  => '1-3',
+		'width'  => '',
 		'title'  => '',
 		'align'  => 'center',
 		'margin' => 'medium'
