@@ -407,4 +407,8 @@ ul.kns-li-content li p
 .uk-card-title a{
 	color : #444;
 }
+.uk-description-list>dd{
+	font-size: .875rem;
+	font-weight: 400;
+}
 

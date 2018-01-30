@@ -76,16 +76,28 @@ add_shortcode( 'uk-button' , function ( $atts , $content ){
 	$atts = shortcode_atts( array(
 		'href'   => '#',
 		'style'  => 'default',
-		'size'   => 'small',
-		'width'  => '',
-		'title'  => ''
+		'size'   => 'large',
+		'width'  => '1-3',
+		'title'  => '',
+		'align'  => 'center',
+		'margin' => 'medium'
 	), $atts );
 	extract( $atts );
 	
 	$cls_width   = ( $width != '' ) ? ' uk-width-'.$width : '';
 	$class       = 'uk-button'.' uk-button-'.$style.' uk-button-'.$size.$cls_width;	
 	
-	return "<a href=\"{$href}\" class=\"{$class}\" title=\"{$title}\">" . do_shortcode( $content ) . "</a>";
+	$button = "<a href=\"{$href}\" class=\"{$class}\" title=\"{$title}\">" . do_shortcode( $content ) . "</a>";
+
+	$cls_margin = ($margin == '') ? '' : ' class="uk-margin-'.$margin.'-top uk-margin-'.$margin.'-bottom"';
+	
+
+	if( $align != '' && $align != 'none' )
+	{
+		$button = "<div style=\"text-align: {$align}\"{$cls_margin}>{$button}</div>";
+	}
+	
+	return $button;
 });
 
 
@@ -100,7 +112,7 @@ add_shortcode( 'uk-label' , function( $atts, $content ){
 	
 	$class = ($style == '') ? 'uk-label' : 'uk-label uk-label-'.$style;
 	 
-	return '<span class="'.$class.'">'.$content.'</span>';
+	return '<span class="'.$class.'">'.do_shortcode( $content ).'</span>';
 });
 
 /**
@@ -112,7 +124,9 @@ add_shortcode( 'uk-accordion' , function( $atts, $content ){
 	), $atts);
 	extract( $atts );
 	
-	$items = explode('<p>===</p>', $content);
+	$content = str_replace('<p>===</p>', '===', $content);
+	$items = explode('===', $content);
+
 
 	$lists = array();	
 	foreach($items as $item) {
@@ -163,7 +177,9 @@ add_shortcode( 'uk-tab' , function( $atts, $content ){
 	), $atts);
 	extract( $atts );
 	
-	$items = explode('<p>===</p>', $content);
+	$content = str_replace('<p>===</p>', '===', $content);
+	$items = explode('===', $content);
+
 
 	$lists = array();	
 	foreach($items as $item) {
@@ -224,7 +240,9 @@ add_shortcode( 'uk-grid' , function( $atts, $content ){
 	//空の pタグ行を削除する
 	//$content = str_replace('<p></p>', '', $content);
 	
-	$items = explode('<p>===</p>', $content);
+	$content = str_replace('<p>===</p>', '===', $content);
+	$items = explode('===', $content);
+
 
 	if($class != '') { // class が指定されている場合は、こちらを使う
 		$cls = explode(',', $class);
@@ -256,7 +274,6 @@ add_shortcode( 'uk-grid' , function( $atts, $content ){
  */
 add_shortcode( 'uk-lightbox' , function( $atts, $content ){
 	$atts = shortcode_atts( array(
-		'type' => 'link',
 		'href' => '',
 		'label' => 'click here',
 		'caption' => ''
@@ -337,7 +354,7 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 	$atts = shortcode_atts( array(
 		'title'   => 'お知らせ',
 		'style'   => 'list',
-		'type'    => 'post',
+		'post_type'    => 'post',
 		'cat_name'     => '',
 		'num'     => '6',
 		'label'   => 'new',
@@ -353,7 +370,7 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 		'category_name' => $cat_name,  //slug name (not display name)
 		'orderby'       => $orderby,
 		'order'         => $order,
-		'post_type'     => $type,
+		'post_type'     => $post_type,
 		'include'       => $post_ids
 	);
 	
