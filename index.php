@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-	<div class="uk-container uk-container-small uk-background-default" id="main-content">
+	<div class="uk-container uk-container-small uk-background-default main-content">
 
 
 		<?php
@@ -57,7 +57,7 @@ get_header(); ?>
 		
 				</div>
 
-	</div><!-- #main-content -->
+	</div><!-- .main-content -->
 
 
 <?php
