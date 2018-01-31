@@ -26,7 +26,17 @@
 			}
 		 ?>
 						
-			<?php the_content(); ?>
+			<?php
+				$the_content = get_the_content(); 
+				if( $the_content != '' ){
+					echo $the_content;
+				}
+				else{
+					echo '<div uk-alert class="uk-alert-none uk-margin-large-top"><h3><span uk-icon="icon: info"></span> お知らせ</h3>
+<p>このページは作成中です。今しばらくお待ちください。</p>
+</div>';
+				}
+			?>
 			
 			<?php
 				

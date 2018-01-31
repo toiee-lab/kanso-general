@@ -7,7 +7,7 @@
  * @package kanso-general
  */
 ?>
-			<div id="footer">
+			<div id="footer" uk-height-viewport="expand: true">
 				<div  class="uk-grid-collapse uk-child-width-expand@s uk-text-left" uk-grid>
 	
 				    <div>
