@@ -53,6 +53,13 @@
 		} );		
 	} );
 	
+	wp.customize( 'kanso_general_options_ownername', function( value ) {
+		value.bind( function( to ) {
+			$( '.ownername' ).text( to );
+		} );
+	} );
+
+	
 	// header height
 	wp.customize( 'kanso_general_options_height', function( value ){
 		value.bind( function( to ){
