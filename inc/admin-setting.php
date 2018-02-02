@@ -105,7 +105,15 @@ class KnsSetting
             array( $this, 'jp_debug_mode_callback' ), 
             'kns-setting-admin', 
             'setting_section_id'
-        );      
+        );
+        
+        add_settings_field(
+            'parse_md_in_shortcode', // ID
+            'ショートコード内のMarkdown', // Title 
+            array( $this, 'parse_md_in_shortcode_callback' ), // Callback
+            'kns-setting-admin', // Page
+            'setting_section_id' // Section           
+        );  
     }
 
     /**
@@ -121,6 +129,9 @@ class KnsSetting
 
         if( isset( $input['jp_debug_mode'] ) )
             $new_input['jp_debug_mode'] = sanitize_text_field( $input['jp_debug_mode'] );
+
+        if( isset( $input['parse_md_in_shortcode'] ) )
+            $new_input['parse_md_in_shortcode'] = sanitize_text_field( $input['parse_md_in_shortcode'] );
 
         return $new_input;
     }
@@ -156,7 +167,7 @@ class KnsSetting
             $on
         );
     }
-
+    
     /** 
      * Get the settings option array and print one of its values
      */
@@ -180,6 +191,32 @@ class KnsSetting
             $off
         );
     }
+    
+    /** 
+     * Get the settings option array and print one of its values
+     */
+    public function parse_md_in_shortcode_callback()
+    {
+	    if( isset( $this->options['parse_md_in_shortcode'] ) && $this->options['parse_md_in_shortcode'] == '0' )
+	    {
+   		    $off = 'checked';
+		    $on  = '';
+	    }
+	    else
+	    {
+   		    $off = '';
+		    $on  = 'checked';
+	    }
+	    
+        printf(
+	        '<label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="0" %s>解釈しない</label> &nbsp;&nbsp;
+			 <label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="1" %s>解釈する(デフォルト)</label>',
+            $off,
+            $on
+        );
+    }
+    
+
 }
 
 if( is_admin() )

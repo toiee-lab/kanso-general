@@ -264,9 +264,16 @@ add_action( "customize_register", function ( $wp_customize ) {
 require get_template_directory() . '/inc/admin-setting.php';
 
 
-
+// JetPackを開発モードにする
 $options = get_option('kns_options');
 if( isset( $options['jp_debug_mode'] ) && $options['jp_debug_mode'] == '1' ) {
 	add_filter( 'jetpack_development_mode', '__return_true' );
 }
+
+// JetPackの Markdown が shortcode の中も parse するように修正
+if( !isset( $options['parse_md_in_shortcode'] ) || $options['parse_md_in_shortcode'] == '1' ){
+	add_filter( 'jetpack_markdown_preserve_shortcodes', '__return_false' );	
+}
+
+	
 
