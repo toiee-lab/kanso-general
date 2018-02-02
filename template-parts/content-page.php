@@ -62,8 +62,8 @@
 					}
 					
 					$current = array_search(get_the_ID(), $pages);
-					$prevID = $pages[$current-1];
-					$nextID = $pages[$current+1];
+					$prevID = isset( $pages[$current-1] ) ? $pages[$current-1] : '';
+					$nextID = isset( $pages[$current+1] ) ? $pages[$current+1] : '';
 			?>
 			<hr class="uk-margin-large-top">
 			<div class="uk-clearfix uk-margin-medium-top kns-footer-page-nav">

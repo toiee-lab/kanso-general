@@ -21,7 +21,7 @@
 				    </div>
 				    
 				</div>
-				<p id="footer-copyright">Copyright &copy; <?php echo get_option( 'kanso_general_options_ownername' ); ?>, All rights reserved.</p>
+				<p id="footer-copyright">Copyright &copy; <span class="ownername"><?php echo get_option( 'kanso_general_options_ownername' ); ?></span>, All rights reserved.</p>
 			</div><!-- #footer -->
 			
 	    </div><!-- uk-offcanvas-content -->

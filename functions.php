@@ -68,11 +68,11 @@ if ( ! function_exists( 'kanso_general_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
+/**		add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
-
+*/		
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
@@ -143,7 +143,10 @@ function kanso_general_scripts() {
 	
 	wp_enqueue_script( 'uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js');
 	wp_enqueue_script( 'uikit-icon' , 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js', array('uikit-js') );
-
+	
+	if( isset($_GET['preview']) && $_GET['preview'] == true ) {
+		wp_enqueue_script( 'admin-bar-preview', get_template_directory_uri() . '/js/admin-bar-preview.js',  array(), '20151215', true);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'kanso_general_scripts' );
 
@@ -250,3 +253,20 @@ function kanso_general_customize_admin_bar_menu($wp_admin_bar){
 	) );
 }
 add_action('admin_bar_menu', 'kanso_general_customize_admin_bar_menu', 9999);
+
+
+// カスタマイザーの色の項目を削除
+add_action( "customize_register", function ( $wp_customize ) {
+	$wp_customize->remove_section("colors");
+});
+
+// 設定画面の追加
+require get_template_directory() . '/inc/admin-setting.php';
+
+
+
+$options = get_option('kns_options');
+if( isset( $options['jp_debug_mode'] ) && $options['jp_debug_mode'] == '1' ) {
+	add_filter( 'jetpack_development_mode', '__return_true' );
+}
+
