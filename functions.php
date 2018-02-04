@@ -264,20 +264,17 @@ add_action( "customize_register", function ( $wp_customize ) {
 require get_template_directory() . '/inc/admin-setting.php';
 
 
-// JetPackを開発モードにする
+// JP Markdown2 を使う
 $options = get_option('kns_options');
-if( isset( $options['jp_debug_mode'] ) && $options['jp_debug_mode'] == '1' ) {
-	add_filter( 'jetpack_development_mode', '__return_true' );
+if( !isset( $options['jp_markdown_eneble'] ) || $options['jp_markdown_eneble'] == '1' ) {
+	// JP Markdown2 を読み込む
+	require get_template_directory() . '/jetpack-markdown2/markdown.php';
 }
 
-// JetPackの Markdown が shortcode の中も parse するように修正
+// JP Markdown が shortcode の中も parse するように修正
 if( !isset( $options['parse_md_in_shortcode'] ) || $options['parse_md_in_shortcode'] == '1' ){
 	add_filter( 'jetpack_markdown_preserve_shortcodes', '__return_false' );	
 }
-
-
-// JP Markdown2 を読み込む
-require get_template_directory() . '/jetpack-markdown2/markdown.php';
 
 
 // 必須プラグインを要求する

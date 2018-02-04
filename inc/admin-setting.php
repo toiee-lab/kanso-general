@@ -100,9 +100,9 @@ class KnsSetting
         );      
 
         add_settings_field(
-            'jp_debug_mode', 
-            'JetPackデバッグモード', 
-            array( $this, 'jp_debug_mode_callback' ), 
+            'jp_markdown_eneble', 
+            'JP Markdown', 
+            array( $this, 'jp_markdown_eneble_callback' ), 
             'kns-setting-admin', 
             'setting_section_id'
         );
@@ -127,8 +127,8 @@ class KnsSetting
         if( isset( $input['ve_off'] ) )
             $new_input['ve_off'] = absint( $input['ve_off'] );
 
-        if( isset( $input['jp_debug_mode'] ) )
-            $new_input['jp_debug_mode'] = sanitize_text_field( $input['jp_debug_mode'] );
+        if( isset( $input['jp_markdown_eneble'] ) )
+            $new_input['jp_markdown_eneble'] = sanitize_text_field( $input['jp_markdown_eneble'] );
 
         if( isset( $input['parse_md_in_shortcode'] ) )
             $new_input['parse_md_in_shortcode'] = sanitize_text_field( $input['parse_md_in_shortcode'] );
@@ -141,7 +141,7 @@ class KnsSetting
      */
     public function print_section_info()
     {
-        print '以下に設定を指定し、変更を保存をクリックしてください';
+        print '以下に設定を指定し、変更を保存をクリックしてください。<br>なお、左側が「おすすめ」の設定です。';
     }
 
     /** 
@@ -171,22 +171,23 @@ class KnsSetting
     /** 
      * Get the settings option array and print one of its values
      */
-    public function jp_debug_mode_callback()
+    public function jp_markdown_eneble_callback()
     {
-	    if( isset( $this->options['jp_debug_mode'] ) && $this->options['jp_debug_mode'] == '1' )
+	    // 使わないを明示されている場合
+	    if( isset( $this->options['jp_markdown_eneble'] ) && $this->options['jp_markdown_eneble'] == '0' )
 	    {
-		    $on  = 'checked';
-		    $off = '';
+		    $on  = '';
+		    $off = 'checked';
 	    }
 	    else
 	    {
-		    $on  = '';
-   		    $off = 'checked';
+		    $on  = 'checked';
+   		    $off = '';
 	    }
 	    
         printf(
-	        '<label><input type="radio" name="kns_options[jp_debug_mode]" value="1" %s>有効にする</label> &nbsp;&nbsp;
-			 <label><input type="radio" name="kns_options[jp_debug_mode]" value="0" %s>通常(デフォルト)</label>',
+	        '<label><input type="radio" name="kns_options[jp_markdown_eneble]" value="1" %s>有効</label> &nbsp;&nbsp;
+			 <label><input type="radio" name="kns_options[jp_markdown_eneble]" value="0" %s>無効</label>',
             $on,
             $off
         );
@@ -210,7 +211,7 @@ class KnsSetting
 	    
         printf(
 	        '<label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="1" %s>解釈する</label> &nbsp;&nbsp;
-	        <label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="0" %s>解釈しない(デフォルト)</label>',
+	        <label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="0" %s>解釈しない</label>',
             $on,
             $off
         );
