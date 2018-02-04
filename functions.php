@@ -275,5 +275,8 @@ if( !isset( $options['parse_md_in_shortcode'] ) || $options['parse_md_in_shortco
 	add_filter( 'jetpack_markdown_preserve_shortcodes', '__return_false' );	
 }
 
+
+// JP Markdown2 を読み込む
+require get_template_directory() . '/jetpack-markdown2/markdown.php';
 	
 
