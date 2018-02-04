@@ -209,10 +209,10 @@ class KnsSetting
 	    }
 	    
         printf(
-	        '<label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="0" %s>解釈しない</label> &nbsp;&nbsp;
-			 <label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="1" %s>解釈する(デフォルト)</label>',
-            $off,
-            $on
+	        '<label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="1" %s>解釈する</label> &nbsp;&nbsp;
+	        <label><input type="radio" name="kns_options[parse_md_in_shortcode]" value="0" %s>解釈しない(デフォルト)</label>',
+            $on,
+            $off
         );
     }
     
