@@ -268,7 +268,9 @@ require get_template_directory() . '/inc/admin-setting.php';
 $options = get_option('kns_options');
 if( !isset( $options['jp_markdown_eneble'] ) || $options['jp_markdown_eneble'] == '1' ) {
 	// JP Markdown2 を読み込む
-	require get_template_directory() . '/jetpack-markdown2/markdown.php';
+	if( ! function_exists('jetpack_markdown_posting_always_on') ){
+		require get_template_directory() . '/jetpack-markdown2/markdown.php';		
+	}
 }
 
 // JP Markdown が shortcode の中も parse するように修正
