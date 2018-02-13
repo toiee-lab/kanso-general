@@ -20,7 +20,7 @@ get_header(); ?>
 		<div uk-grid class="uk-grid-match uk-flex-center">
 			<!-- sidebar -->
 			<div class="uk-width-auto">
-				<div class="main-content uk-container uk-container-auto" style="max-width:700px;">
+				<div class="main-content main-content-sidebar uk-container uk-container-auto">
 		
 					<?php
 					while ( have_posts() ) : the_post();
@@ -38,7 +38,7 @@ get_header(); ?>
 					
 				</div><!-- .main-content -->
 			</div>
-			<div id="content-sidebar" class="uk-visible@m uk-flex-first" style="max-width:240px;height: calc( 100vh - 80px );overflow-y: scroll;">
+			<div id="content-sidebar" class="uk-visible@m uk-flex-first">
 				<nav>
 					<aside id="secondary" class="widget-area uk-padding-left">
 						<?php dynamic_sidebar( 'sidebar-1' ); ?>

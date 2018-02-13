@@ -412,3 +412,13 @@ ul.kns-li-content li p
 	font-weight: 400;
 }
 
+/* --- main content with sidebar --- */
+.main-content-sidebar{
+	max-width:700px;
+}
+
+#content-sidebar{
+	max-width:240px;
+	height: calc( 100vh - 80px );
+	overflow-y: scroll;
+}
