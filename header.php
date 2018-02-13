@@ -61,7 +61,14 @@
 										'container'      => false,
 									) );
 								?>
-				                    <ul class="uk-navbar-nav">
+								<?php
+									if ( is_page_template( 'page-sidebar.php' ) ) {
+										$uk_visible = 'uk-hidden@m';
+									} else {
+										
+									}
+								?>
+			                    <ul class="uk-navbar-nav <?php echo $uk_visible; ?>">
 			                        <li><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
 			                    </ul>			                    
 			                </div>
