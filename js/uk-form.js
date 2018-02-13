@@ -18,5 +18,15 @@
   
   jQuery('.comment-reply-link').addClass('uk-button uk-button-default');
   
+  
+  //スクロールに合わせて、移動させる
+  jQuery(window).scroll( function(){
+	  var sc = jQuery(this).scrollTop();
+	  
+	  if(sc > 80){
+		  jQuery('#content-sidebar').css({'margin-top':sc-80+'px'});
+	  }
+  } );
+  
 });
 
