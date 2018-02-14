@@ -12,11 +12,7 @@
  * @package kanso-general
  */
 
-$options = get_option('kns_options');
-
-if( isset( $options['kns_default_layout'] ) 
-		&& ($options['kns_default_layout'] == 'sidebar')
-) {
+if ( kns_get_template() == 'sidebar' ) {
 	get_template_part('page','sidebar');
 }
 else {  // デフォルト

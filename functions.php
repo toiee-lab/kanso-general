@@ -328,5 +328,40 @@ function kanso_general_register_required_plugins() {
 	tgmpa( $plugins, $config );
 }
 
+
+/**
+ * どのページテンプレートを使うか判定する
+ *
+ * 戻り値 : content or sidebar
+ *
+ */
+function kns_get_template() {
 	
+	if( is_page_template( 'page-sidebar.php' ) ){
+		return 'sidebar';
+	}
+	
+	if( is_page_template( 'page-content.php' ) ){
+		return 'content';
+	}
+	
+	//デフォルトの場合
+	
+	if( is_front_page() ){
+		return 'content';   //指定がなければ、コンテンツのみを採用する
+	}
+	
+	if( is_home() ){
+		return 'content';   //投稿ページはサイドバーはないので、コンテンツレイアウトとして設定(headerで必要)
+	}
+	
+	// デフォルトレイアウト値を戻す
+	$options = get_option('kns_options');
+	if( isset( $options['kns_default_layout'] ) && ($options['kns_default_layout'] == 'sidebar') ){
+		return 'sidebar';
+	}
+	else{
+		return 'content';
+	}
+}
 
