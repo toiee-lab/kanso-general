@@ -1,5 +1,5 @@
 /**
- * uk-form.js
+ * kanso.js
  *
  * フォームに、uikit の class を付ける
  *
