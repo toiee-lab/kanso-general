@@ -62,10 +62,13 @@
 									) );
 								?>
 								<?php
-									if ( is_page_template( 'page-sidebar.php' ) ) {
+									
+									// ハンバーガーメニューの表示、非表示
+									// - page-sidebar.php が指定してある場合は非表示
+									// - デフォルトレイアウトでサイドバーが指定されている
+									// サイドバーが設定してある場合
+									if ( kns_get_template() == 'sidebar' ) {
 										$uk_visible = 'uk-hidden@m';
-									} else {
-										
 									}
 								?>
 			                    <ul class="uk-navbar-nav <?php echo $uk_visible; ?>">
