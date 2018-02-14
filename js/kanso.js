@@ -22,9 +22,10 @@
   //スクロールに合わせて、移動させる
   jQuery(window).scroll( function(){
 	  var sc = jQuery(this).scrollTop();
+	  var head_h = jQuery('#kns-head').height();
 	  
-	  if(sc > 80){
-		  jQuery('#content-sidebar').css({'margin-top':sc-80+'px'});
+	  if(sc > head_h){
+		  jQuery('#content-sidebar').css({'margin-top':sc-head_h+'px'});
 	  }
   } );
   
