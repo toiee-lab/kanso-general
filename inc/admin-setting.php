@@ -114,6 +114,22 @@ class KnsSetting
             'kns-setting-admin', // Page
             'setting_section_id' // Section           
         );  
+
+        add_settings_section(
+            'kanso-layout-section', // ID
+            'KANSOレイアウト設定', // Title
+            array( $this, 'print_section_info_kns' ), // Callback
+            'kns-setting-admin' // Page
+        );  
+
+        add_settings_field(
+            'default_template', // ID
+            'デフォルトテンプレート', // Title 
+            array( $this, 'default_template_callback' ), // Callback
+            'kns-setting-admin', // Page
+            'kanso-layout-section' // Section           
+        );          
+        
     }
 
     /**
@@ -133,6 +149,9 @@ class KnsSetting
         if( isset( $input['parse_md_in_shortcode'] ) )
             $new_input['parse_md_in_shortcode'] = sanitize_text_field( $input['parse_md_in_shortcode'] );
 
+        if( isset( $input['kns_default_layout'] ) )
+            $new_input['kns_default_layout'] = sanitize_text_field( $input['kns_default_layout'] );
+
         return $new_input;
     }
 
@@ -143,6 +162,12 @@ class KnsSetting
     {
         print '以下に設定を指定し、変更を保存をクリックしてください。<br>なお、左側が「おすすめ」の設定です。';
     }
+    
+    public function print_section_info_kns()
+    {
+        print 'KANSOのテーマレイアウトなど見た目を調整できます。';
+    }
+
 
     /** 
      * Get the settings option array and print one of its values
@@ -217,6 +242,33 @@ class KnsSetting
         );
     }
     
+    /** 
+     * Get the settings option array and print one of its values
+     */
+    public function default_template_callback()
+    {
+	    // 使わないを明示されている場合
+	    // 0:コンテンツのみ、 1:サイドバー付き
+	    if(  !isset( $this->options['kns_default_layout'] ) || $this->options['kns_default_layout'] == 'content' )
+	    {
+		    $content  = 'checked';
+		    $sidebar  = '';
+	    }
+	    else
+	    {
+		    $content  = '';
+   		    $sidebar  = 'checked';
+	    }
+	    
+        printf(
+	        '<label><input type="radio" name="kns_options[kns_default_layout]" value="content" %s>コンテンツのみ</label> &nbsp;&nbsp;
+			 <label><input type="radio" name="kns_options[kns_default_layout]" value="sidebar" %s>サイドバー付き</label><br>
+			 <p><small>固定ページのデフォルトテンプレートの動作を指定することができます。<br>なお、各固定ページでは、手動でどちらのテンプレートでも、自由に選ぶことができます。</small></p>
+			 ',
+            $content,
+            $sidebar
+        );
+    }    
 
 }
 
