@@ -421,4 +421,6 @@ ul.kns-li-content li p
 	max-width:240px;
 	height: calc( 100vh - 80px );
 	overflow-y: scroll;
+	border-right: 1px solid #ddd;
+	padding-right: 2rem;
 }
