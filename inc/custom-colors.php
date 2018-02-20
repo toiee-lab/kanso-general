@@ -10,57 +10,57 @@ function kns_get_color_set($key, $choices = false)
 	$scheme = array(
 		
 		'simple' => array(
-			'name'    => 'シンプル',
+			'name'    => 'ネイビー(紺色)',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(36, 59, 85, 0.8);',
 			'head-bg' => 'background: linear-gradient(to right, #141e30, #243b55); '
 		),
 		
 		'deepblack' => array(
-			'name'    => 'ディープブラック',
+			'name'    => 'ブラック',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(0, 0, 0, 0.8);',
 			'head-bg' => 'background: linear-gradient(to top, #000000, #434343); '
 		),
 		
 		'royal' => array(
-			'name'    => 'ロイヤル',
+			'name'    => '紫色',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(48, 43, 99, 0.7);',
 			'head-bg' => 'background: linear-gradient(to right, #0f0c29, #302b63, #24243e); '
 		),
 		'transfile' => array(
-			'name'    => 'トランスファイル',
+			'name'    => '水色',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(22, 191, 253, 0.7);',
 			'head-bg' => 'background: linear-gradient(to left, #16bffd, #cb3066); '
 		),
 		'snow' => array(
-			'name'    => 'スノー',
+			'name'    => '白色',
 			'color'   => 'dark',
 			'nav-bg'  => 'background-color : rgba(255, 255, 255, 0.8); border-bottom: #eee 1px solid;',
 			'head-bg' => 'background: linear-gradient(to bottom, #ece9e6, #ffffff); '
 		),
 		'firewatch' => array(
-			'name'    => 'ファイヤーウォッチ',
+			'name'    => '赤色',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(203, 45, 62, 0.9);',
 			'head-bg' => 'background: linear-gradient(to right, #cb2d3e, #ef473a); '
 		),
 		'matini' => array(
-			'name'    => 'マティーニ',
+			'name'    => '黄色',
 			'color'   => 'dark',
 			'nav-bg'  => 'background-color : rgba(246, 255, 0, 0.95);',
 			'head-bg' => 'background: linear-gradient(-90deg, #FF00A1, #F6FF00); '
 		),
 		'leaf' => array(
-			'name'    => 'リーフ',
+			'name'    => '緑色',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(118, 184, 82, 0.9);',
 			'head-bg' => 'background: linear-gradient(to bottom, #76b852, #8dc26f); '
 		),
 		'purple' => array(
-			'name'    => 'パープル',
+			'name'    => '濃い紫色',
 			'color'   => 'light',
 			'nav-bg'  => 'background-color : rgba(65, 41, 90, 0.9);',
 			'head-bg' => 'background: linear-gradient(to bottom, #41295a, #2f0743); '
