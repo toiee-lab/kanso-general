@@ -125,7 +125,7 @@ add_action( 'widgets_init', 'kanso_general_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kanso_general_scripts() {
-	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri(), array(), '0.8.5' );
 
 	wp_enqueue_script( 'kanso-general-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -138,11 +138,11 @@ function kanso_general_scripts() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_script( 'jquery-uk-form', get_template_directory_uri() . '/js/kanso.js', array(), '20151215', true );
 	
-	wp_enqueue_style( 'uikit', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css' );
+	wp_enqueue_style( 'uikit', get_template_directory_uri() . '/css/uikit.min.css', array(), '3.0.0-b40' );
 	wp_enqueue_style( 'base-style', get_stylesheet_uri(), array('uikit') );
 	
-	wp_enqueue_script( 'uikit-js', 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js');
-	wp_enqueue_script( 'uikit-icon' , 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js', array('uikit-js') );
+	wp_enqueue_script( 'uikit-js', get_template_directory_uri() . '/js/uikit.min.js', array(), '3.0.0-b40');
+	wp_enqueue_script( 'uikit-icon' , get_template_directory_uri() . '/js/uikit-icons.min.js', array('uikit-js') , '3.0.0-b40');
 	
 	if( isset($_GET['preview']) && $_GET['preview'] == true ) {
 		wp_enqueue_script( 'admin-bar-preview', get_template_directory_uri() . '/js/admin-bar-preview.js',  array(), '20151215', true);
