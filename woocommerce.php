@@ -19,11 +19,8 @@ get_header(); ?>
 			<?php woocommerce_breadcrumb(); ?>
 			<?php
 				woocommerce_content();
-			?>			
-			
+			?>
 		</div><!-- .main-content -->
-
-
 <?php
 get_sidebar();
 get_footer();
