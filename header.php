@@ -45,7 +45,7 @@
 				                <?php
 					                if ( has_custom_logo() ) {
 										$_logo_html = get_custom_logo();
-										echo str_replace('<img', '<img style="max-height:50px;"', $_logo_html);
+										echo $_logo_html;
 									}
 									else {
 										echo '<a href="'.get_bloginfo('url').'" class="uk-link-reset uk-text-large uk-margin-left ">'.get_bloginfo( 'name', 'display' ).'</a>';
