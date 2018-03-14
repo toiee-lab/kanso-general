@@ -428,3 +428,13 @@ ul.kns-li-content li p
 	border-right: 1px solid #ddd;
 	padding-right: 2rem;
 }
+
+/* --- breadcrumb for page ---*/
+
+ul.breadcrumb,
+ul.breadcrumb li,
+ul.breadcrumb li a {
+	font-size: 14px;
+	line-height: 14px;
+	margin-bottom: 0px;
+}

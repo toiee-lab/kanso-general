@@ -16,7 +16,7 @@
 				$the_id = get_the_ID();
 				if( get_post_meta($the_id, 'kns_hidetitle', true) != '1' ){
 		?>
-
+			<?php get_template_part( 'template-parts/breadcrumb' );?>
 			<?php the_title('<h1>', '</h1>'); ?>
 			<h2 class="main-subtitle"><?php echo get_post_meta( $the_id, 'kns_lead', true );?></h2>
 			<?php
