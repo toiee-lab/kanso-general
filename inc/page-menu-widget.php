@@ -49,7 +49,7 @@ class PageToc_Widget extends WP_Widget {
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 		$depth = is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
 		
-		//目次起点設定を検索
+		//目次起点設定を検索し、あれば設定する
 		$child_of = '';
 		$post_id = get_the_ID();
 		$tsp = get_post_meta( $post_id, 'toc_starting_point' , true);
@@ -67,11 +67,15 @@ class PageToc_Widget extends WP_Widget {
 			}
 		}
 		
-		//起点になっている場合は、タイトルを修正する
+		//起点になっている場合は、タイトルを修正し、depth も修正する
 		if( $child_of !== ''){
 			$title = get_the_title( $child_of );
 			$widget_text = get_post_meta( $child_of, 'kns_lead', true );
+			
+			$depth = get_post_meta( $child_of, 'toc_starting_point_depth', true );
+			$depth = is_numeric( $depth ) ? $depth : 0;
 		}
+		
 
 		echo $args['before_widget'];
 		
@@ -186,13 +190,17 @@ class PageToc_Widget extends WP_Widget {
 		
 		$toc_starting_point = get_post_meta($id, 'toc_starting_point', true);
 		$checked_toc_starting_point = ($toc_starting_point == 1) ? 'checked="checked"' : '';
+		
+		$toc_starting_point_depth = get_post_meta($id, 'toc_starting_point_depth', true);
+		$toc_starting_point_depth = is_numeric( $toc_starting_point_depth ) ? $toc_starting_point_depth : 0;
 
 		wp_nonce_field( 'exclude_menu_meta_box', 'exclude_menu_meta_box_nonce' );
 		echo <<<EOD
 <p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 目次に表示しない</label></p>
 <hr>
 <p><label><input type="checkbox" name="toc_starting_point" value="1" {$checked_toc_starting_point}> 目次の起点にする</label><br>
-<small>起点に設定すると、このページの子ページをサイドバーの目次として使います</small></p>
+<input type="text" name="toc_starting_point_depth" size="2" value="{$toc_starting_point_depth}"> 表示する階層の深さ(数値)<br>
+<small>起点に設定すると、このページの子ページをサイドバーの目次として使います。</small></p>
 EOD;
 
 	}
@@ -229,6 +237,16 @@ EOD;
 		}
 		else{
 			delete_post_meta($post_id, 'toc_starting_point', $before);
+		}
+		
+		
+		$toc_starting_point_depth = isset($_POST['toc_starting_point_depth']) ? $_POST['toc_starting_point_depth'] : null;
+		$before = get_post_meta($post_id, 'toc_starting_point_depth', true);
+		if($toc_starting_point_depth){
+			update_post_meta($post_id, 'toc_starting_point_depth', $toc_starting_point_depth);
+		}
+		else{
+			delete_post_meta($post_id, 'toc_starting_point_depth', $before);
 		}
 	}
 }
