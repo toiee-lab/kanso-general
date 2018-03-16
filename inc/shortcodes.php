@@ -351,6 +351,11 @@ EOD;
 
 // ! KANSO 投稿表示のためのショートコード 
 add_shortcode( 'kns-showpost' , function( $atts, $content ){
+	
+	// 子ページを表示するオプションの場合
+	$children = ( array_search('children', $atts) !== false ) ? true : false;
+
+	
 	$atts = shortcode_atts( array(
 		'title'   => 'お知らせ',
 		'style'   => 'list',
@@ -374,7 +379,22 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 		'include'       => $post_ids
 	);
 	
-	$post_array = get_posts( $param );	
+	
+	if( $children ){ // 子ページを検索する
+		$title = '';
+		$q = array (
+				'post_type'		 => 'page',
+				'posts_per_page' => -1,
+				'post_parent'    => get_the_ID(),
+				'orderby'        => 'menu_order',
+				'order'          => 'asc'
+			);
+		$query = new WP_Query( $q );
+		$post_array = $query->posts;
+	}
+	else{
+		$post_array = get_posts( $param );	
+	}
 	
 	$dummy_img = get_bloginfo('template_directory').'/images/dummy.png';
 	
