@@ -48,6 +48,30 @@ class PageToc_Widget extends WP_Widget {
 		
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 		$depth = is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
+		
+		//目次起点設定を検索
+		$child_of = '';
+		$post_id = get_the_ID();
+		$tsp = get_post_meta( $post_id, 'toc_starting_point' , true);
+		if( $tsp ){
+			$child_of = $post_id;
+		}
+		else{
+			$ancs = get_post_ancestors( $post_id );
+			foreach( $ancs as $a_id){
+				$tsp = get_post_meta( $a_id, 'toc_starting_point', true);
+				if( $tsp ){
+					$child_of = $a_id;
+					break;
+				}
+			}
+		}
+		
+		//起点になっている場合は、タイトルを修正する
+		if( $child_of !== ''){
+			$title = get_the_title( $child_of );
+			$widget_text = get_post_meta( $child_of, 'kns_lead', true );
+		}
 
 		echo $args['before_widget'];
 		
@@ -74,7 +98,7 @@ class PageToc_Widget extends WP_Widget {
 			{
 				$ex_ids .= $p->ID.',';
 			}
-			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0, 'depth'=>$depth) );
+			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0, 'depth'=>$depth, 'child_of'=>$child_of) );
 
 			$ret = preg_replace('/class="(.*?)current_page_item/', 'class="$1current_page_item router-link-exact-active uk-active', $ret);
 			echo $ret;
@@ -150,7 +174,7 @@ class PageToc_Widget extends WP_Widget {
 	*/
 	function register_meta_boxes()
 	{
-		add_meta_box('exclude_menu', '【KANSO】目次非表示', array($this, 'display_meta_box'), 'page', 'side' );
+		add_meta_box('exclude_menu', '【KANSO】固定ページ目次', array($this, 'display_meta_box'), 'page', 'side' );
 	}
 	function display_meta_box( $post )
 	{
@@ -159,11 +183,16 @@ class PageToc_Widget extends WP_Widget {
 		// embed
 		$exclude_menu = get_post_meta($id, 'exclude_menu', true);
 		$checked = ($exclude_menu == 1) ? 'checked="checked"' : '';
-						
+		
+		$toc_starting_point = get_post_meta($id, 'toc_starting_point', true);
+		$checked_toc_starting_point = ($toc_starting_point == 1) ? 'checked="checked"' : '';
+
 		wp_nonce_field( 'exclude_menu_meta_box', 'exclude_menu_meta_box_nonce' );
 		echo <<<EOD
-<p>以下をチェックすると、「KANSO 固定ページ目次」ウィジェットに表示しません</p>
-<p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 非表示にする</label></p>
+<p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 目次に表示しない</label></p>
+<hr>
+<p><label><input type="checkbox" name="toc_starting_point" value="1" {$checked_toc_starting_point}> 目次の起点にする</label><br>
+<small>起点に設定すると、このページの子ページをサイドバーの目次として使います</small></p>
 EOD;
 
 	}
@@ -182,8 +211,7 @@ EOD;
         }
 		
 		$exclude_menu = isset($_POST['exclude_menu']) ? $_POST['exclude_menu'] : null;
-		$before = get_post_meta($post_id, 'exclude_menu', true);
-		
+		$before = get_post_meta($post_id, 'exclude_menu', true);		
 		if($exclude_menu)
 		{
 			update_post_meta($post_id, 'exclude_menu', $exclude_menu);
@@ -191,6 +219,16 @@ EOD;
 		else
 		{
 			delete_post_meta($post_id, 'exclude_menu', $before);
+		}
+		
+		
+		$toc_starting_point = isset($_POST['toc_starting_point']) ? $_POST['toc_starting_point'] : null;
+		$before = get_post_meta($post_id, 'toc_starting_point', true);
+		if($toc_starting_point){
+			update_post_meta($post_id, 'toc_starting_point', $toc_starting_point);
+		}
+		else{
+			delete_post_meta($post_id, 'toc_starting_point', $before);
 		}
 	}
 }
