@@ -428,3 +428,32 @@ ul.kns-li-content li p
 	border-right: 1px solid #ddd;
 	padding-right: 2rem;
 }
+
+/* --- breadcrumb for page ---*/
+.kns-breadcrumb{
+	margin-top: 30px;
+}
+.kns-breadcrumb ul li{
+	display: inline;
+}
+.kns-breadcrumb ul {
+	margin-bottom: 0;
+	padding-left: 0;
+    font-size: 12px;
+}
+.kns-breadcrumb a {
+	color: #888;
+	font-size: 12px;
+}
+.bc-divider {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #888;
+}
+.kns-breadcrumb+h1,
+.kns-breadcrumb+img{
+	margin-top: 1rem;
+}
+.kns-breadcrumb li.bc-current_page{
+	color: #444;
+}
