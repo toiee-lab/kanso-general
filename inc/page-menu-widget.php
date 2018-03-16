@@ -37,7 +37,7 @@ class PageToc_Widget extends WP_Widget {
 	}
 
 	/**
-	 * ウィジェットの内容をWebページに出力します（HTML表示）
+	 * //! ウィジェットの内容をWebページに出力します（HTML表示）
 	 *
 	 * @param array $args       register_sidebar()で設定したウィジェットの開始/終了タグ、タイトルの開始/終了タグなどが渡される。
 	 * @param array $instance   管理画面から入力した値が渡される。
@@ -47,6 +47,7 @@ class PageToc_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
+		$depth = is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
 
 		echo $args['before_widget'];
 		
@@ -73,7 +74,7 @@ class PageToc_Widget extends WP_Widget {
 			{
 				$ex_ids .= $p->ID.',';
 			}
-			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0) );
+			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0, 'depth'=>$depth) );
 
 			$ret = preg_replace('/class="(.*?)current_page_item/', 'class="$1current_page_item router-link-exact-active uk-active', $ret);
 			echo $ret;
@@ -91,12 +92,14 @@ class PageToc_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$defaults = array(
 			'title' => '',
-			'text'  => ''
+			'text'  => '',
+			'depth' => '0',
 		);
 
 		$instance   = wp_parse_args( (array) $instance, $defaults );
 		
 		$title  = sanitize_text_field( $instance['title'] );
+		$depth  = is_numeric($instance['depth']) ? $instance['depth'] : 0;
 		?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル' ); ?></label>
@@ -106,6 +109,10 @@ class PageToc_Widget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( '説明文' ); ?></label>
             <textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
+        </p>
+        <p>
+	        <label for="<?php echo $this->get_field_id( 'depth' ); ?>"><?php _e( '表示する階層の深さ' ); ?></label>
+	        <input class="" size="2" id="<?php echo $this->get_field_id( 'depth' ); ?>" name="<?php echo $this->get_field_name( 'depth' ); ?>" value="<?php echo esc_attr( $depth ); ?>" />
         </p>
 		<?php
 	}
@@ -129,6 +136,8 @@ class PageToc_Widget extends WP_Widget {
 		} else {
 			$instance['text']   = wp_kses_post( $new_instance['text'] );
 		}
+		
+		$instance['depth']  = is_numeric($new_instance['depth']) ? $new_instance['depth'] : 0;
 
 		return $instance;
 	}
