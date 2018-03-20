@@ -353,8 +353,9 @@ EOD;
 add_shortcode( 'kns-showpost' , function( $atts, $content ){
 	
 	// 子ページを表示するオプションの場合
-	$children = ( array_search('children', $atts) !== false ) ? true : false;
-
+	if( is_array( $atts ) ){
+		$children = ( array_search('children', $atts) !== false ) ? true : false;
+	}
 	
 	$atts = shortcode_atts( array(
 		'title'   => 'お知らせ',
