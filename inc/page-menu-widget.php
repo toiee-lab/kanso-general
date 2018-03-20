@@ -37,7 +37,7 @@ class PageToc_Widget extends WP_Widget {
 	}
 
 	/**
-	 * ウィジェットの内容をWebページに出力します（HTML表示）
+	 * //! ウィジェットの内容をWebページに出力します（HTML表示）
 	 *
 	 * @param array $args       register_sidebar()で設定したウィジェットの開始/終了タグ、タイトルの開始/終了タグなどが渡される。
 	 * @param array $instance   管理画面から入力した値が渡される。
@@ -47,6 +47,35 @@ class PageToc_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
+		$depth = is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
+		
+		//目次起点設定を検索し、あれば設定する
+		$child_of = '';
+		$post_id = get_the_ID();
+		$tsp = get_post_meta( $post_id, 'toc_starting_point' , true);
+		if( $tsp ){
+			$child_of = $post_id;
+		}
+		else{
+			$ancs = get_post_ancestors( $post_id );
+			foreach( $ancs as $a_id){
+				$tsp = get_post_meta( $a_id, 'toc_starting_point', true);
+				if( $tsp ){
+					$child_of = $a_id;
+					break;
+				}
+			}
+		}
+		
+		//起点になっている場合は、タイトルを修正し、depth も修正する
+		if( $child_of !== ''){
+			$title = get_the_title( $child_of );
+			$widget_text = get_post_meta( $child_of, 'kns_lead', true );
+			
+			$depth = get_post_meta( $child_of, 'toc_starting_point_depth', true );
+			$depth = is_numeric( $depth ) ? $depth : 0;
+		}
+		
 
 		echo $args['before_widget'];
 		
@@ -73,7 +102,7 @@ class PageToc_Widget extends WP_Widget {
 			{
 				$ex_ids .= $p->ID.',';
 			}
-			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0) );
+			$ret = wp_list_pages( array( 'title_li' => '', "exclude" =>$ex_ids, 'echo'=>0, 'depth'=>$depth, 'child_of'=>$child_of) );
 
 			$ret = preg_replace('/class="(.*?)current_page_item/', 'class="$1current_page_item router-link-exact-active uk-active', $ret);
 			echo $ret;
@@ -91,12 +120,14 @@ class PageToc_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$defaults = array(
 			'title' => '',
-			'text'  => ''
+			'text'  => '',
+			'depth' => '0',
 		);
 
 		$instance   = wp_parse_args( (array) $instance, $defaults );
 		
 		$title  = sanitize_text_field( $instance['title'] );
+		$depth  = is_numeric($instance['depth']) ? $instance['depth'] : 0;
 		?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル' ); ?></label>
@@ -106,6 +137,10 @@ class PageToc_Widget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( '説明文' ); ?></label>
             <textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
+        </p>
+        <p>
+	        <label for="<?php echo $this->get_field_id( 'depth' ); ?>"><?php _e( '表示する階層の深さ' ); ?></label>
+	        <input class="" size="2" id="<?php echo $this->get_field_id( 'depth' ); ?>" name="<?php echo $this->get_field_name( 'depth' ); ?>" value="<?php echo esc_attr( $depth ); ?>" />
         </p>
 		<?php
 	}
@@ -129,6 +164,8 @@ class PageToc_Widget extends WP_Widget {
 		} else {
 			$instance['text']   = wp_kses_post( $new_instance['text'] );
 		}
+		
+		$instance['depth']  = is_numeric($new_instance['depth']) ? $new_instance['depth'] : 0;
 
 		return $instance;
 	}
@@ -141,7 +178,7 @@ class PageToc_Widget extends WP_Widget {
 	*/
 	function register_meta_boxes()
 	{
-		add_meta_box('exclude_menu', '【KANSO】目次非表示', array($this, 'display_meta_box'), 'page', 'side' );
+		add_meta_box('exclude_menu', '【KANSO】固定ページ目次', array($this, 'display_meta_box'), 'page', 'side' );
 	}
 	function display_meta_box( $post )
 	{
@@ -150,11 +187,20 @@ class PageToc_Widget extends WP_Widget {
 		// embed
 		$exclude_menu = get_post_meta($id, 'exclude_menu', true);
 		$checked = ($exclude_menu == 1) ? 'checked="checked"' : '';
-						
+		
+		$toc_starting_point = get_post_meta($id, 'toc_starting_point', true);
+		$checked_toc_starting_point = ($toc_starting_point == 1) ? 'checked="checked"' : '';
+		
+		$toc_starting_point_depth = get_post_meta($id, 'toc_starting_point_depth', true);
+		$toc_starting_point_depth = is_numeric( $toc_starting_point_depth ) ? $toc_starting_point_depth : 0;
+
 		wp_nonce_field( 'exclude_menu_meta_box', 'exclude_menu_meta_box_nonce' );
 		echo <<<EOD
-<p>以下をチェックすると、「KANSO 固定ページ目次」ウィジェットに表示しません</p>
-<p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 非表示にする</label></p>
+<p><label><input type="checkbox" name="exclude_menu" value="1" {$checked}> 目次に表示しない</label></p>
+<hr>
+<p><label><input type="checkbox" name="toc_starting_point" value="1" {$checked_toc_starting_point}> 目次の起点にする</label><br>
+<input type="text" name="toc_starting_point_depth" size="2" value="{$toc_starting_point_depth}"> 表示する階層の深さ(数値)<br>
+<small>起点に設定すると、このページの子ページをサイドバーの目次として使います。</small></p>
 EOD;
 
 	}
@@ -173,8 +219,7 @@ EOD;
         }
 		
 		$exclude_menu = isset($_POST['exclude_menu']) ? $_POST['exclude_menu'] : null;
-		$before = get_post_meta($post_id, 'exclude_menu', true);
-		
+		$before = get_post_meta($post_id, 'exclude_menu', true);		
 		if($exclude_menu)
 		{
 			update_post_meta($post_id, 'exclude_menu', $exclude_menu);
@@ -182,6 +227,26 @@ EOD;
 		else
 		{
 			delete_post_meta($post_id, 'exclude_menu', $before);
+		}
+		
+		
+		$toc_starting_point = isset($_POST['toc_starting_point']) ? $_POST['toc_starting_point'] : null;
+		$before = get_post_meta($post_id, 'toc_starting_point', true);
+		if($toc_starting_point){
+			update_post_meta($post_id, 'toc_starting_point', $toc_starting_point);
+		}
+		else{
+			delete_post_meta($post_id, 'toc_starting_point', $before);
+		}
+		
+		
+		$toc_starting_point_depth = isset($_POST['toc_starting_point_depth']) ? $_POST['toc_starting_point_depth'] : null;
+		$before = get_post_meta($post_id, 'toc_starting_point_depth', true);
+		if($toc_starting_point_depth){
+			update_post_meta($post_id, 'toc_starting_point_depth', $toc_starting_point_depth);
+		}
+		else{
+			delete_post_meta($post_id, 'toc_starting_point_depth', $before);
 		}
 	}
 }

@@ -25,12 +25,12 @@
 		<div id="kns-head" class="uk-background-cover uk-background-center-center">	
 			<?php 
 				
-				$kns_heder_text_color_cls = get_option('kanso_general_options_hcolor_front', 'light');
+				$kns_header_text_color_cls = get_option('kanso_general_options_hcolor_front', 'light');
 				$kns_color_set = kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) );
 				
 				if( is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
-					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-'.$kns_heder_text_color_cls.';';
-					$uk_nav_color  = $kns_heder_text_color_cls;
+					$uk_sticky_add = 'cls-inactive: uk-navbar-transparent uk-'.$kns_header_text_color_cls.';';
+					$uk_nav_color  = $kns_header_text_color_cls;
 				}
 				else {
 					$uk_sticky_add = '';
@@ -82,7 +82,7 @@
    			<?php 
 				if( is_front_page() ) { // トップページだけ、ナビをヘッダー画像の上にのせる
 			?>
-		    <div id="kns-header" class="uk-<?php echo $kns_heder_text_color_cls; ?>" style="">
+		    <div id="kns-header" class="uk-<?php echo $kns_header_text_color_cls; ?>" style="">
 			    <div id="kns-header-text" class="uk-padding-small">
 				    <h1 id="kanso_general_options_htitle"><?php echo get_option( 'kanso_general_options_htitle' ); ?></h1>
 				    <h2 id="kanso_general_options_hsubtitle"><?php echo get_option( 'kanso_general_options_hsubtitle' ); ?></h2>
