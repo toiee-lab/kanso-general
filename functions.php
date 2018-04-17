@@ -220,7 +220,7 @@ require get_template_directory() . '/inc/register-lead-meta.php';
 /**
  * タイトルを非表示にするフィールドを用意する
  */
-require get_template_directory() . '/inc/hide-title-meta.php';
+require get_template_directory() . '/inc/custom-meta-box.php';
 
 
 
@@ -335,6 +335,7 @@ function kanso_general_register_required_plugins() {
  * 戻り値 : content or sidebar
  *
  */
+if( !function_exists('kns_get_template')){
 function kns_get_template() {
 	
 	if( is_page_template( 'page-sidebar.php' ) ){
@@ -363,7 +364,7 @@ function kns_get_template() {
 	else{
 		return 'content';
 	}
-}
+}}
 
 
 /**
