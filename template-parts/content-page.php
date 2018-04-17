@@ -8,25 +8,28 @@
  */
 
 ?>
-		<?php
+<?php
 			if ( is_home() || is_front_page() ) {
 				// do nothing
 			}
 			else {
 				$the_id = get_the_ID();
-		?>
-		<?php get_template_part( 'template-parts/breadcrumb', 'page' );?>
-		<?php
-				if( get_post_meta($the_id, 'kns_hidetitle', true) != '1' ){
-		?>
-			<?php the_title('<h1>', '</h1>'); ?>
+				get_template_part( 'template-parts/breadcrumb', 'page' );
+
+				if( get_post_meta($the_id, 'kns_hidetitle', true) != '1' )
+				{
+					the_title('<h1>', '</h1>');
+?>
 			<h2 class="main-subtitle"><?php echo get_post_meta( $the_id, 'kns_lead', true );?></h2>
-			<?php
+<?php
 				}
 				
-				the_post_thumbnail();
+				if( get_post_meta($the_id, 'kns_hidethumb', true) != '1' )
+				{				
+					the_post_thumbnail();
+				}
 			}
-		 ?>
+?>
 			<div class="the_content">
 			<?php
 				$the_content = get_the_content(); 

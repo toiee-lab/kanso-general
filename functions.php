@@ -220,7 +220,7 @@ require get_template_directory() . '/inc/register-lead-meta.php';
 /**
  * タイトルを非表示にするフィールドを用意する
  */
-require get_template_directory() . '/inc/hide-title-meta.php';
+require get_template_directory() . '/inc/custom-meta-box.php';
 
 
 
