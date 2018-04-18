@@ -11,7 +11,6 @@
  *
  * @package kanso-general
  *
- * Template Name: コンテンツのみ
  */
 
 get_header(); ?>
