@@ -400,9 +400,7 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 				$exclude_ids .= $p->ID.',';
 			}
 		}
-		
-		$ex_post_ids = array_flip( explode(',', $exclude_ids ) );
-		
+				
 		$parent_id = get_the_ID();
 		if( $post_ids != '' && is_numeric($post_ids) ){
 			$parent_id = $post_ids;
@@ -418,15 +416,17 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 			);
 		$query = new WP_Query( $q );
 		$post_array = $query->posts;
-		
-		foreach( $post_array as $k=>$p) {
-			if( isset( $ex_post_ids[$p->ID] ) ) {
-				unset( $post_array[$k] );
-			}
-		}
 	}
 	else{
 		$post_array = get_posts( $param );	
+	}
+	
+	// 投稿を除外する
+	$ex_post_ids = array_flip( explode(',', $exclude_ids ) );
+	foreach( $post_array as $k=>$p) {
+		if( isset( $ex_post_ids[$p->ID] ) ) {
+			unset( $post_array[$k] );
+		}
 	}
 	
 	$dummy_img = get_bloginfo('template_directory').'/images/dummy.png';
