@@ -358,14 +358,14 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 	}
 	
 	$atts = shortcode_atts( array(
-		'title'   => 'お知らせ',
-		'style'   => 'list',
+		'title'        => 'お知らせ',
+		'style'        => 'list',
 		'post_type'    => 'post',
 		'cat_name'     => '',
-		'num'     => '6',
-		'label'   => 'new',
-		'orderby' => 'date',
-		'order'   => 'DESC',
+		'num'          => '6',
+		'label'        => 'new',
+		'orderby'      => 'date',
+		'order'        => 'DESC',
 		'post_ids'     => '',
 		'exclude_menu' => 'true',   //メニューに表示しない設定したアイテムは、表示しない
 		'exclude_ids'  => ''
