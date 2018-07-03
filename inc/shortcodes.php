@@ -403,12 +403,16 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 		
 		$ex_post_ids = array_flip( explode(',', $exclude_ids ) );
 		
+		$parent_id = get_the_ID();
+		if( $post_ids != '' && is_numeric($post_ids) ){
+			$parent_id = $post_ids;
+		}
 		
 		$title = '';
 		$q = array (
 				'post_type'		 => 'page',
 				'posts_per_page' => -1,
-				'post_parent'    => get_the_ID(),
+				'post_parent'    => $parent_id,
 				'orderby'        => 'menu_order',
 				'order'          => 'asc'
 			);
