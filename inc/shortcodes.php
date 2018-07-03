@@ -366,10 +366,11 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 		'label'   => 'new',
 		'orderby' => 'date',
 		'order'   => 'DESC',
-		'post_ids' => ''
+		'post_ids'     => '',
+		'exclude_menu' => 'true',   //メニューに表示しない設定したアイテムは、表示しない
+		'exclude_ids'  => ''
 	), $atts);
 	extract( $atts );
-		
 	
 	$param = array(
 		'numberposts'   => $num,
@@ -382,6 +383,27 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 	
 	
 	if( $children ){ // 子ページを検索する
+
+		// 除外する id を設定する
+		if( $exclude_menu === 'true' ) {
+			$ex_q = array (
+					'post_type'		=> 'page',
+					'meta_key'		=> 'exclude_menu',
+					'meta_value'	=> 1,
+					'compare' 		=> '=',
+					'posts_per_page' => -1
+				);
+			$the_query = new WP_Query( $ex_q );
+			$tmp_posts = $the_query->posts;
+			foreach($tmp_posts as $p)
+			{
+				$exclude_ids .= $p->ID.',';
+			}
+		}
+		
+		$ex_post_ids = array_flip( explode(',', $exclude_ids ) );
+		
+		
 		$title = '';
 		$q = array (
 				'post_type'		 => 'page',
@@ -392,6 +414,12 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 			);
 		$query = new WP_Query( $q );
 		$post_array = $query->posts;
+		
+		foreach( $post_array as $k=>$p) {
+			if( isset( $ex_post_ids[$p->ID] ) ) {
+				unset( $post_array[$k] );
+			}
+		}
 	}
 	else{
 		$post_array = get_posts( $param );	
