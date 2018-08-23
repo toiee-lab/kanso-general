@@ -4,7 +4,7 @@ Theme URI: http://kansowp.toiee.jp/
 Author: toiee Lab
 Author URI: http://toiee.jp/
 Description: KANSO General は、できるだけ少ない設定、学習コストで、美しく、洗練され、オリジナリティがあるWebサイトを作るためのテーマです。シンプル・簡素 is best の精神で作られています。 詳細は、<a href="http://kansowp.toiee.jp/">http://kansowp.toiee.jp/</a>
-Version: 0.9.5
+Version: 0.9.6
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -128,15 +128,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 }
 
 /* ------ コンテンツ部分のテキストサイズ ---- */
-
-.main-content {
-	color: #444;
-}
-
 .main-content p,
 .main-content ul,
 .main-content ol{
-	font-size: 21px;
+	font-size: 19px;
 	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	line-height: 1.52947;
 }
@@ -152,6 +147,12 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 .main-content li{
 	margin-bottom: 0.8em;
+}
+
+blockquote {
+	border-left: 3px solid #666;
+	padding-left: 1em;
+	margin-left: 0.2em;
 }
 
 /* ----- footer ----- */

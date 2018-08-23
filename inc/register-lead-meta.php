@@ -1,12 +1,27 @@
 <?php
 	
-//	add_action( 'add_meta_boxes', 'register_kns_lead_meta_boxes' );
-	add_action( 'save_post', 'save_kns_lead_meta_boxes' );
+	add_action( 'add_meta_boxes', function (){
+		add_meta_box('kns_lead', 'サブタイトル', 'display_kns_lead_meta_box',
+			 'page', 'side', 'high'
+		);
+	} );
+
+	function display_kns_lead_meta_box(){
+			$id = get_the_ID();
+			
+			// embed
+			$kns_lead = get_post_meta($id, 'kns_lead', true);
+									
+			wp_nonce_field( 'kns_lead_meta_box', 'kns_lead_meta_box_nonce' );
+			echo <<<EOD
+<p><b>リード文(サブタイトル)</b>（任意）:<br>
+<input type="text" name="kns_lead" value="{$kns_lead}" style="width:100%"></p>
+EOD;
+			
+	}
 	
 	
-	add_action('edit_form_after_title', 'display_kns_lead_meta_box');
-
-
+/*	add_action('edit_form_after_title', 'display_kns_lead_meta_box');
 	function display_kns_lead_meta_box( $post )
 	{
 		$id = get_the_ID();
@@ -21,8 +36,12 @@
 EOD;
 
 	}
+*/
+
+	add_action( 'save_post', 'save_kns_lead_meta_boxes' );	
 	function save_kns_lead_meta_boxes($post_id)
 	{
+		
         // Check if our nonce is set.
         if ( ! isset( $_POST['kns_lead_meta_box_nonce'] ) ) {
             return $post_id;

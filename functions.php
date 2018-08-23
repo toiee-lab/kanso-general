@@ -125,7 +125,7 @@ add_action( 'widgets_init', 'kanso_general_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kanso_general_scripts() {
-	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri(), array(), '0.8.5' );
+	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri(), array(), '0.9.5' );
 
 	wp_enqueue_script( 'kanso-general-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -376,3 +376,14 @@ function woocommerce_support() {
 	add_theme_support( 'woocommerce' );
 }
 
+/**
+ * style sheet のバージョン番号をファイルスタンプに変更
+ */
+add_action( 'wp_default_styles', function ( $styles ) {
+  $mtime = filemtime( get_stylesheet_directory() . '/style.css' );
+  $styles->default_version = $mtime;
+} );
+ 
+// Gutenberg Wide Alignment
+// https://wordpress.org/gutenberg/handbook/extensibility/theme-support/#wide-alignment
+add_theme_support( 'align-wide' );
