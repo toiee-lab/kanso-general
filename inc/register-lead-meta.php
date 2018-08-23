@@ -2,7 +2,7 @@
 	
 	add_action( 'add_meta_boxes', function (){
 		add_meta_box('kns_lead', 'サブタイトル', 'display_kns_lead_meta_box',
-			 'page', 'side', 'high'
+			 array('page', 'post'), 'side', 'high'
 		);
 	} );
 
