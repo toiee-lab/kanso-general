@@ -8,6 +8,8 @@ class Kns_MetaBox
 		//Widgetが必要とするカスタムフィールドを入力させる追加の投稿情報を表示、保存させる
 		add_action( 'add_meta_boxes', array($this, 'register_meta_boxes') );
 		add_action( 'save_post', array($this, 'save_meta_boxes') );
+		add_action( 'save_post', array($this, 'save_meta_boxes_exclude_eyecatch') );
+
 	}
 	
 	/**
@@ -16,7 +18,10 @@ class Kns_MetaBox
 	function register_meta_boxes()
 	{
 		add_meta_box('exclude_menu', '【KANSO】設定', array($this, 'display_meta_box'), 'page', 'side' );
+		add_meta_box('exclude_eyecatch', 'アイキャッチ設定', array($this, 'display_meta_box_exclude_eyecatch'), 'post', 'side' );
 	}
+	
+	
 	function display_meta_box( $post )
 	{
 		$id = get_the_ID();
@@ -120,6 +125,46 @@ class Kns_MetaBox
 		
 		if($kns_hidethumb)
 		{
+			update_post_meta($post_id, 'kns_hidethumb', $kns_hidethumb );
+		}
+		else
+		{
+			delete_post_meta($post_id, 'kns_hidethumb', $before);
+		}
+	}
+	
+	
+	function display_meta_box_exclude_eyecatch( $post ) {
+		$id = get_the_ID();
+		
+		// サムネイル非表示
+		$kns_hidethumb = get_post_meta($id, 'kns_hidethumb', true);;
+		$checked_thumb = ($kns_hidethumb == 1) ? 'checked="checked"' : '';
+
+		wp_nonce_field( 'exclude_eyecatch_meta_box', 'exclude_eyecatch_meta_box_nonce' );
+?>
+<p><label><input type="checkbox" name="kns_hidethumb" value="1"  <?php echo $checked_thumb; ?>> サムネイルを非表示にする</label></p>
+<?php		
+	}
+	
+	function save_meta_boxes_exclude_eyecatch( $post_id ) {
+        // Check if our nonce is set.
+        if ( ! isset( $_POST['exclude_eyecatch_meta_box_nonce'] ) ) {
+            return $post_id;
+        }
+        
+        // Verify that the nonce is valid.
+        $nonce = $_POST['exclude_eyecatch_meta_box_nonce'];
+        if ( ! wp_verify_nonce( $nonce, 'exclude_eyecatch_meta_box' ) ) {
+            return $post_id;
+        }
+
+		// サムネイルの表示、非表示
+		$kns_hidethumb = isset($_POST['kns_hidethumb']) ? $_POST['kns_hidethumb'] : null;
+		$before = get_post_meta($post_id, 'kns_hidethumb', true);
+		
+		if($kns_hidethumb)
+		{			
 			update_post_meta($post_id, 'kns_hidethumb', $kns_hidethumb );
 		}
 		else

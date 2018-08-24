@@ -13,10 +13,17 @@
 	?>
 			<h2 class="main-subtitle"><?php echo get_post_meta(get_the_ID(), 'kns_lead', true);?></h2>
 
-			<div class="entry-meta uk-text-right uk-margin">
+
+	
+	<?php 
+		$the_id = get_the_ID();
+		if( get_post_meta($the_id, 'kns_hidethumb', true) != '1' )
+		{				
+			kanso_general_post_thumbnail();
+		}
+		?>
+	<?php the_content(); ?>
+				<div class="entry-meta uk-text-right uk-margin">
 				<?php kanso_general_posted_on(); ?>
 			</div><!-- .entry-meta -->
-	
-	<?php kanso_general_post_thumbnail(); ?>
-	<?php the_content(); ?>
 
