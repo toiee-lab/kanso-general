@@ -125,7 +125,7 @@ add_action( 'widgets_init', 'kanso_general_widgets_init' );
  * Enqueue scripts and styles.
  */
 function kanso_general_scripts() {
-	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri(), array(), '0.9.7' );
+	wp_enqueue_style( 'kanso-general-style', get_stylesheet_uri(), array(), '0.9.8' );
 
 	wp_enqueue_script( 'kanso-general-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
