@@ -18,6 +18,7 @@
    			<?php endif; ?>
    	        <img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover>
 <!--            <a href="<?php echo esc_url( get_permalink() ); ?>"><img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover></a>-->
+			<a href="<?php echo esc_url( get_permalink() ); ?>"></a>
         </div>
         <div class="uk-card-body">
 	        <p class="uk-link-muted uk-margin-remove-bottom uk-text-small"><?php the_category(' , '); ?></p>
