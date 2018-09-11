@@ -6,6 +6,19 @@
  *
  * @package kanso-general
  */
+ 
+if ( ! function_exists( 'kanso_general_posted_date' ) ) :
+	function kanso_general_posted_date() {
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		$time_string = sprintf( $time_string,
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() )
+		);
+		
+		echo $time_string;
+	}
+ 
+endif;
 
 if ( ! function_exists( 'kanso_general_posted_on' ) ) :
 	/**
@@ -137,4 +150,17 @@ function kanso_general_post_thumbnail() {
 
 	<?php endif; // End is_singular().
 }
+endif;
+
+if ( ! function_exists( 'kanso_general_get_thumnail_url' ) ) :
+
+function kanso_general_get_thumnail_url() {
+	$img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+	if( $img_url == '' ) {
+		$img_url = get_template_directory_uri() .'/images/thumnails/'. rand(1, 5) .'.png';
+	}
+	
+	return $img_url;
+}
+
 endif;

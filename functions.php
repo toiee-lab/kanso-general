@@ -387,3 +387,13 @@ add_action( 'wp_default_styles', function ( $styles ) {
 // Gutenberg Wide Alignment
 // https://wordpress.org/gutenberg/handbook/extensibility/theme-support/#wide-alignment
 add_theme_support( 'align-wide' );
+
+function custom_excerpt_length( $length ) {
+     return 50;	
+}	
+add_filter( 'excerpt_length', 'custom_excerpt_length', 100 );
+
+function new_excerpt_more($more) {
+	return '...';
+}
+add_filter('excerpt_more', 'new_excerpt_more');

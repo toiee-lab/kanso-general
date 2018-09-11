@@ -8,6 +8,13 @@
  */
 
 ?>
+	<div class="uk-link-muted uk-text-muted uk-text-small uk-text-center">
+		<?php kanso_general_posted_date(); ?>
+		<span class="uk-margin-small-left uk-margin-small-right">--</span>
+		<a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" >ブログ</a>
+		<span class="uk-margin-small-left uk-margin-small-right">/</span>
+		<?php the_category(','); ?>
+	</div>
 	<?php
 		the_title( '<h1 class="entry-title">', '</h1>' );
 	?>

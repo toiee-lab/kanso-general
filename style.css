@@ -513,3 +513,10 @@ ul.kns-li-content li p
         width        : 940px;
 	}
 }
+
+.post-card-avatar {
+	width: 40px;
+}
+.uk-card-footer{
+	border-top: none;
+}

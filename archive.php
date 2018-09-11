@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<div class="uk-container uk-container-small uk-background-default main-content">
+	<div class="uk-container uk-container-middle uk-background-default main-content">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -20,7 +20,8 @@ get_header(); ?>
 					the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
-
+			
+			<div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
@@ -33,7 +34,10 @@ get_header(); ?>
 				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
+			?>
+			</div>
 
+			<?php
 			the_posts_navigation();
 
 		else :

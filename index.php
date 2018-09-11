@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-	<div class="uk-container uk-container-small uk-background-default main-content">
+	<div class="uk-container uk-container-middle uk-background-default main-content">
 
 
 		<?php
@@ -28,11 +28,13 @@ get_header(); ?>
 
 			<?php
 			endif;
-
+			?>
+			
+			<div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
+			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-				echo '<hr>';
 
+			while ( have_posts() ) : the_post();
 				/*
 				 * Include the Post-Format-specific template for the content.
 				 * If you want to override this in a child theme, then include a file
@@ -41,7 +43,10 @@ get_header(); ?>
 				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
+			?>
+			</div>
 
+			<?php
 			the_posts_navigation(array(
     'prev_text'           => '&lt; PREVIOUS',
     'next_text'           => 'NEXT &gt;',

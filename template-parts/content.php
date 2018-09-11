@@ -9,52 +9,59 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			?><h3 class="main-subtitle"><?php echo get_post_meta(get_the_ID(), 'kns_lead', true);?></h3><?php
 
-		endif;
-
-		if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta uk-text-right">
-			<?php kanso_general_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
-	</header><!-- .entry-header -->
-
-	<div class="uk-margin uk-cover-container uk-height-small uk-background-muted">
-		<?php kanso_general_post_thumbnail(); ?>
-	</div>
-
-	<div class="entry-content">
-		<?php
-			the_excerpt( sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'kanso-general' ),
-					array(
-						'span' => array(
-							'class' => array(),
+<div>
+    <div class="uk-card uk-card-default uk-border-rounded">
+        <div class="uk-card-media-top uk-height-medium uk-cover-container">
+	        <?php if( is_sticky() ) : ?>
+   	        <div class="uk-card-badge uk-label">featured</div>
+   			<?php endif; ?>
+   	        <img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover>
+<!--            <a href="<?php echo esc_url( get_permalink() ); ?>"><img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover></a>-->
+        </div>
+        <div class="uk-card-body">
+	        <p class="uk-link-muted uk-margin-remove-bottom uk-text-small"><?php the_category(' , '); ?></p>
+			<?php
+			if ( is_singular() ) :
+				the_title( '<h1 class="uk-h3 uk-margin-remove uk-link-text">', '</h1>' );
+			else :
+				the_title( '<h2 class="uk-h3 uk-margin-remove uk-link-text"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+	
+			endif;
+			?>
+            <p class="uk-margin-small-top">
+	            <?php
+		   			the_excerpt( sprintf(
+						wp_kses(
+							/* translators: %s: Name of current post. Only visible to screen readers */
+							__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'kanso-general' ),
+							array(
+								'span' => array(
+									'class' => array(),
+								),
+							)
 						),
-					)
-				),
-				get_the_title()
-			) );
+						get_the_title()
+					) );
+		        ?>
+            </p>
+            <div class="uk-position-bottom">
+	            <div class="uk-margin-small uk-margin-small-left">
+	        <?php
+		        $author_id = get_the_author_meta( 'ID' );
+				$author_img = get_avatar( $author_id );
+				$imgtag= '/<img.*?src=(["\'])(.+?)\1.*?>/i';
+				if(preg_match($imgtag, $author_img, $imgurl)){
+					$author_img_url = $imgurl[2];
+				}
+				
+			?>
+					<a href="<?php echo get_author_posts_url( $author_id ); ?>" class="uk-link-text"><img src="<?php echo $author_img_url ?>" class="uk-border-circle post-card-avatar"> <?php the_author_meta('user_nicename');?></a>
+	            </div>
+	        </div>
+        </div>
+    </div>
+</div>
+    
+    
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'kanso-general' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php kanso_general_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
