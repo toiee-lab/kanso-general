@@ -36,6 +36,7 @@ get_header(); ?>
 					'container'       => 'nav',
 					'container_class' => 'uk-navbar-container uk-navbar-transparent',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-navbar-nav">%3$s</ul>',
+					'fallback_cb'     => ''
 				);
 				wp_nav_menu( $args );
 			?>
