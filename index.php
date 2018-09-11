@@ -30,6 +30,16 @@ get_header(); ?>
 			endif;
 			?>
 			
+			<?php 
+				$args = array(
+					'theme_location'  => 'blog-menu', 
+					'container'       => 'nav',
+					'container_class' => 'uk-navbar-container uk-navbar-transparent',
+					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-navbar-nav">%3$s</ul>',
+				);
+				wp_nav_menu( $args );
+			?>
+			
 			<div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
 			<?php
 			/* Start the Loop */

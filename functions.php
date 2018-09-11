@@ -53,6 +53,7 @@ if ( ! function_exists( 'kanso_general_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'kanso-general' ),
+			'blog-menu' => esc_html__( 'ブログトップメニュー', 'kanso-general' )
 		) );
 
 		/*
@@ -388,6 +389,8 @@ add_action( 'wp_default_styles', function ( $styles ) {
 // https://wordpress.org/gutenberg/handbook/extensibility/theme-support/#wide-alignment
 add_theme_support( 'align-wide' );
 
+
+// 抜粋表示数の調整
 function custom_excerpt_length( $length ) {
      return 50;	
 }	
@@ -397,3 +400,4 @@ function new_excerpt_more($more) {
 	return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+

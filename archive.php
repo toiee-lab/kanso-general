@@ -15,8 +15,18 @@ get_header(); ?>
 		if ( have_posts() ) : ?>
 
 			<header class="page-header">
+				<div class="uk-link-muted uk-text-muted uk-text-small">
+					<a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" >ブログ</a>
+					<span class="uk-margin-small-left uk-margin-small-right">/</span>
+					<span><?php 
+						$a_title = get_the_archive_title( );
+						$a_title = explode(':', $a_title);
+						echo trim( $a_title[0] );
+					?></span>
+				</div>				
 				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
+//					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					echo '<h1 class="page-title">'.trim( $a_title[1] ).'</h1>';
 					the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
