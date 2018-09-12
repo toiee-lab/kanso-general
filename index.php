@@ -80,13 +80,26 @@ get_header(); ?>
 			</div>
 
 			<?php
+/*
 			the_posts_navigation(array(
     'prev_text'           => '&lt; PREVIOUS',
     'next_text'           => 'NEXT &gt;',
     'screen_reader_text'  => 'Navigation',
   ));
-			
+		
+*/	
 
+			$pagenation = get_the_posts_pagination( array(
+				'type'          => 'list',
+				'prev_text'     => '<span uk-pagination-previous></span></a>',
+				'next_text'     => '<span uk-pagination-next></span></a>',
+				'mid_size'      => 3
+			) );
+			$pagenation = str_replace(
+				array("<ul class='page-numbers'>", 'class="page-numbers current"'),
+				array("<ul class='uk-pagination uk-margin-medium-top uk-text-center'>", 'class="uk-active"'),
+				$pagenation);
+			echo $pagenation;
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );

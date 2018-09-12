@@ -155,9 +155,10 @@ endif;
 if ( ! function_exists( 'kanso_general_get_thumnail_url' ) ) :
 
 function kanso_general_get_thumnail_url() {
-	$img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+	$post_id = get_the_ID();
+	$img_url = get_the_post_thumbnail_url($post_id,'full');
 	if( $img_url == '' ) {
-		$img_url = get_template_directory_uri() .'/images/thumnails/'. rand(1, 5) .'.png';
+		$img_url = get_template_directory_uri() .'/images/thumnails/'. ($post_id % 5 +1) .'.png';
 	}
 	
 	return $img_url;
