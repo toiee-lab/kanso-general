@@ -59,6 +59,7 @@
 										'menu_id'        => 'primary-menu',
 										'menu_class'     => 'uk-navbar-nav uk-visible@m',
 										'container'      => false,
+										'fallback_cb'    => ''
 									) );
 								?>
 								<?php
