@@ -29,17 +29,39 @@ get_header(); ?>
 			<?php
 			endif;
 			?>
-			
 			<?php 
 				$args = array(
 					'theme_location'  => 'blog-menu', 
 					'container'       => 'nav',
-					'container_class' => 'uk-navbar-container uk-navbar-transparent',
+					'container_class' => 'uk-navbar-container uk-navbar-transparent uk-visible@s',
 					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-navbar-nav">%3$s</ul>',
 					'fallback_cb'     => ''
 				);
 				wp_nav_menu( $args );
 			?>
+			<div class="uk-hidden@s">
+				<p><a href="#toggle-animation" class="uk-button uk-button-default" type="button" uk-toggle="target: #cat_list; animation: uk-animation-fade">カテゴリ一覧</a></p>
+				<div id="cat_list" uk-modal>
+					<div class="uk-modal-dialog uk-margin-auto-vertical">
+						<button class="uk-modal-close-default" type="button" uk-close></button>
+						<div class="uk-modal-header">
+							<h2 class="uk-modal-title">カテゴリ一覧</h2>
+						</div>
+						<div class="uk-modal-body" uk-overflow-auto>
+			<?php 
+				$args = array(
+					'theme_location'  => 'blog-menu', 
+					'container'       => 'div',
+					'container_class' => '',
+					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-list uk-list-divider uk-link-text">%3$s</ul>',
+					'fallback_cb'     => ''
+				);
+				wp_nav_menu( $args );
+			?>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
 			<?php
