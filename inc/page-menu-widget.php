@@ -41,7 +41,7 @@ class PageToc_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
-		$depth = is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
+		$depth = isset( $instance['depth'] ) && is_numeric( $instance['depth'] ) ? $instance['depth'] : 0;
 		
 		//目次起点設定を検索し、あれば設定する
 		$child_of = '';
