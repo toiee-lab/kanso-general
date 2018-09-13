@@ -153,7 +153,6 @@ function kanso_general_post_thumbnail() {
 endif;
 
 if ( ! function_exists( 'kanso_general_get_thumnail_url' ) ) :
-
 function kanso_general_get_thumnail_url() {
 	$post_id = get_the_ID();
 	$img_url = get_the_post_thumbnail_url($post_id,'full');
@@ -163,5 +162,18 @@ function kanso_general_get_thumnail_url() {
 	
 	return $img_url;
 }
-
 endif;
+
+if ( ! function_exists( 'kanso_get_blog_home_url' ) ) :
+function kanso_get_blog_home_url() {
+	if( get_option( 'show_on_front' ) == 'page' ) {
+		return get_permalink( get_option( 'page_for_posts' ) );
+	}
+	else {
+		return get_home_url();
+	}
+}
+endif;
+
+
+
