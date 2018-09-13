@@ -57,7 +57,7 @@
 				}
 				
 			?>
-					<a href="<?php echo get_author_posts_url( $author_id ); ?>" class="uk-link-text"><img src="<?php echo $author_img_url ?>" class="uk-border-circle post-card-avatar"> <?php the_author_meta('user_nicename');?></a>
+					<a href="<?php echo get_author_posts_url( $author_id ); ?>" class="uk-link-text"><img src="<?php echo $author_img_url ?>" class="uk-border-circle post-card-avatar"> <?php the_author_meta('nickname');?></a>
 	            </div>
 	        </div>
         </div>
