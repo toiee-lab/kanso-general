@@ -100,7 +100,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 }
 
 .main-content h2.main-subtitle,
-h1.entry-title + h2 {
+h1.entry-title + h2,
+h1.main-title + h2
+{
 	color: #999;
 	font-weight: normal;
 	font-size: 1.8rem;

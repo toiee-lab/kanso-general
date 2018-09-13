@@ -18,14 +18,17 @@
 
 				if( get_post_meta($the_id, 'kns_hidetitle', true) != '1' )
 				{
-					the_title('<h1>', '</h1>');
-?>
+					the_title('<h1 class="main-title">', '</h1>');
+					$kns_lead = get_post_meta(get_the_ID(), 'kns_lead', true);
+					if( $kns_lead != '' ):
+				?>
 			<h2 class="main-subtitle"><?php echo get_post_meta( $the_id, 'kns_lead', true );?></h2>
-<?php
+			<?php
+					endif;
 				}
 				
 				if( get_post_meta($the_id, 'kns_hidethumb', true) != '1' )
-				{				
+				{
 					the_post_thumbnail();
 				}
 			}
