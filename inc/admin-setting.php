@@ -59,7 +59,6 @@ class KnsSetting
         <div class="wrap">
 
             <h2>KANSOテーマ設定</h2>           
-            <p>KANSOテーマをより便利に使うための設定を行いなす。</p>
 	           
             <form method="post" action="options.php">
             <?php
@@ -85,8 +84,24 @@ class KnsSetting
         );
 
         add_settings_section(
+            'kanso-layout-section', // ID
+            'KANSOレイアウト設定', // Title
+            array( $this, 'print_section_info_kns' ), // Callback
+            'kns-setting-admin' // Page
+        );  
+
+        add_settings_field(
+            'default_template', // ID
+            'デフォルトテンプレート', // Title 
+            array( $this, 'default_template_callback' ), // Callback
+            'kns-setting-admin', // Page
+            'kanso-layout-section' // Section           
+        );    
+        
+        
+        add_settings_section(
             'setting_section_id', // ID
-            'KANSO動作設定', // Title
+            '【非推奨】KANSO動作設定', // Title
             array( $this, 'print_section_info' ), // Callback
             'kns-setting-admin' // Page
         );  
@@ -113,23 +128,7 @@ class KnsSetting
             array( $this, 'parse_md_in_shortcode_callback' ), // Callback
             'kns-setting-admin', // Page
             'setting_section_id' // Section           
-        );  
-
-        add_settings_section(
-            'kanso-layout-section', // ID
-            'KANSOレイアウト設定', // Title
-            array( $this, 'print_section_info_kns' ), // Callback
-            'kns-setting-admin' // Page
-        );  
-
-        add_settings_field(
-            'default_template', // ID
-            'デフォルトテンプレート', // Title 
-            array( $this, 'default_template_callback' ), // Callback
-            'kns-setting-admin', // Page
-            'kanso-layout-section' // Section           
-        );          
-        
+        );
     }
 
     /**
@@ -160,7 +159,7 @@ class KnsSetting
      */
     public function print_section_info()
     {
-        print '以下に設定を指定し、変更を保存をクリックしてください。<br>なお、左側が「おすすめ」の設定です。';
+        print '以下は、古いバージョンのKANSOテーマの使い方をサポートするためのものです。基本的に使わないでください。';
     }
     
     public function print_section_info_kns()
@@ -199,15 +198,15 @@ class KnsSetting
     public function jp_markdown_eneble_callback()
     {
 	    // 使わないを明示されている場合
-	    if( isset( $this->options['jp_markdown_eneble'] ) && $this->options['jp_markdown_eneble'] == '0' )
-	    {
-		    $on  = '';
-		    $off = 'checked';
-	    }
-	    else
+	    if( isset( $this->options['jp_markdown_eneble'] ) && $this->options['jp_markdown_eneble'] == '1' )
 	    {
 		    $on  = 'checked';
    		    $off = '';
+	    }
+	    else
+	    {
+   		    $on  = '';
+		    $off = 'checked';
 	    }
 	    
         printf(

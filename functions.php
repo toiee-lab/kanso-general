@@ -267,7 +267,7 @@ require get_template_directory() . '/inc/admin-setting.php';
 
 // JP Markdown2 を使う
 $options = get_option('kns_options');
-if( !isset( $options['jp_markdown_eneble'] ) || $options['jp_markdown_eneble'] == '1' ) {
+if( isset( $options['jp_markdown_eneble'] ) && $options['jp_markdown_eneble'] == '1' ) {
 	// JP Markdown2 を読み込む
 	if( ! function_exists('jetpack_markdown_posting_always_on') ){
 		require get_template_directory() . '/jetpack-markdown2/markdown.php';		
