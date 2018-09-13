@@ -29,7 +29,7 @@
 				
 				if( get_post_meta($the_id, 'kns_hidethumb', true) != '1' )
 				{
-					the_post_thumbnail();
+					kanso_general_post_thumbnail();
 				}
 			}
 ?>

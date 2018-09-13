@@ -131,9 +131,9 @@ function kanso_general_post_thumbnail() {
 	if ( is_singular() ) :
 	?>
 
-	<div class="post-thumbnail">
+	<figure class="wp-block-image alignwide">
 		<?php the_post_thumbnail(); ?>
-	</div><!-- .post-thumbnail -->
+	</figure><!-- .post-thumbnail -->
 
 	<?php else : ?>
 

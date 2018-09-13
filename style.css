@@ -504,6 +504,16 @@ ul.kns-li-content li p
     height: auto;
 }
 
+.main-content-sidebar .alignwide,
+.main-content-sidebar .alignfull
+{
+	width: 100%;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0%;
+}
+
 
 .wp-block-cover-image {
 	width: inherit;
