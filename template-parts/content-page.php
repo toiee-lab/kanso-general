@@ -30,7 +30,7 @@
 				}
 			}
 ?>
-			<div class="the_content">
+			
 			<?php
 				$the_content = get_the_content(); 
 				if( $the_content != '' ){
@@ -42,7 +42,7 @@
 </div>';
 				}
 			?>
-			</div>
+			
 			
 			<?php
 				

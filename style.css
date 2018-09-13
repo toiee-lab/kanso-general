@@ -469,24 +469,6 @@ ul.kns-li-content li p
 /**
  * ワイド幅、全幅のスタイル定義
  */
-
-
-.alignfull {
-	width: 100vw;
-	max-width: 100vw;
-	position: relative;
-	margin-left: -50vw;
-	left: 50%;
-}
-
-.alignfull img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100vw;
-    height: auto;
-}
-
-
 /*
 .alignwide {
     width: calc(100% + 200px);
@@ -500,6 +482,26 @@ ul.kns-li-content li p
     margin-right : calc( -100vw / 2 + 100% / 2 );    
     max-width    : 100vw;
 }
+
+.alignfull,
+.uk-container-large .alignwide
+ {
+	width: 100vw;
+	max-width: 100vw;
+	position: relative;
+	margin-left: -50vw;
+	left: 50%;
+}
+
+.alignfull img,
+.uk-container-large .alignwide img
+{
+    display: block;
+    margin: 0 auto;
+    max-width: 100vw;
+    height: auto;
+}
+
 
 .wp-block-cover-image {
 	width: inherit;
