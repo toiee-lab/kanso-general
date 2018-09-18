@@ -7,7 +7,7 @@ Template Name: KBE
 
 global $wpdb;
 
-get_header( 'knowledgebase' );
+// get_header( 'knowledgebase' );
 
 // load the style and script
 wp_enqueue_style( 'kbe_theme_style' );
@@ -33,8 +33,12 @@ if ( KBE_SIDEBAR_HOME == 0 ) {
 	$kbe_sidebar_class = 'kbe_aside_right';
 }
 
+get_header();
+
 // Breadcrumbs
-?><div id="kbe_container"><?php
+?>
+<div class="uk-container uk-container-medium uk-background-default main-content">
+<?php
 
 	if ( KBE_BREADCRUMBS_SETTING == 1 ) {
 		?><div class="kbe_breadcrum"><?php
@@ -218,3 +222,5 @@ if ( KBE_SIDEBAR_HOME == 0 ) {
 
 </div><?php
 get_footer( 'knowledgebase' );
+get_sidebar();
+get_footer();

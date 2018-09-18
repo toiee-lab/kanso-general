@@ -95,3 +95,5 @@ $kbe_tag_post_qry  = new WP_Query( $kbe_tag_post_args );
 
 </div><?php
 	get_footer( 'knowledgebase' );
+get_sidebar();
+get_footer();

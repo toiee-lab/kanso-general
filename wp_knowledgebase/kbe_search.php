@@ -43,7 +43,7 @@ if ( ! empty( $_GET['ajax'] ) ? $_GET['ajax'] : null ) {
 		wp_enqueue_script( 'kbe_live_search' );
 	}
 
-	?><div id="kbe_container"><?php
+	?><div class="uk-container uk-container-small uk-background-default main-content"><?php
 
 		// Breadcrumbs
 		if ( KBE_BREADCRUMBS_SETTING == 1 ) {

@@ -212,3 +212,5 @@ if ( KBE_SIDEBAR_HOME == 0 ) {
 
 </div><?php
 get_footer( 'knowledgebase' );
+get_sidebar();
+get_footer();

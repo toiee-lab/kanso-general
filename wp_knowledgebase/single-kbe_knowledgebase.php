@@ -26,8 +26,10 @@ if ( KBE_SIDEBAR_INNER == 0 ) {
 } elseif ( KBE_SIDEBAR_INNER == 2 ) {
 	$kbe_sidebar_class = 'kbe_aside_right';
 }
+
+//get_header();
 ?>
-<div id="kbe_container"><?php
+<div class="uk-container uk-container-small uk-background-default main-content"><?php
 
 	// Breadcrumbs
 	if ( KBE_BREADCRUMBS_SETTING == 1 ) {
@@ -74,3 +76,5 @@ if ( KBE_SIDEBAR_INNER == 0 ) {
 
 </div><?php
 get_footer( 'knowledgebase' );
+get_sidebar();
+get_footer();

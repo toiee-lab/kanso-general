@@ -46,7 +46,7 @@ $kbe_tax_post_args = array(
 );
 $kbe_tax_post_qry  = new WP_Query( $kbe_tax_post_args );
 
-?><div id="kbe_container"><?php
+?><div class="uk-container uk-container-small uk-background-default main-content"><?php
 
 	// Breadcrumbs
 	if ( KBE_BREADCRUMBS_SETTING == 1 ) {
@@ -96,3 +96,5 @@ $kbe_tax_post_qry  = new WP_Query( $kbe_tax_post_args );
 
 </div><?php
 get_footer( 'knowledgebase' );
+get_sidebar();
+get_footer();
