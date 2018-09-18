@@ -14,7 +14,7 @@
  */
 
 get_header(); ?>
-		<div class="uk-container uk-container-small uk-background-default main-content">
+		<div class="uk-container uk-container-medium uk-background-default main-content">
 			<?php woocommerce_breadcrumb(); ?>
 			<?php
 				woocommerce_content();
