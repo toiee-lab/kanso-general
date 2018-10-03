@@ -29,6 +29,16 @@ get_header(); ?>
 			<?php
 			endif;
 			?>
+			<?php 
+				$args = array(
+					'theme_location'  => 'blog-menu', 
+					'container'       => 'nav',
+					'container_class' => 'uk-navbar-container uk-navbar-transparent uk-visible@s',
+					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-navbar-nav">%3$s</ul>',
+					'fallback_cb'     => ''
+				);
+				wp_nav_menu( $args );
+			?>
 			<div class="uk-hidden@s">
 				<p><a href="#toggle-animation" class="uk-button uk-button-default" type="button" uk-toggle="target: #cat_list; animation: uk-animation-fade">カテゴリ一覧</a></p>
 				<div id="cat_list" uk-modal>
@@ -63,7 +73,7 @@ get_header(); ?>
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				get_template_part( 'template-parts/content', 'card' );
 
 			endwhile;
 			?>

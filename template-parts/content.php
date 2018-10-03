@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template part for displaying page content in page.php
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -8,61 +8,87 @@
  */
 
 ?>
+<?php
+			if ( is_home() || is_front_page() ) {
+				// do nothing
+			}
+			else {
+				$the_id = get_the_ID();
+				get_template_part( 'template-parts/breadcrumb', 'page' );
 
-
-<div>
-    <div class="uk-card uk-card-default uk-border-rounded">
-        <div class="uk-card-media-top uk-height-medium uk-cover-container">
-	        <?php if( is_sticky() ) : ?>
-   	        <div class="uk-card-badge uk-label">featured</div>
-   			<?php endif; ?>
-   	        <img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover>
-<!--            <a href="<?php echo esc_url( get_permalink() ); ?>"><img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover></a>-->
-			<a href="<?php echo esc_url( get_permalink() ); ?>"></a>
-        </div>
-        <div class="uk-card-body">
-	        <p class="uk-link-muted uk-margin-remove-bottom uk-text-small"><?php the_category(' , '); ?></p>
+				if( get_post_meta($the_id, 'kns_hidetitle', true) != '1' )
+				{
+					the_title('<h1 class="main-title">', '</h1>');
+					$kns_lead = get_post_meta(get_the_ID(), 'kns_lead', true);
+					if( $kns_lead != '' ):
+				?>
+			<h2 class="main-subtitle"><?php echo get_post_meta( $the_id, 'kns_lead', true );?></h2>
 			<?php
-			if ( is_singular() ) :
-				the_title( '<h1 class="uk-h3 uk-margin-remove uk-link-text">', '</h1>' );
-			else :
-				the_title( '<h2 class="uk-h3 uk-margin-remove uk-link-text"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-	
-			endif;
-			?>
-            <p class="uk-margin-small-top">
-	            <?php
-		   			the_excerpt( sprintf(
-						wp_kses(
-							/* translators: %s: Name of current post. Only visible to screen readers */
-							__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'kanso-general' ),
-							array(
-								'span' => array(
-									'class' => array(),
-								),
-							)
-						),
-						get_the_title()
-					) );
-		        ?>
-            </p>
-            <div class="uk-position-bottom">
-	            <div class="uk-margin-small uk-margin-small-left">
-	        <?php
-		        $author_id = get_the_author_meta( 'ID' );
-				$author_img = get_avatar( $author_id );
-				$imgtag= '/<img.*?src=(["\'])(.+?)\1.*?>/i';
-				if(preg_match($imgtag, $author_img, $imgurl)){
-					$author_img_url = $imgurl[2];
+					endif;
 				}
 				
+				if( get_post_meta($the_id, 'kns_hidethumb', true) != '1' )
+				{
+					kanso_general_post_thumbnail();
+				}
+			}
+?>
+			
+			<?php
+				$the_content = get_the_content(); 
+				if( $the_content != '' ){
+					the_content();
+				}
+				else{
+					echo '<div uk-alert class="uk-alert-none uk-margin-large-top"><h3><span uk-icon="icon: info"></span> お知らせ</h3>
+<p>このページは作成中です。今しばらくお待ちください。</p>
+</div>';
+				}
 			?>
-					<a href="<?php echo get_author_posts_url( $author_id ); ?>" class="uk-link-text"><img src="<?php echo $author_img_url ?>" class="uk-border-circle post-card-avatar"> <?php the_author_meta('nickname');?></a>
-	            </div>
-	        </div>
-        </div>
-    </div>
-</div>
-    
-    
-
+			
+			
+			<?php
+				
+				if( ! is_front_page() &&  ! is_home() && (get_post_meta( $the_id, 'exclude_menu', true ))!='1' ) :
+				
+					$pagelist = get_pages( array('meta_key'=>'exclude_menu', 'meta_value'=>'1') );
+					$ex_pages = array();
+					foreach($pagelist as $page){
+						$ex_pages[] = $page->ID;
+					}
+					$ex_pages[] = get_option( 'page_on_front' ); // front page を除外
+					$ex_pages[] = get_option( 'page_for_posts' ); // blog 一覧ページを除外
+					
+					$pagelist = get_pages( array(
+						'sort_column' => 'menu_order',
+						'sort_order'  => 'asc',
+						'exclude' => implode(',', $ex_pages), 
+					));
+					
+					$pages = array();
+					foreach ($pagelist as $page) {
+					   $pages[] += $page->ID;
+					}
+					
+					$current = array_search(get_the_ID(), $pages);
+					$prevID = isset( $pages[$current-1] ) ? $pages[$current-1] : '';
+					$nextID = isset( $pages[$current+1] ) ? $pages[$current+1] : '';
+			?>
+			<hr class="uk-margin-large-top">
+			<div class="uk-clearfix uk-margin-medium-top kns-footer-page-nav">
+			    <div class="uk-float-right">
+				<?php if( !empty($nextID) ) : ?>
+        			<a href="<?php echo get_permalink($nextID); ?>" 
+			 title="<?php echo get_the_title($nextID); ?>"><span><?php echo get_the_title($nextID); ?> &gt;</span></a>
+			    <?php endif; ?>		        
+			    </div>
+			    <div class="uk-float-left">
+       			<?php if (!empty($prevID)) : ?>
+					<a href="<?php echo get_permalink($prevID); ?>"
+					  title="<?php echo get_the_title($prevID); ?>"><span>&lt; <?php echo get_the_title($prevID); ?></span></a>
+				<?php endif; ?>
+			    </div>
+			</div><!-- .kns-footer-page-nav -->
+			<?php
+				endif;
+			?>

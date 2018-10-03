@@ -16,7 +16,7 @@ get_header(); ?>
 
 			<header class="page-header">
 				<div class="uk-link-muted uk-text-muted uk-text-small">
-					<a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" >ブログ</a>
+					<a href="<?php echo esc_url( kanso_get_blog_home_url() ); ?>" >ブログ</a>
 					<span class="uk-margin-small-left uk-margin-small-right">/</span>
 					<span><?php 
 						$a_title = get_the_archive_title( );
@@ -41,8 +41,7 @@ get_header(); ?>
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_format() );
-
+				get_template_part( 'template-parts/content', 'card' );
 			endwhile;
 			?>
 			</div>
