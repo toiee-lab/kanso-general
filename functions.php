@@ -192,6 +192,23 @@ function special_nav_class ($classes, $item) {
 }
 
 /**
+ * ロゴ
+ */
+if ( ! function_exists( 'kanso_custom_logo' ) ) :
+	add_filter( 'get_custom_logo', 'kanso_custom_logo' );
+	// Filter the output of logo to fix Googles Error about itemprop logo
+	function kanso_custom_logo() {
+	    $custom_logo_id = get_theme_mod( 'custom_logo' );
+	    $img  = wp_get_attachment_image_src( $custom_logo_id, 'full');
+	    $html = '<a href="'.esc_url( home_url( '/' ) ).'" class="custom-logo-link" rel="home" itemprop="url">'.
+	    	'<img src="'.$img[0].'" class="custom-logo">'
+	    	.'</a>';
+
+	    return $html;
+	}
+endif;
+
+/**
  * ３つのフッターウィジェットを追加
  */
 $kns_footers = array('left', 'center', 'right');
