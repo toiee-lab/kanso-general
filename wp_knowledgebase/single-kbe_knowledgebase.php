@@ -44,7 +44,7 @@ if ( KBE_SIDEBAR_INNER == 0 ) {
 	}
 
 	// Content
-	?><div id="kbe_content" <?php echo $kbe_content_class; ?>>
+	?><div <?php echo $kbe_content_class; ?>>
         <!--Content Body-->
         <div class="kbe_leftcol" ><?php
 
