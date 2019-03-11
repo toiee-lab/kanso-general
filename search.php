@@ -52,11 +52,11 @@ get_header(); ?>
 			/* Start the Loop */
 			?>
             <div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
-				<?php while ( have_posts() ) : the_post(); $posttype_label = esc_html( get_post_type_object(get_post_type())->label ); ?>
+				<?php while ( have_posts() ) : the_post(); ?>
                     <div>
                         <div class="uk-card uk-card-default uk-grid-small uk-box-shadow-small">
                             <div class="uk-card-media-top uk-cover-container card-height">
-                                <div class="uk-card-badge uk-label uk-label-muted"><?php echo $posttype_label; ?></div>
+                                <div class="uk-card-badge uk-label uk-label-muted"><?php echo kanso_get_post_label(); ?></div>
                                 <img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover>
                                 <!--            <a href="<?php echo esc_url( get_permalink() ); ?>"><img src="<?php echo kanso_general_get_thumnail_url(); ?>" alt="" uk-cover></a>-->
                                 <a href="<?php echo esc_url( get_permalink() ); ?>"></a>

@@ -196,5 +196,10 @@ if( ! function_exists( 'kanso_the_card_style' ) ) :
 function kanso_the_card_style(){
     echo 'style="height:200px;"';
 }
+endif;
 
+if( ! function_exists( 'kanso_get_post_label' ) ) :
+	function kanso_get_post_label(){
+		return esc_html( get_post_type_object(get_post_type())->label );
+	}
 endif;
