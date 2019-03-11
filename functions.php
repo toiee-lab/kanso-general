@@ -398,8 +398,11 @@ function woocommerce_support() {
  * style sheet のバージョン番号をファイルスタンプに変更
  */
 add_action( 'wp_default_styles', function ( $styles ) {
-  $mtime = filemtime( get_stylesheet_directory() . '/style.css' );
-  $styles->default_version = $mtime;
+	$mtime_template = filemtime( get_template_directory() . '/style.css' );
+	$mtime_style = filemtime( get_stylesheet_directory() . '/style.css' );
+
+	$mtime = ( $mtime_template ) > $mtime_style ? $mtime_template : $mtime_style;
+	$styles->default_version = $mtime;
 } );
  
 // Gutenberg Wide Alignment
