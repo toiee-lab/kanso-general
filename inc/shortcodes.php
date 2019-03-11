@@ -567,3 +567,7 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 
 });
 
+ 
+add_shortcode('kanso-search', function ( $form ) {
+    return get_search_form( false );
+} );

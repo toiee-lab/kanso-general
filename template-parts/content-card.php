@@ -11,8 +11,8 @@
 
 
 <div>
-    <div class="uk-card uk-card-default uk-border-rounded">
-        <div class="uk-card-media-top uk-height-medium uk-cover-container">
+    <div class="uk-card uk-card-default uk-grid-small uk-box-shadow-small">
+        <div class="uk-card-media-top uk-cover-container card-height">
 	        <?php if( is_sticky() ) : ?>
    	        <div class="uk-card-badge uk-label">featured</div>
    			<?php endif; ?>
@@ -24,9 +24,9 @@
 	        <p class="uk-link-muted uk-margin-remove-bottom uk-text-small"><?php the_category(' , '); ?></p>
 			<?php
 			if ( is_singular() ) :
-				the_title( '<h1 class="uk-h3 uk-margin-remove uk-link-text">', '</h1>' );
+				the_title( '<h1 class="uk-h4 uk-margin-remove uk-link-text">', '</h1>' );
 			else :
-				the_title( '<h2 class="uk-h3 uk-margin-remove uk-link-text"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				the_title( '<h2 class="uk-h4 uk-margin-remove uk-link-text"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 	
 			endif;
 			?>

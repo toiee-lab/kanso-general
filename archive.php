@@ -47,7 +47,7 @@ get_header(); ?>
 			</div>
 
 			<?php
-			the_posts_navigation();
+			echo kanso_get_post_navigation();
 
 		else :
 

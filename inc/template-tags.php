@@ -175,5 +175,26 @@ function kanso_get_blog_home_url() {
 }
 endif;
 
+if( ! function_exists( 'kanso_get_post_navigation' ) ) :
+function kanso_get_post_navigation() {
+	$pagination = get_the_posts_pagination( array(
+		'type'          => 'list',
+		'prev_text'     => '<span uk-pagination-previous></span></a>',
+		'next_text'     => '<span uk-pagination-next></span></a>',
+		'mid_size'      => 3
+	) );
+	$pagination = str_replace(
+		array("<ul class='page-numbers'>", 'class="page-numbers current"'),
+		array("<ul class='uk-pagination uk-margin-medium-top uk-text-center'>", 'class="uk-active"'),
+		$pagination);
 
+	return $pagination;
+}
+endif;
 
+if( ! function_exists( 'kanso_the_card_style' ) ) :
+function kanso_the_card_style(){
+    echo 'style="height:200px;"';
+}
+
+endif;
