@@ -12,9 +12,9 @@
  * @package kanso-general
  */
 
-if ( kns_get_template() == 'sidebar' ) {
-	get_template_part('page','sidebar');
+if ( kns_get_template() === 'sidebar' ) {
+	get_template_part( 'page', 'sidebar' );
 }
-else {  // デフォルト
-	get_template_part('page','content');
+else {  /* デフォルト */
+	get_template_part( 'page', 'content' );
 }

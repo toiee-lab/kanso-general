@@ -4,7 +4,7 @@ Theme URI: http://kansowp.toiee.jp/
 Author: toiee Lab
 Author URI: http://toiee.jp/
 Description: KANSO General は、できるだけ少ない設定、学習コストで、美しく、洗練され、オリジナリティがあるWebサイトを作るためのテーマです。シンプル・簡素 is best の精神で作られています。 詳細は、<a href="http://kansowp.toiee.jp/">http://kansowp.toiee.jp/</a>
-Version: 0.9.22
+Version: 1.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -54,6 +54,15 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
     max-height: 50px;
 }
 
+/* ----- 全体の設定 ------ */
+html {
+	/*font-size: 18px;*/
+	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
+}
 
 /* ----- ヘッダー部分 ------ */
 #kns-header
@@ -91,27 +100,14 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* ----- コンテンツ部分 ----- */
 
 .main-content{
-	margin-top: 2rem;
-	margin-bottom: 15rem;
-}
-
-.main-content h1{
-	font-weight: bold;
+	max-width: 650px;
 }
 
 .main-content h2.main-subtitle,
 h1.entry-title + h2,
 h1.main-title + h2
 {
-	color: #999;
-	font-weight: normal;
-	font-size: 1.8rem;
 	margin-top: -1rem;
-}
-
-.main-content h2, 
-.main-content h3{
-	font-weight: bold;
 }
 
 .main-content h2{
@@ -130,23 +126,6 @@ h1.main-title + h2
 	margin-top: -15px;
 }
 
-/* ------ コンテンツ部分のテキストサイズ ---- */
-.main-content p,
-.main-content ul,
-.main-content ol{
-	font-size: 19px;
-	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	line-height: 1.52947;
-}
-
-@media(max-width: 420px)
-{
-	.main-content p,
-	.main-content ul,
-	.main-content ol{
-		font-size: 17px;
-	}
-}
 
 .main-content li{
 	margin-bottom: 0.8em;
