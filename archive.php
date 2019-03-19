@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-	<div class="uk-container uk-container-middle uk-background-default main-content">
+	<div class="uk-container uk-container-middle uk-background-default uk-margin-medium-top uk-margin-medium-bottom">
 
 		<?php
 		if ( have_posts() ) :

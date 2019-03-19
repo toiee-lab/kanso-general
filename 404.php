@@ -8,9 +8,6 @@
  */
 
 get_header(); ?>
-
-
-
 	<div  class="uk-container uk-container-small uk-background-default main-content" >
 
 		<h1>お探しのページは、見つかりませんでした</h1>

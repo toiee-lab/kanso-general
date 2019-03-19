@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-	<div class="uk-container uk-container-middle uk-background-default">
+	<div class="uk-container uk-container-middle uk-background-default uk-margin-medium-top uk-margin-medium-bottom">
 
 
 		<?php
