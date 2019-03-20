@@ -4,19 +4,19 @@
  *
  * @package kanso-general
  */
-/* 説明 : 
+/* 説明 :
  * カスタマイザーに追加するには６つの作業が必要
- * 
+ *
  * (0) カスタマイズ項目に対応して、CSSなりを吐き出すPHPプログラムの作成
  * (1) $wp_customize->add_setting でカスタマイズ項目の登録
  * (2) $wp_customize->control でカスタマイズ登録の表示を登録
  * (3) $wp_customize->selective_refresh->add_partial でカスタマイズ項目が修正された時に呼び出されるjavascriptを登録
  * (4) js/customize.js に 3で指定した javascript を用意する ( 5のメソッドを定義する )
  * (5) 4で呼び出されることになる関数を用意する
- * 
+ *
  * 上記のようなややこしさを生み出している原因は、カスタマイザーの変更を、リアルタイムに反映させるために用意された仕組みが原因。
  * 1 - 5 は、リアルタイムに修正するための仕組み。自由度を確保しているがゆえに、あらゆることを書かないといけない。仕方ない。
- * 
+ *
  */
 
 /**
@@ -30,10 +30,10 @@ function kanso_general_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'kanso_general_options_ownername',
 		array(
-		  'default'   => '',
-		  'type'      => 'option',
-		  'transport' => 'postMessage', // 表示更新のタイミング。デフォルトは'refresh'（即時反映）
-		  )
+			'default'   => '',
+			'type'      => 'option',
+			'transport' => 'postMessage', // 表示更新のタイミング。デフォルトは'refresh'（即時反映）
+		)
 	);
 	$wp_customize->add_control(
 		'kanso_general_options_ownername' ,
@@ -42,17 +42,17 @@ function kanso_general_customize_register( $wp_customize ) {
 			'label'    => 'コピーライト名',
 			'section'  => 'title_tagline',
 			'type'     => 'text'
-			)
+		)
 	);
-	
-	
+
+
 	// ------------------------------------
 	//
 	// ヘッダー設定
 	//
-	
-	
-		// 色の設定 : colorsセクションに追加
+
+
+	// 色の設定 : colorsセクションに追加
 	//    カラーセット
 	$wp_customize->add_setting(
 		'kanso_general_options_colors',
@@ -62,9 +62,9 @@ function kanso_general_customize_register( $wp_customize ) {
 			'transport' => 'postMessage',
 		)
 	);
-	
+
 	$color_choices = kns_get_color_set('dummy', true);
-	
+
 	$wp_customize->add_control(
 		'kanso_general_options_colors',
 		array(
@@ -77,8 +77,8 @@ function kanso_general_customize_register( $wp_customize ) {
 			'priority' => 0
 		)
 	);
-	
-	
+
+
 	// ヘッダーのタイトル、サブタイトル
 	$wp_customize->add_setting(
 		'kanso_general_options_htitle',
@@ -98,7 +98,7 @@ function kanso_general_customize_register( $wp_customize ) {
 			'priority' => 1
 		)
 	);
-	
+
 	$wp_customize->add_setting(
 		'kanso_general_options_hsubtitle',
 		array(
@@ -117,7 +117,7 @@ function kanso_general_customize_register( $wp_customize ) {
 			'priority' => 2
 		)
 	);
-	
+
 	//    フロントページのヘッダー文字色
 	$wp_customize->add_setting(
 		'kanso_general_options_hcolor_front',
@@ -162,14 +162,14 @@ function kanso_general_customize_register( $wp_customize ) {
 		)
 	);
 
-	
+
 	// javascript で変更を即時に反映するための設定
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-	
-	
-	
+
+
+
 	// javascript の登録
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
@@ -199,12 +199,12 @@ function kanso_general_customize_register( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_hcolor_front' , array(
 			'selector'        => '#kanso_general_options_hcolor_front',
 			'render_callback' => 'kanso_general_customize_partial_frontcolor',
-		) );	
+		) );
 		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_colors' , array(
 			'selector'        => '#kanso_general_options_colors',
 			'render_callback' => 'kanso_general_customize_partial_colors',
-		) );			
-	
+		) );
+
 	}
 }
 add_action( 'customize_register', 'kanso_general_customize_register' );
@@ -242,7 +242,7 @@ function kanso_general_customize_partial_frontcolor() {
 	echo get_option( 'kanso_general_options_hcolor_front' );
 }
 function kanso_general_customize_partial_colors() {
-	echo json_decode( kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) ) );
+	echo json_decode( kns_get_color_set( get_option( 'kanso_general_options_colors', 'snow' ) ) );
 }
 function kanso_general_customize_partial_ownername() {
 	echo get_option( 'kanso_general_options_ownername' );
