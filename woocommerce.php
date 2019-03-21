@@ -8,9 +8,7 @@
  * different template.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package kanso-general
- *
  */
 
 get_header(); ?>

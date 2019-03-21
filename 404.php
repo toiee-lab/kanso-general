@@ -8,29 +8,18 @@
  */
 
 get_header(); ?>
+	<div  class="uk-container uk-container-small uk-background-default main-content" >
 
+		<h1>お探しのページは、見つかりませんでした</h1>
+		<h2 class="main-subtitle">Page is not found</h2>
 
-	
-  <div  class="uk-container uk-container-small uk-background-default main-content" >
+		<p>以下のフォームで検索することができます。</p>
 
-	<h1>お探しのページは、見つかりませんでした</h1>
-	<h2 class="main-subtitle">Page is not found</h2>
-	
-	
-	
-<img src="<?php echo get_template_directory_uri(); ?>/images/notfound/notfound1.jpg">
-	
-	
-	
-	
-	<p>以下のフォームで検索することができます。</p>
-	
-
-      <?php
+		<?php
 		get_search_form();
-	  ?>
- 
-  </div><!-- .main-content -->
+		?>
+
+	</div><!-- .main-content -->
 <?php
 get_sidebar();
 get_footer();

@@ -4,7 +4,7 @@
  *
  * You can add an optional custom header image to header.php like so ...
  *
-	<?php the_header_image_tag(); ?>
+<?php the_header_image_tag(); ?>
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
@@ -17,14 +17,20 @@
  * @uses kanso_general_header_style()
  */
 function kanso_general_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'kanso_general_custom_header_args', array(
-		'default-image'          => '',
-		'default-text-color'     => '000000',
-		'flex-height'            => true,
-		'wp-head-callback'       => 'kanso_general_header_style',
-	) ) );
-	
-	
+	add_theme_support(
+		'custom-header',
+		apply_filters(
+			'kanso_general_custom_header_args',
+			array(
+				'default-image'      => '',
+				'default-text-color' => '000000',
+				'flex-height'        => true,
+				'wp-head-callback'   => 'kanso_general_header_style',
+			)
+		)
+	);
+
+
 	// デフォルトのヘッダーイメージを用意しておく
 	register_default_headers( array(
 		'leaf' => array(
@@ -78,8 +84,8 @@ function kanso_general_custom_header_setup() {
 			'description'   => 'ビルディング'
 		),
 	) );
-	
-	
+
+
 }
 add_action( 'after_setup_theme', 'kanso_general_custom_header_setup' );
 
@@ -103,55 +109,66 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 		// If we get this far, we have custom styles. Let's do this.
 		?>
 		<style type="text/css" id="custom-header">
-		<?php
-		// Has the text been hidden?
-		if ( ! display_header_text() ) :
-		?>
+			<?php
+			// Has the text been hidden?
+			if ( ! display_header_text() ) :
+				?>
 			.site-title,
 			.site-description {
 				position: absolute;
 				clip: rect(1px, 1px, 1px, 1px);
 			}
-		<?php
-			// If the user has set a custom color for the text use that.
+				<?php
+				// If the user has set a custom color for the text use that.
 			else :
-		?>
+				?>
 			.site-title a,
 			.site-description {
 				color: #<?php echo esc_attr( $header_text_color ); ?>;
 			}
-		<?php endif; ?>
-		<?php
-			
-			// ヘッダーの設定を呼び出す
-			$kns_color_set = kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) );			
-			$header_img = get_header_image();
+			<?php endif; ?>
+			<?php
+			/* ヘッダーの設定を呼び出す */
+			$kns_color_set = kns_get_color_set( get_option( 'kanso_general_options_colors', 'simple' ) );
+			$header_img    = get_header_image();
 
-			if($header_img != null)	{
-				$kns_head_bg_css = 'background-image: url('.$header_img.');';
-			}
-			else {
-				$kns_head_bg_css = $kns_color_set['head-bg'];
-			}
-				
-
-		?>
-		<?php if( is_front_page() ): ?>
+			?>
 			#kns-head {
-				<?php echo $kns_head_bg_css; ?>
+				<?php
+				if ( false !== $header_img ) {
+					echo esc_html( 'background-image: url(' . $header_img . ');' );
+				} else {
+					echo esc_html( $kns_color_set['head-bg'] );
+				}
+				?>
 			}
-			
 			#kns-header{
-				height: <?php echo get_option( 'kanso_general_options_height', 400 );?>px;
+				height: <?php echo esc_html( get_option( 'kanso_general_options_height', 400 ) ); ?>px;
 			}
-		<?php else : ?>
-			#kns-head {
-				background: none;
+			.kns-navbar-top {
+				<?php
+				echo esc_html( $kns_color_set['nav-bg0'] );
+				?>
 			}
-		<?php endif; ?>
-			.uk-navbar-container:not(.uk-navbar-transparent) {
-			    <?php echo $kns_color_set['nav-bg'];?>
+			.kns-navbar-sticky {
+				<?php
+				echo esc_html( $kns_color_set['nav-bg'] );
+				?>
 			}
+			.uk-logo,
+			.uk-logo:hover,
+			.kns-navbar-top-front,
+			.kns-navbar-top-front li>a,
+			.kns-navbar-top,
+			.kns-navbar-top li>a,
+			.kns-navbar-sticky,
+			.kns-navbar-sticky li>a,
+			#kanso_general_options_htitle,
+			#kanso_general_options_hsubtitle
+			{
+				color : <?php echo esc_html( $kns_color_set['color'] ); ?>;
+			}
+
 		</style>
 		<?php
 	}

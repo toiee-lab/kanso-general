@@ -18,15 +18,15 @@ get_header(); ?>
 
 		<?php
 		if ( have_posts() ) :
+			if ( is_home() && ! is_front_page() ) :
+				?>
+		<header>
+			<h1 class=""><?php single_post_title(); ?></h1>
+			<h2 class="main-subtitle"><?php echo esc_html( get_post_meta( get_queried_object_id(), 'kns_lead', true ) ); ?></h2>
+		</header>
+		<div style="margin-top: 2rem;">
 
-			if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class=""><?php single_post_title(); ?></h1>
-					<h2 class="main-subtitle"><?php echo get_post_meta(get_queried_object_id(), 'kns_lead', true);?></h2>
-				</header>
-				<div style="margin-top: 2rem;">
-
-			<?php
+				<?php
 			endif;
 			?>
 			<div class="uk-hidden@s">
@@ -38,65 +38,63 @@ get_header(); ?>
 							<h2 class="uk-modal-title">カテゴリ一覧</h2>
 						</div>
 						<div class="uk-modal-body" uk-overflow-auto>
-			<?php 
-				$args = array(
-					'theme_location'  => 'blog-menu', 
-					'container'       => 'div',
-					'container_class' => '',
-					'items_wrap'      => '<ul id="%1$s" class="%2$s uk-list uk-list-divider uk-link-text">%3$s</ul>',
-					'fallback_cb'     => ''
-				);
-				wp_nav_menu( $args );
-			?>
+							<?php
+							$args = array(
+								'theme_location'  => 'blog-menu',
+								'container'       => 'div',
+								'container_class' => '',
+								'items_wrap'      => '<ul id="%1$s" class="%2$s uk-list uk-list-divider uk-link-text">%3$s</ul>',
+								'fallback_cb'     => '',
+							);
+							wp_nav_menu( $args );
+							?>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid uk-height-match="target: > div > .uk-card">
-			<?php
-			/* Start the Loop */
+				<?php
+				/* Start the Loop */
 
-			while ( have_posts() ) : the_post();
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				while ( have_posts() ) :
+					the_post();
 
-			endwhile;
-			?>
+					/*
+					 * Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					get_template_part( 'template-parts/content', get_post_format() );
+
+				endwhile;
+				?>
 			</div>
 
 			<?php
-/*
-			the_posts_navigation(array(
-    'prev_text'           => '&lt; PREVIOUS',
-    'next_text'           => 'NEXT &gt;',
-    'screen_reader_text'  => 'Navigation',
-  ));
-		
-*/	
 
-			$pagenation = get_the_posts_pagination( array(
-				'type'          => 'list',
-				'prev_text'     => '<span uk-pagination-previous></span></a>',
-				'next_text'     => '<span uk-pagination-next></span></a>',
-				'mid_size'      => 3
-			) );
+			$pagenation = get_the_posts_pagination(
+				array(
+					'type'      => 'list',
+					'prev_text' => '<span uk-pagination-previous></span></a>',
+					'next_text' => '<span uk-pagination-next></span></a>',
+					'mid_size'  => 3,
+				)
+			);
 			$pagenation = str_replace(
-				array("<ul class='page-numbers'>", 'class="page-numbers current"'),
-				array("<ul class='uk-pagination uk-margin-medium-top uk-text-center'>", 'class="uk-active"'),
-				$pagenation);
+				array( "<ul class='page-numbers'>", 'class="page-numbers current"' ),
+				array( "<ul class='uk-pagination uk-margin-medium-top uk-text-center'>", 'class="uk-active"' ),
+				$pagenation
+			);
 			echo $pagenation;
-		else :
+			else :
 
-			get_template_part( 'template-parts/content', 'none' );
+				get_template_part( 'template-parts/content', 'none' );
 
-		endif; ?>
-		
-				</div>
+			endif;
+			?>
+
+		</div>
 
 	</div><!-- .main-content -->
 

@@ -4,7 +4,7 @@ Theme URI: http://kansowp.toiee.jp/
 Author: toiee Lab
 Author URI: http://toiee.jp/
 Description: KANSO General は、できるだけ少ない設定、学習コストで、美しく、洗練され、オリジナリティがあるWebサイトを作るためのテーマです。シンプル・簡素 is best の精神で作られています。 詳細は、<a href="http://kansowp.toiee.jp/">http://kansowp.toiee.jp/</a>
-Version: 0.9.22
+Version: 1.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -35,9 +35,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	background-color: gray;
 }
 
-.uk-container-small
-{
-	max-width: 740px;
+.uk-container-small {
+	max-width: 650px;
 }
 
 /*
@@ -51,9 +50,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
 .custom-logo{
-    max-height: 50px;
+	max-height: 24px;
 }
 
+/* ----- 全体の設定 ------ */
+html {
+	/*font-size: 18px;*/
+	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
+}
 
 /* ----- ヘッダー部分 ------ */
 #kns-header
@@ -69,7 +77,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 }
 #kns-header-text h2{
 	margin-top: 0;
-	margin-bottom: 0;	
+	margin-bottom: 0;
 	text-align: center;
 	font-size: 1.5em;
 }
@@ -84,34 +92,36 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	}
 }
 
-
+#kns-head-nav>nav  {
+	height: 80px;
+}
 
 
 
 /* ----- コンテンツ部分 ----- */
 
 .main-content{
-	margin-top: 2rem;
-	margin-bottom: 15rem;
+	max-width: 650px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-size: 17px;
 }
-
-.main-content h1{
-	font-weight: bold;
+@media(min-width: 650px) {
+	.main-content {
+		width: 650px;
+	}
+}
+@media(min-width: 960px) {
+	.main-content-sidebar {
+		margin-left: 15px;
+	}
 }
 
 .main-content h2.main-subtitle,
 h1.entry-title + h2,
 h1.main-title + h2
 {
-	color: #999;
-	font-weight: normal;
-	font-size: 1.8rem;
 	margin-top: -1rem;
-}
-
-.main-content h2, 
-.main-content h3{
-	font-weight: bold;
 }
 
 .main-content h2{
@@ -130,23 +140,6 @@ h1.main-title + h2
 	margin-top: -15px;
 }
 
-/* ------ コンテンツ部分のテキストサイズ ---- */
-.main-content p,
-.main-content ul,
-.main-content ol{
-	font-size: 19px;
-	font-family: "SF Pro JP", "SF Pro Text", "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	line-height: 1.52947;
-}
-
-@media(max-width: 420px)
-{
-	.main-content p,
-	.main-content ul,
-	.main-content ol{
-		font-size: 17px;
-	}
-}
 
 .main-content li{
 	margin-bottom: 0.8em;
@@ -165,10 +158,15 @@ blockquote {
 
 
 /* ------ sidebar ------ */
-.uk-offcanvas-bar{
-	background-color: rgba(255, 255, 255, 0.89);	
+
+.sidebar-wrapper {
+	width: 240px;
 }
-.uk-offcanvas-bar, 
+
+.uk-offcanvas-bar{
+	background-color: rgba(255, 255, 255, 0.89);
+}
+.uk-offcanvas-bar,
 .uk-close,
 .uk-offcanvas-bar h1,
 .uk-offcanvas-bar h2,
@@ -258,11 +256,11 @@ section.pagetoc-widget > ul > li > ul > li > ul li
 
 section.pagetoc-widget li.current_page_item > a:before
 {
-    content: "\02192";
-    margin-left: -15px;
-    padding-right: 5px;
-    color: #1e87f0;
-    font-weight: bold;
+	content: "\02192";
+	margin-left: -15px;
+	padding-right: 5px;
+	color: #1e87f0;
+	font-weight: bold;
 }
 
 .widget-title{
@@ -386,21 +384,21 @@ article.post{
 
 /* ---- shortcode ---- */
 .uk-accordion-title {
-    display: block;
-    font-size: 20px;
-    line-height: 1.4;
-    color: #222;
-    overflow: hidden;
+	display: block;
+	font-size: 20px;
+	line-height: 1.4;
+	color: #222;
+	overflow: hidden;
 }
 .uk-accordion-title:hover,
 .uk-accordion-title:focus {
-    color: #666;
-    text-decoration: none;
-    outline: none;
+	color: #666;
+	text-decoration: none;
+	outline: none;
 }
 .uk-accordion-content,
 .uk-accordion-content p {
-	color : #666;	
+	color : #666;
 	font-size: 1rem;
 }
 ul.kns-li-content,
@@ -448,16 +446,16 @@ ul.kns-li-content li p
 .kns-breadcrumb ul {
 	margin-bottom: 0;
 	padding-left: 0;
-    font-size: 12px;
+	font-size: 12px;
 }
 .kns-breadcrumb a {
 	color: #888;
 	font-size: 12px;
 }
 .bc-divider {
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #888;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #888;
 }
 .kns-breadcrumb+h1,
 .kns-breadcrumb+img{
@@ -471,23 +469,15 @@ ul.kns-li-content li p
 /**
  * ワイド幅、全幅のスタイル定義
  */
-/*
 .alignwide {
-    width: calc(100% + 200px);
-    max-width: calc(100% + 200px);
-    margin: 0 0 1rem -100px;
-}
-*/
-
-.alignwide {
-    margin-left  : calc( -100vw / 2 + 100% / 2 );
-    margin-right : calc( -100vw / 2 + 100% / 2 );    
-    max-width    : 100vw;
+	margin-left  : calc( -100vw / 2 + 100% / 2 );
+	margin-right : calc( -100vw / 2 + 100% / 2 );
+	max-width    : 100vw;
 }
 
 .alignfull,
 .uk-container-large .alignwide
- {
+{
 	width: 100vw;
 	max-width: 100vw;
 	position: relative;
@@ -498,10 +488,10 @@ ul.kns-li-content li p
 .alignfull img,
 .uk-container-large .alignwide img
 {
-    display: block;
-    margin: 0 auto;
-    max-width: 100vw;
-    height: auto;
+	display: block;
+	margin: 0 auto;
+	max-width: 100vw;
+	height: auto;
 }
 
 .main-content-sidebar .alignwide,
@@ -511,7 +501,7 @@ ul.kns-li-content li p
 	max-width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0%;
+	left: 0;
 }
 
 
@@ -521,11 +511,11 @@ ul.kns-li-content li p
 
 @media only screen and ( min-width: 940px ) {
 
-    .alignwide {
-        margin-left  : -100px;
-        margin-right : -100px;
-        max-width    : 940px;
-        width        : 940px;
+	.alignwide {
+		margin-left  : -100px;
+		margin-right : -100px;
+		max-width    : 850px;
+		width        : 850px;
 	}
 }
 
@@ -537,16 +527,16 @@ ul.kns-li-content li p
 }
 
 .uk-cover-container a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-indent:-999px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-indent:-999px;
 }
 
 ul.uk-pagination>li>span.current {
-    color: #444;
+	color: #444;
 }
 
 .card-height {
