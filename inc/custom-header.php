@@ -155,6 +155,8 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 				echo esc_html( $kns_color_set['nav-bg'] );
 				?>
 			}
+			.uk-logo,
+			.uk-logo:hover,
 			.kns-navbar-top-front,
 			.kns-navbar-top-front li>a,
 			.kns-navbar-top,

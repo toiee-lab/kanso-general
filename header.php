@@ -31,10 +31,9 @@ if ( is_front_page() ) :
 						<div class="uk-navbar-left">
 							<?php
 							if ( has_custom_logo() ) {
-								$_logo_html = get_custom_logo();
-								echo esc_html( $_logo_html );
+								the_custom_logo();
 							} else {
-								echo '<a href="' . esc_html( get_bloginfo( 'url' ) ) . '" class="uk-link-reset uk-text-large uk-margin-left ">' . esc_html( get_bloginfo( 'name', 'display' ) ) . '</a>';
+								echo '<a href="' . esc_html( get_bloginfo( 'url' ) ) . '" class="uk-navbar-item uk-logo">' . esc_html( get_bloginfo( 'name', 'display' ) ) . '</a>';
 							}
 							?>
 						</div>
@@ -51,13 +50,19 @@ if ( is_front_page() ) :
 							);
 							?>
 							<?php
-							$uk_visible = '';
 							if ( kns_get_template() === 'sidebar' ) {
-								$uk_visible = 'uk-hidden@m';
+								$uk_hidden        = 'uk-hidden@m';
+								$nav_height_dummy = 'uk-visible@m';
+							} else {
+								$uk_hidden        = '';
+								$nav_height_dummy = 'uk-hidden';
 							}
 							?>
-							<ul class="uk-navbar-nav <?php echo esc_html( $uk_visible ); ?>">
-								<li><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
+							<ul class="uk-navbar-nav <?php echo esc_html( $uk_hidden ); ?>">
+								<li class=""><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
+							</ul>
+							<ul class="uk-navbar-nav <?php echo esc_html( $nav_height_dummy ); ?>">
+								<li class=""><a href="#sidebar" uk-toggle><span class="uk-margin-small-lef"></span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -81,10 +86,9 @@ else :
 					<div class="uk-navbar-left">
 						<?php
 						if ( has_custom_logo() ) {
-							$_logo_html = get_custom_logo();
-							echo esc_html( $_logo_html );
+							the_custom_logo();
 						} else {
-							echo '<a href="' . esc_html( get_bloginfo( 'url' ) ) . '" class="uk-link-reset uk-text-large uk-margin-left ">' . esc_html( get_bloginfo( 'name', 'display' ) ) . '</a>';
+							echo '<a href="' . esc_html( get_bloginfo( 'url' ) ) . '" class="uk-navbar-item uk-logo">' . esc_html( get_bloginfo( 'name', 'display' ) ) . '</a>';
 						}
 						?>
 					</div>
@@ -101,13 +105,19 @@ else :
 						);
 						?>
 						<?php
-						$uk_visible = '';
 						if ( kns_get_template() === 'sidebar' ) {
-							$uk_visible = 'uk-hidden@m';
+							$uk_hidden        = 'uk-hidden@m';
+							$nav_height_dummy = 'uk-visible@m';
+						} else {
+							$uk_hidden        = '';
+							$nav_height_dummy = 'uk-hidden';
 						}
 						?>
-						<ul class="uk-navbar-nav <?php echo esc_html( $uk_visible ); ?>">
-							<li><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
+						<ul class="uk-navbar-nav <?php echo esc_html( $uk_hidden ); ?>">
+							<li class=""><a href="#sidebar" uk-toggle><span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span></a></li>
+						</ul>
+						<ul class="uk-navbar-nav <?php echo esc_html( $nav_height_dummy ); ?>">
+							<li class=""><a href="#sidebar" uk-toggle><span class="uk-margin-small-lef"></span></a></li>
 						</ul>
 					</div>
 				</div>

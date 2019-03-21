@@ -17,36 +17,42 @@
 
 get_header(); ?>
 
-	<div uk-grid class="uk-grid-match uk-flex-center">
+	<div class="uk-flex uk-flex-center">
 		<!-- sidebar -->
-		<div class="uk-width-auto">
-			<div class="main-content main-content-sidebar uk-container uk-container-auto">
-
-				<?php
-				while ( have_posts() ) :
-					the_post();
-
-					get_template_part( 'template-parts/content', 'page' );
-
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-
-				endwhile; // End of the loop.
-				?>
-
-
-			</div><!-- .main-content -->
+		<div class="uk-visible@m">
+			<!-- 960px以下で非表示 -->
+			<div class="sidebar-wrapper">
+				<!-- 210px + 650px(コンテンツ部分) = 860 -->
+				<div class="sidebar uk-padding-small" uk-sticky="width-element: .sidebar-wrapper;bottom: #clear-stickey" style="overflow-y: scroll;max-height: 100vh">
+					<aside　id="secondary">
+						<nav>
+							<?php dynamic_sidebar( 'sidebar-1' ); ?>
+						</nav>
+					</aside>
+				</div>
+			</div>
 		</div>
-		<div id="content-sidebar" class="uk-visible@m uk-flex-first">
-			<nav>
-				<aside id="secondary" class="widget-area uk-padding-left">
-					<?php dynamic_sidebar( 'sidebar-1' ); ?>
-				</aside><!-- #secondary -->
-			</nav>
-		</div><!-- .sidebar -->
+		<!-- content -->
+		<div>
+			<div class="uk-container uk-container-small uk-margin-remove-top uk-padding-small main-content main-content-sidebar">
+				<main>
+					<?php
+					while ( have_posts() ) :
+						the_post();
+						get_template_part( 'template-parts/content', 'page' );
+
+						// If comments are open or we have at least one comment, load up the comment template.
+						if ( comments_open() || get_comments_number() ) :
+							comments_template();
+						endif;
+
+					endwhile; // End of the loop.
+					?>
+				</main>
+			</div>
+		</div>
 	</div>
+	<div id="clear-stickey" class="uk-margin-medium-bottom"></div>
 <?php
 get_sidebar();
 get_footer();

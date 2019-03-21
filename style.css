@@ -50,7 +50,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
 .custom-logo{
-	max-height: 50px;
+	max-height: 24px;
 }
 
 /* ----- 全体の設定 ------ */
@@ -92,7 +92,9 @@ html {
 	}
 }
 
-
+#kns-head-nav>nav  {
+	height: 80px;
+}
 
 
 
@@ -102,7 +104,17 @@ html {
 	max-width: 650px;
 	margin-top: 40px;
 	margin-bottom: 40px;
-	font-size: 18px;
+	font-size: 17px;
+}
+@media(min-width: 650px) {
+	.main-content {
+		width: 650px;
+	}
+}
+@media(min-width: 960px) {
+	.main-content-sidebar {
+		margin-left: 15px;
+	}
 }
 
 .main-content h2.main-subtitle,
@@ -146,6 +158,11 @@ blockquote {
 
 
 /* ------ sidebar ------ */
+
+.sidebar-wrapper {
+	width: 240px;
+}
+
 .uk-offcanvas-bar{
 	background-color: rgba(255, 255, 255, 0.89);
 }
