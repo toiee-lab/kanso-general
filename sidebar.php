@@ -8,24 +8,8 @@
  */
 
 ?>
-<div id="footer" uk-height-viewport="expand: true">
-	<div  class="uk-grid-collapse uk-child-width-expand@s uk-text-left" uk-grid>
 
-		<div>
-			<?php dynamic_sidebar( 'footer-left' ); ?>
-		</div>
-		<div>
-			<?php dynamic_sidebar( 'footer-center' ); ?>
-		</div>
-		<div>
-			<?php dynamic_sidebar( 'footer-right' ); ?>
-		</div>
-
-	</div>
-	<p id="footer-copyright">Copyright &copy; <span class="ownername"><?php echo esc_html( get_option( 'kanso_general_options_ownername' ) ); ?></span>, All rights reserved.</p>
-</div><!-- #footer -->
-
-<div id="sidebar" uk-offcanvas="overlay: true;mode: push">
+<div id="sidebar" uk-offcanvas>
 	<div class="uk-offcanvas-bar">
 
 		<button class="uk-offcanvas-close" type="button" uk-close></button>

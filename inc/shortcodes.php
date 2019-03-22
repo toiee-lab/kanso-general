@@ -355,6 +355,8 @@ add_shortcode( 'kns-showpost' , function( $atts, $content ){
 	// 子ページを表示するオプションの場合
 	if( is_array( $atts ) ){
 		$children = ( array_search('children', $atts) !== false ) ? true : false;
+	} else {
+		$children = false;
 	}
 	
 	$atts = shortcode_atts( array(

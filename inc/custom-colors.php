@@ -15,8 +15,8 @@ function kns_get_color_set( $key, $choices = false ) {
 		'snow'      => array(
 			'name'    => '白色',
 			'color'   => 'black',
-			'nav-bg0' => 'background-color : rgba(255, 255, 255); border-bottom: #eee 1px solid;',
-			'nav-bg'  => 'background-color : rgba(255, 255, 255, 0.8); border-bottom: #eee 1px solid;',
+			'nav-bg0' => 'background-color : rgba(255, 255, 255) !important; border-bottom: #eee 1px solid;',
+			'nav-bg'  => 'background-color : rgba(255, 255, 255, 0.8) !important; border-bottom: #eee 1px solid;',
 			'head-bg' => 'background: linear-gradient(to bottom, #ece9e6, #ffffff);',
 		),
 		'deepblack' => array(
