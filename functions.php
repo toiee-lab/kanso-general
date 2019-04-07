@@ -305,7 +305,7 @@ if ( isset( $options['jp_markdown_eneble'] ) && '1' === $options['jp_markdown_en
 }
 
 /* JP Markdown が shortcode の中も parse するように修正 */
-if ( ! isset( $options['parse_md_in_shortcode'] ) || '1' === $options['parse_md_in_shortcode'] ) {
+if ( isset( $options['parse_md_in_shortcode'] ) && '1' === $options['parse_md_in_shortcode'] ) {
 	add_filter( 'jetpack_markdown_preserve_shortcodes', '__return_false' );
 }
 

@@ -224,13 +224,13 @@ class KnsSetting
     {
 	    if( isset( $this->options['parse_md_in_shortcode'] ) && $this->options['parse_md_in_shortcode'] == '0' )
 	    {
-   		    $off = 'checked';
-		    $on  = '';
+   		    $off = '';
+		    $on  = 'checked';
 	    }
 	    else
 	    {
-   		    $off = '';
-		    $on  = 'checked';
+   		    $off = 'checked';
+		    $on  = '';
 	    }
 	    
         printf(
