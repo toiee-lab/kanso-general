@@ -305,7 +305,7 @@ if ( isset( $options['jp_markdown_eneble'] ) && '1' === $options['jp_markdown_en
 }
 
 /* JP Markdown が shortcode の中も parse するように修正 */
-if ( isset( $options['parse_md_in_shortcode'] ) && '1' === $options['parse_md_in_shortcode'] ) {
+if ( ! isset( $options['parse_md_in_shortcode'] ) || '1' === $options['parse_md_in_shortcode'] ) {
 	add_filter( 'jetpack_markdown_preserve_shortcodes', '__return_false' );
 }
 
@@ -445,3 +445,13 @@ function new_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
+/* メディアライブラリを使いやすくする */
+function muc_column( $cols ) {
+    $cols["media_url"] = "URL";
+    return $cols;
+}
+function muc_value( $column_name, $id ) {
+    if ( $column_name == "media_url" ) echo '<input type="text" width="100%" onclick="jQuery(this).select();" value="'. wp_get_attachment_url( $id ). '" />';
+}
+add_filter( 'manage_media_columns', 'muc_column' );
+add_action( 'manage_media_custom_column', 'muc_value', 10, 2 );
