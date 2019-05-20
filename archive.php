@@ -28,7 +28,7 @@ get_header(); ?>
 					</span>
 				</div>
 				<?php
-				echo '<h1 class="page-title">' . esc_html( trim( $a_title[1] ) ) . '</h1>';
+				echo '<h1 class="page-title">' . esc_html( wp_strip_all_tags( trim( $a_title[1] ) ) ) . '</h1>';
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
