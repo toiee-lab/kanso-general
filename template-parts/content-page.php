@@ -29,21 +29,8 @@ if ( is_home() || is_front_page() ) {
 		kanso_general_post_thumbnail();
 	}
 }
-?>
 			
-			<?php
-				$the_content = get_the_content();
-			if ( $the_content != '' ) {
-				the_content();
-			} else {
-				echo '<div uk-alert class="uk-alert-none uk-margin-large-top"><h3><span uk-icon="icon: info"></span> お知らせ</h3>
-<p>このページは作成中です。今しばらくお待ちください。</p>
-</div>';
-			}
-			?>
-			
-			
-			<?php
+the_content();
 
 			if ( ! is_front_page() && ! is_home() && ( get_post_meta( $the_id, 'exclude_menu', true ) ) != '1' ) :
 

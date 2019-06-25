@@ -210,3 +210,26 @@ if ( ! function_exists( 'kanso_get_post_label' ) ) :
 		return esc_html( get_post_type_object( get_post_type() )->label );
 	}
 endif;
+
+
+if ( ! function_exists( 'kanso_general_no_content' ) ) :
+	function kanso_general_no_content( $content ) {
+		if ( is_page() ) {
+			$can_edit = false;
+			if( is_user_logged_in() ) {
+				if (current_user_can('edit_posts')) {
+					$can_edit = true;
+				}
+			}
+
+			if( $can_edit || ( '' !== trim( $content ) ) ) {
+				return $content;
+			} else {
+				return '<div uk-alert class="uk-alert-none uk-margin-large-top"><h3><span uk-icon="icon: info"></span> お知らせ</h3>
+<p>このページは作成中です。今しばらくお待ちください。</p>
+</div>';
+			}
+		}
+	}
+endif;
+add_filter( 'the_content', 'kanso_general_no_content' );
