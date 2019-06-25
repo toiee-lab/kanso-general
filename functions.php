@@ -74,7 +74,7 @@ if ( ! function_exists( 'kanso_general_setup' ) ) :
 		);
 
 		// Set up the WordPress core custom background feature.
-		/**		add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
+		/**     add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 		) ) );
@@ -149,11 +149,11 @@ function kanso_general_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery-uk-form', get_template_directory_uri() . '/js/kanso.js', array(), '20151215', true );
 
-	wp_enqueue_style( 'uikit', get_template_directory_uri() . '/css/uikit.min.css', array(), '3.0.0-rc.12' );
+	wp_enqueue_style( 'uikit', get_template_directory_uri() . '/css/uikit.min.css', array(), '3.1.6' );
 	wp_enqueue_style( 'base-style', get_stylesheet_uri(), array( 'uikit' ) );
 
-	wp_enqueue_script( 'uikit-js', get_template_directory_uri() . '/js/uikit.min.js', array(), '3.0.0-rc.12' );
-	wp_enqueue_script( 'uikit-icon', get_template_directory_uri() . '/js/uikit-icons.min.js', array( 'uikit-js' ), '3.0.0-rc.12' );
+	wp_enqueue_script( 'uikit-js', get_template_directory_uri() . '/js/uikit.min.js', array(), '3.1.6' );
+	wp_enqueue_script( 'uikit-icon', get_template_directory_uri() . '/js/uikit-icons.min.js', array( 'uikit-js' ), '3.1.6' );
 
 	if ( isset( $_GET['preview'] ) && 'true' === $_GET['preview'] ) {
 		wp_enqueue_script( 'admin-bar-preview', get_template_directory_uri() . '/js/admin-bar-preview.js', array(), '20151215', true );
@@ -365,7 +365,6 @@ function kanso_general_register_required_plugins() {
  * どのページテンプレートを使うか判定する
  *
  * 戻り値 : content or sidebar
- *
  */
 if ( ! function_exists( 'kns_get_template' ) ) {
 	/** Kanso template */
@@ -447,11 +446,13 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
 
 /* メディアライブラリを使いやすくする */
 function muc_column( $cols ) {
-    $cols["media_url"] = "URL";
-    return $cols;
+	$cols['media_url'] = 'URL';
+	return $cols;
 }
 function muc_value( $column_name, $id ) {
-    if ( $column_name == "media_url" ) echo '<input type="text" width="100%" onclick="jQuery(this).select();" value="'. wp_get_attachment_url( $id ). '" />';
+	if ( $column_name == 'media_url' ) {
+		echo '<input type="text" width="100%" onclick="jQuery(this).select();" value="' . wp_get_attachment_url( $id ) . '" />';
+	}
 }
 add_filter( 'manage_media_columns', 'muc_column' );
 add_action( 'manage_media_custom_column', 'muc_value', 10, 2 );

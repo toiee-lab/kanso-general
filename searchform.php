@@ -1,4 +1,4 @@
-<form role="search" method="get" id="searchform" class="uk-form-horizontal　uk-margin-large" action="<?php echo home_url() ?>">
+<form role="search" method="get" id="searchform" class="uk-form-horizontal　uk-margin-large" action="<?php echo home_url(); ?>">
 
 	<div class="uk-margin" uk-margin>
 		<div uk-form-custom>
