@@ -74,7 +74,7 @@ if ( ! function_exists( 'kanso_general_setup' ) ) :
 		);
 
 		// Set up the WordPress core custom background feature.
-		/**		add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
+		/**     add_theme_support( 'custom-background', apply_filters( 'kanso_general_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 		) ) );
@@ -365,7 +365,6 @@ function kanso_general_register_required_plugins() {
  * どのページテンプレートを使うか判定する
  *
  * 戻り値 : content or sidebar
- *
  */
 if ( ! function_exists( 'kns_get_template' ) ) {
 	/** Kanso template */
@@ -447,11 +446,13 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
 
 /* メディアライブラリを使いやすくする */
 function muc_column( $cols ) {
-    $cols["media_url"] = "URL";
-    return $cols;
+	$cols['media_url'] = 'URL';
+	return $cols;
 }
 function muc_value( $column_name, $id ) {
-    if ( $column_name == "media_url" ) echo '<input type="text" width="100%" onclick="jQuery(this).select();" value="'. wp_get_attachment_url( $id ). '" />';
+	if ( $column_name == 'media_url' ) {
+		echo '<input type="text" width="100%" onclick="jQuery(this).select();" value="' . wp_get_attachment_url( $id ) . '" />';
+	}
 }
 add_filter( 'manage_media_columns', 'muc_column' );
 add_action( 'manage_media_custom_column', 'muc_value', 10, 2 );

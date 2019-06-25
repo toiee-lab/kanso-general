@@ -23,7 +23,7 @@
  * Additional Search Queries: md, markdown
  */
 
-include dirname( __FILE__ ) . '/markdown/easy-markdown.php';
+require dirname( __FILE__ ) . '/markdown/easy-markdown.php';
 
 // If the module is active, let's make this active for posting, period.
 // Comments will still be optional.
@@ -43,11 +43,11 @@ function jetpack_markdown_load_textdomain() {
 add_action( 'plugins_loaded', 'jetpack_markdown_load_textdomain' );
 
 
-function jetpack_markdown_settings_link($actions) {
+function jetpack_markdown_settings_link( $actions ) {
 	return array_merge(
 		array( 'settings' => sprintf( '<a href="%s">%s</a>', 'options-discussion.php#' . WPCom_Markdown::COMMENT_OPTION, __( 'Settings', 'jetpack' ) ) ),
 		$actions
 	);
 	return $actions;
 }
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'jetpack_markdown_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'jetpack_markdown_settings_link' );

@@ -14,7 +14,6 @@
 
 if ( kns_get_template() === 'sidebar' ) {
 	get_template_part( 'page', 'sidebar' );
-}
-else {  /* デフォルト */
+} else {  /* デフォルト */
 	get_template_part( 'page', 'content' );
 }

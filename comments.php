@@ -36,7 +36,7 @@ if ( post_password_required() ) {
 				);
 			} else {
 				printf( // WPCS: XSS OK.
-				/* translators: 1: comment count number, 2: title. */
+					/* translators: 1: comment count number, 2: title. */
 					esc_html( _nx( 'コメント', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comment_count, 'comments title', 'kanso-general' ) ),
 					number_format_i18n( $comment_count ),
 					'<span>' . get_the_title() . '</span>'

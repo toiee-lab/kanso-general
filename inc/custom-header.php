@@ -30,61 +30,61 @@ function kanso_general_custom_header_setup() {
 		)
 	);
 
-
 	// デフォルトのヘッダーイメージを用意しておく
-	register_default_headers( array(
-		'leaf' => array(
-			'url'           => '%s/images/headers/leaf.jpg',
-			'thumbnail_url' => '%s/images/headers/leaf.jpg',
-			'description'   => 'フード'
-		),
-		'person' => array(
-			'url'           => '%s/images/headers/person.jpg',
-			'thumbnail_url' => '%s/images/headers/person.jpg',
-			'description'   => 'フード'
-		),
-		'cafe1' => array(
-			'url'           => '%s/images/headers/cafe1.jpg',
-			'thumbnail_url' => '%s/images/headers/cafe1.jpg',
-			'description'   => 'フード'
-		),
-		'cafe2' => array(
-			'url'           => '%s/images/headers/cafe2.jpg',
-			'thumbnail_url' => '%s/images/headers/cafe2.jpg',
-			'description'   => 'フード'
-		),
-		'foods' => array(
-			'url'           => '%s/images/headers/foods.jpg',
-			'thumbnail_url' => '%s/images/headers/foods.jpg',
-			'description'   => 'フード'
-		),
-		'paint' => array(
-			'url'           => '%s/images/headers/paint.jpg',
-			'thumbnail_url' => '%s/images/headers/paint.jpg',
-			'description'   => 'ペイント'
-		),
-		'pencil' => array(
-			'url'           => '%s/images/headers/pencil.jpg',
-			'thumbnail_url' => '%s/images/headers/pencil.jpg',
-			'description'   => '鉛筆'
-		),
-		'flower' => array(
-			'url'           => '%s/images/headers/flower.jpg',
-			'thumbnail_url' => '%s/images/headers/flower.jpg',
-			'description'   => '花'
-		),
-		'pen' => array(
-			'url'           => '%s/images/headers/pen.jpg',
-			'thumbnail_url' => '%s/images/headers/pen.jpg',
-			'description'   => 'ペン'
-		),
-		'buildings' => array(
-			'url'           => '%s/images/headers/buildings.jpg',
-			'thumbnail_url' => '%s/images/headers/buildings.jpg',
-			'description'   => 'ビルディング'
-		),
-	) );
-
+	register_default_headers(
+		array(
+			'leaf'      => array(
+				'url'           => '%s/images/headers/leaf.jpg',
+				'thumbnail_url' => '%s/images/headers/leaf.jpg',
+				'description'   => 'フード',
+			),
+			'person'    => array(
+				'url'           => '%s/images/headers/person.jpg',
+				'thumbnail_url' => '%s/images/headers/person.jpg',
+				'description'   => 'フード',
+			),
+			'cafe1'     => array(
+				'url'           => '%s/images/headers/cafe1.jpg',
+				'thumbnail_url' => '%s/images/headers/cafe1.jpg',
+				'description'   => 'フード',
+			),
+			'cafe2'     => array(
+				'url'           => '%s/images/headers/cafe2.jpg',
+				'thumbnail_url' => '%s/images/headers/cafe2.jpg',
+				'description'   => 'フード',
+			),
+			'foods'     => array(
+				'url'           => '%s/images/headers/foods.jpg',
+				'thumbnail_url' => '%s/images/headers/foods.jpg',
+				'description'   => 'フード',
+			),
+			'paint'     => array(
+				'url'           => '%s/images/headers/paint.jpg',
+				'thumbnail_url' => '%s/images/headers/paint.jpg',
+				'description'   => 'ペイント',
+			),
+			'pencil'    => array(
+				'url'           => '%s/images/headers/pencil.jpg',
+				'thumbnail_url' => '%s/images/headers/pencil.jpg',
+				'description'   => '鉛筆',
+			),
+			'flower'    => array(
+				'url'           => '%s/images/headers/flower.jpg',
+				'thumbnail_url' => '%s/images/headers/flower.jpg',
+				'description'   => '花',
+			),
+			'pen'       => array(
+				'url'           => '%s/images/headers/pen.jpg',
+				'thumbnail_url' => '%s/images/headers/pen.jpg',
+				'description'   => 'ペン',
+			),
+			'buildings' => array(
+				'url'           => '%s/images/headers/buildings.jpg',
+				'thumbnail_url' => '%s/images/headers/buildings.jpg',
+				'description'   => 'ビルディング',
+			),
+		)
+	);
 
 }
 add_action( 'after_setup_theme', 'kanso_general_custom_header_setup' );
@@ -102,10 +102,9 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 		 * If no custom options for text are set, let's bail.
 		 * get_header_textcolor() options: Any hex value, 'blank' to hide text. Default: add_theme_support( 'custom-header' ).
 		 */
-//		if ( get_theme_support( 'custom-header', 'default-text-color' ) === $header_text_color ) {
-//			return;
-//		}
-
+		// if ( get_theme_support( 'custom-header', 'default-text-color' ) === $header_text_color ) {
+		// return;
+		// }
 		// If we get this far, we have custom styles. Let's do this.
 		?>
 		<style type="text/css" id="custom-header">

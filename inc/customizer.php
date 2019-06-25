@@ -4,7 +4,8 @@
  *
  * @package kanso-general
  */
-/* 説明 :
+/*
+ 説明 :
  * カスタマイザーに追加するには６つの作業が必要
  *
  * (0) カスタマイズ項目に対応して、CSSなりを吐き出すPHPプログラムの作成
@@ -36,24 +37,21 @@ function kanso_general_customize_register( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-		'kanso_general_options_ownername' ,
+		'kanso_general_options_ownername',
 		array(
 			'settings' => 'kanso_general_options_ownername',
 			'label'    => 'コピーライト名',
 			'section'  => 'title_tagline',
-			'type'     => 'text'
+			'type'     => 'text',
 		)
 	);
-
 
 	// ------------------------------------
 	//
 	// ヘッダー設定
 	//
-
-
 	// 色の設定 : colorsセクションに追加
-	//    カラーセット
+	// カラーセット
 	$wp_customize->add_setting(
 		'kanso_general_options_colors',
 		array(
@@ -63,21 +61,20 @@ function kanso_general_customize_register( $wp_customize ) {
 		)
 	);
 
-	$color_choices = kns_get_color_set('dummy', true);
+	$color_choices = kns_get_color_set( 'dummy', true );
 
 	$wp_customize->add_control(
 		'kanso_general_options_colors',
 		array(
-			'settings' => 'kanso_general_options_colors',
-			'label'    => '全体 : ナビ色+α',
+			'settings'    => 'kanso_general_options_colors',
+			'label'       => '全体 : ナビ色+α',
 			'description' => 'フロントページでページ途中で現れるナビの文字色、背景色と、ヘッダー画像を指定しない場合の背景の色を指定することができます。',
-			'section'  => 'header_image',
-			'type'     => 'select',
-			'choices'  => $color_choices,
-			'priority' => 0
+			'section'     => 'header_image',
+			'type'        => 'select',
+			'choices'     => $color_choices,
+			'priority'    => 0,
 		)
 	);
-
 
 	// ヘッダーのタイトル、サブタイトル
 	$wp_customize->add_setting(
@@ -95,7 +92,7 @@ function kanso_general_customize_register( $wp_customize ) {
 			'label'    => 'ヘッダーのタイトル',
 			'section'  => 'header_image',
 			'type'     => 'text',
-			'priority' => 1
+			'priority' => 1,
 		)
 	);
 
@@ -114,11 +111,11 @@ function kanso_general_customize_register( $wp_customize ) {
 			'label'    => 'ヘッダーのサブタイトル',
 			'section'  => 'header_image',
 			'type'     => 'text',
-			'priority' => 2
+			'priority' => 2,
 		)
 	);
 
-	//    フロントページのヘッダー文字色
+	// フロントページのヘッダー文字色
 	$wp_customize->add_setting(
 		'kanso_general_options_hcolor_front',
 		array(
@@ -135,10 +132,10 @@ function kanso_general_customize_register( $wp_customize ) {
 			'section'  => 'header_image',
 			'type'     => 'select',
 			'choices'  => array(
-				'light'  => '白',
-				'dark'   => '黒',
+				'light' => '白',
+				'dark'  => '黒',
 			),
-			'priority' => 3
+			'priority' => 3,
 		)
 	);
 
@@ -158,52 +155,73 @@ function kanso_general_customize_register( $wp_customize ) {
 			'label'    => 'ヘッダーの高さ',
 			'section'  => 'header_image',
 			'type'     => 'text',
-			'priority' => 4
+			'priority' => 4,
 		)
 	);
-
 
 	// javascript で変更を即時に反映するための設定
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
-
-
 	// javascript の登録
 	if ( isset( $wp_customize->selective_refresh ) ) {
-		$wp_customize->selective_refresh->add_partial( 'blogname', array(
-			'selector'        => '.site-title a',
-			'render_callback' => 'kanso_general_customize_partial_blogname',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_ownername', array(
-			'selector'        => '.ownername',
-			'render_callback' => 'kanso_general_customize_partial_ownername',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
-			'selector'        => '.site-description',
-			'render_callback' => 'kanso_general_customize_partial_blogdescription',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_htitle' , array(
-			'selector'        => '#kanso_general_options_htitle',
-			'render_callback' => 'kanso_general_customize_partial_htitle',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_hsubtitle' , array(
-			'selector'        => '#kanso_general_options_hsubtitle',
-			'render_callback' => 'kanso_general_customize_partial_hsubtitle',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_height' , array(
-			'selector'        => '#kanso_general_options_height',
-			'render_callback' => 'kanso_general_customize_partial_height',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_hcolor_front' , array(
-			'selector'        => '#kanso_general_options_hcolor_front',
-			'render_callback' => 'kanso_general_customize_partial_frontcolor',
-		) );
-		$wp_customize->selective_refresh->add_partial( 'kanso_general_options_colors' , array(
-			'selector'        => '#kanso_general_options_colors',
-			'render_callback' => 'kanso_general_customize_partial_colors',
-		) );
+		$wp_customize->selective_refresh->add_partial(
+			'blogname',
+			array(
+				'selector'        => '.site-title a',
+				'render_callback' => 'kanso_general_customize_partial_blogname',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_ownername',
+			array(
+				'selector'        => '.ownername',
+				'render_callback' => 'kanso_general_customize_partial_ownername',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'blogdescription',
+			array(
+				'selector'        => '.site-description',
+				'render_callback' => 'kanso_general_customize_partial_blogdescription',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_htitle',
+			array(
+				'selector'        => '#kanso_general_options_htitle',
+				'render_callback' => 'kanso_general_customize_partial_htitle',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_hsubtitle',
+			array(
+				'selector'        => '#kanso_general_options_hsubtitle',
+				'render_callback' => 'kanso_general_customize_partial_hsubtitle',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_height',
+			array(
+				'selector'        => '#kanso_general_options_height',
+				'render_callback' => 'kanso_general_customize_partial_height',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_hcolor_front',
+			array(
+				'selector'        => '#kanso_general_options_hcolor_front',
+				'render_callback' => 'kanso_general_customize_partial_frontcolor',
+			)
+		);
+		$wp_customize->selective_refresh->add_partial(
+			'kanso_general_options_colors',
+			array(
+				'selector'        => '#kanso_general_options_colors',
+				'render_callback' => 'kanso_general_customize_partial_colors',
+			)
+		);
 
 	}
 }
