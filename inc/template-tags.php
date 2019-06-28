@@ -230,6 +230,8 @@ if ( ! function_exists( 'kanso_general_no_content' ) ) :
 </div>';
 			}
 		}
+
+		return $content;
 	}
 endif;
 add_filter( 'the_content', 'kanso_general_no_content' );
