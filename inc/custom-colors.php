@@ -3,7 +3,6 @@
 
 /**
  * 色のセットを返す
- *  color は、light か dark をセットする
  *  nav-bg は、background の css を返す
  *  head-bg は、background の css を返す
  *

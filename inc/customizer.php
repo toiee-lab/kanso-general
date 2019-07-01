@@ -132,8 +132,8 @@ function kanso_general_customize_register( $wp_customize ) {
 			'section'  => 'header_image',
 			'type'     => 'select',
 			'choices'  => array(
-				'light' => '白',
-				'dark'  => '黒',
+				'#fff' => '白',
+				'#333'  => '黒',
 			),
 			'priority' => 3,
 		)
