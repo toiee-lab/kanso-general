@@ -36,22 +36,22 @@ function kanso_general_custom_header_setup() {
 			'leaf'      => array(
 				'url'           => '%s/images/headers/leaf.jpg',
 				'thumbnail_url' => '%s/images/headers/leaf.jpg',
-				'description'   => 'フード',
+				'description'   => '葉',
 			),
 			'person'    => array(
 				'url'           => '%s/images/headers/person.jpg',
 				'thumbnail_url' => '%s/images/headers/person.jpg',
-				'description'   => 'フード',
+				'description'   => '人',
 			),
 			'cafe1'     => array(
 				'url'           => '%s/images/headers/cafe1.jpg',
 				'thumbnail_url' => '%s/images/headers/cafe1.jpg',
-				'description'   => 'フード',
+				'description'   => 'カフェ1',
 			),
 			'cafe2'     => array(
 				'url'           => '%s/images/headers/cafe2.jpg',
 				'thumbnail_url' => '%s/images/headers/cafe2.jpg',
-				'description'   => 'フード',
+				'description'   => 'カフェ2',
 			),
 			'foods'     => array(
 				'url'           => '%s/images/headers/foods.jpg',
@@ -144,6 +144,12 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 			#kns-header{
 				height: <?php echo esc_html( get_option( 'kanso_general_options_height', 400 ) ); ?>px;
 			}
+			#kanso_general_options_htitle,
+			#kanso_general_options_hsubtitle,
+			.kns-navbar-top-front,
+			.kns-navbar-top-front li>a {
+				color: <?php echo esc_attr( get_option( 'kanso_general_options_hcolor_front' ) ); ?>;
+			}
 			.kns-navbar-top {
 				<?php
 				echo esc_html( $kns_color_set['nav-bg0'] );
@@ -156,14 +162,11 @@ if ( ! function_exists( 'kanso_general_header_style' ) ) :
 			}
 			.uk-logo,
 			.uk-logo:hover,
-			.kns-navbar-top-front,
-			.kns-navbar-top-front li>a,
 			.kns-navbar-top,
 			.kns-navbar-top li>a,
 			.kns-navbar-sticky,
 			.kns-navbar-sticky li>a,
-			#kanso_general_options_htitle,
-			#kanso_general_options_hsubtitle
+			.kns-navbar-sticky .uk-navbar-nav>li>a
 			{
 				color : <?php echo esc_html( $kns_color_set['color'] ); ?>;
 			}
