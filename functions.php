@@ -100,11 +100,50 @@ if ( ! function_exists( 'kanso_general_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'kanso_general_setup' );
 
+
+/**
+ * ACFプラグインの存在をチェックする。
+ */
+function exist_acf_admin_notice_error() {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		$class   = 'notice notice-error';
+		$message = __( '【重要】KANSO を利用するには、ACFプラグインが必須です。インストールし、有効にしてください。', 'kanso' );
+
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
+	}
+}
+add_action( 'admin_notices', 'exist_acf_admin_notice_error' );
+
+
+/* ACF がなくても、とりあえず動くようにする */
+function kns_acf_proxy () {
+	if ( ! function_exists( 'update_field' ) &&  ! is_admin() ) {
+
+		function update_field( $selector, $value, $post_id = false ) {
+			if ( false === $post_id ) {
+				$post_id = get_the_ID();
+			}
+			update_post_meta( $post_id, $selector, $value );
+		}
+
+		function get_field( $selector, $post_id = false ) {
+			if ( false === $post_id ) {
+				$post_id = get_the_ID();
+			}
+
+			return get_post_meta( $post_id, $selector, true );
+		}
+	}
+}
+add_action( 'wp_loaded', 'kns_acf_proxy', 0, 99 );
+
 /**
  * upgrade
  */
-require_once 'inc/upgrade.php';
-$kanso_upgrade = new Kanso_Upgrade();
+if( function_exists( 'acf_add_local_field_group' ) ) {
+	require_once 'inc/upgrade.php';
+	$kanso_upgrade = new Kanso_Upgrade();
+}
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
