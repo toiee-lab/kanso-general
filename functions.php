@@ -239,19 +239,6 @@ foreach ( $kns_footers as $name ) {
  */
 require get_template_directory() . '/inc/shortcodes.php';
 
-
-
-/**
- * リード文を入力するフィールドを用意する
- */
-require get_template_directory() . '/inc/register-lead-meta.php';
-/**
- * タイトルを非表示にするフィールドを用意する
- */
-require get_template_directory() . '/inc/custom-meta-box.php';
-
-
-
 /**
  * Page menu widget additions.
  */
@@ -456,3 +443,24 @@ function muc_value( $column_name, $id ) {
 }
 add_filter( 'manage_media_columns', 'muc_column' );
 add_action( 'manage_media_custom_column', 'muc_value', 10, 2 );
+
+add_filter('acf/settings/save_json', function ( $path ) {
+	if ( file_exists( get_stylesheet_directory() . '/acf/index.php' ) ) {
+		return get_stylesheet_directory() . '/acf';
+	} else {
+		return get_template_directory() . '/acf';
+	}
+
+	return $path;
+});
+add_filter('acf/settings/load_json', function ( $paths ) {
+	unset($paths[0]);
+
+	if ( file_exists( get_stylesheet_directory() . '/acf/index.php' ) ) {
+		$paths[] = get_stylesheet_directory() . '/acf';
+	} else {
+		$paths[] = get_template_directory() . '/acf';
+	}
+
+	return $paths;
+});
