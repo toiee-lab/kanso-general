@@ -104,7 +104,7 @@ add_action( 'after_setup_theme', 'kanso_general_setup' );
 /**
  * ACFプラグインの存在をチェックする。
  */
-function exist_acf_admin_notice_error() {
+function kns_exist_acf_admin_notice_error() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		$class   = 'notice notice-error';
 		$message = __( '【重要】KANSO を利用するには、ACFプラグインが必須です。インストールし、有効にしてください。', 'kanso' );
@@ -112,7 +112,7 @@ function exist_acf_admin_notice_error() {
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 	}
 }
-add_action( 'admin_notices', 'exist_acf_admin_notice_error' );
+add_action( 'admin_notices', 'kns_exist_acf_admin_notice_error' );
 
 
 /* ACF がなくても、とりあえず動くようにする */
