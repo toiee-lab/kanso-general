@@ -101,6 +101,12 @@ endif;
 add_action( 'after_setup_theme', 'kanso_general_setup' );
 
 /**
+ * upgrade
+ */
+require_once 'inc/upgrade.php';
+$kanso_upgrade = new Kanso_Upgrade();
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
