@@ -16,17 +16,12 @@
 		<?php the_category( ',' ); ?>
 	</div>
 	<?php
+	if ( false === get_field('kns_hide_title' ) ) {
 		the_title( '<h1 class="entry-title">', '</h1>' );
+		the_subtitle( '<h2 class="main-subtitle">', '</h2>' );
+	}
 
-		$kns_lead = get_post_meta( get_the_ID(), 'kns_lead', true );
-	if ( $kns_lead != '' ) :
-		?>
-		<h2 class="main-subtitle"><?php echo $kns_lead; ?></h2>
-		<?php
-		endif;
-
-		$the_id = get_the_ID();
-	if ( get_post_meta( $the_id, 'kns_hidethumb', true ) != '1' ) {
+	if ( true !== get_field( 'kns_hide_thumbnail' ) ) {
 		kanso_general_post_thumbnail();
 	}
 	?>

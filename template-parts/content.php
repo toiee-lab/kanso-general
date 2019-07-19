@@ -17,12 +17,7 @@ if ( is_home() || is_front_page() ) {
 
 	if ( get_post_meta( $the_id, 'kns_hidetitle', true ) != '1' ) {
 		the_title( '<h1 class="main-title">', '</h1>' );
-		$kns_lead = get_post_meta( get_the_ID(), 'kns_lead', true );
-		if ( $kns_lead != '' ) :
-			?>
-			<h2 class="main-subtitle"><?php echo get_post_meta( $the_id, 'kns_lead', true ); ?></h2>
-			<?php
-		endif;
+		the_subtitle( '<h2 class="main-subtitle">', '</h2>');
 	}
 
 	if ( get_post_meta( $the_id, 'kns_hidethumb', true ) != '1' ) {
@@ -33,12 +28,12 @@ if ( is_home() || is_front_page() ) {
 the_content();
 
 
-if ( ! is_front_page() && ! is_home() && ( get_post_meta( $the_id, 'exclude_menu', true ) ) != '1' ) :
+if ( ! is_front_page() && ! is_home() && ( true !== get_field( 'kns_exclude_toc' ) ) ) :
 
 	$pagelist = get_pages(
 		array(
-			'meta_key'   => 'exclude_menu',
-			'meta_value' => '1',
+			'meta_key'   => 'kns_exclude_toc',
+			'meta_value' => 1,
 		)
 	);
 	$ex_pages = array();

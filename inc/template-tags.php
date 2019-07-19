@@ -235,3 +235,16 @@ if ( ! function_exists( 'kanso_general_no_content' ) ) :
 	}
 endif;
 add_filter( 'the_content', 'kanso_general_no_content' );
+
+if ( ! function_exists( 'the_subtitle' ) ) {
+	function the_subtitle( $before, $after ) {
+
+		$subtitle = get_field( 'kns_subtitle' );
+		if ( '' !== $subtitle ) {
+			$subtitle = $before . $subtitle . $after;
+			echo apply_filters( 'the_subtitle', $subtitle );
+		} else {
+			echo '';
+		}
+	}
+}

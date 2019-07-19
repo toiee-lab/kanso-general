@@ -4,7 +4,7 @@ Theme URI: http://kansowp.toiee.jp/
 Author: toiee Lab
 Author URI: http://toiee.jp/
 Description: KANSO General は、できるだけ少ない設定、学習コストで、美しく、洗練され、オリジナリティがあるWebサイトを作るためのテーマです。シンプル・簡素 is best の精神で作られています。 詳細は、<a href="http://kansowp.toiee.jp/">http://kansowp.toiee.jp/</a>
-Version: 1.4.1
+Version: 1.5
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: kanso-general
@@ -122,11 +122,13 @@ html {
 	}
 }
 
-.main-content h2.main-subtitle,
+h2.main-subtitle,
 h1.entry-title + h2,
 h1.main-title + h2
 {
 	margin-top: -1rem;
+	font-weight: 300;
+	color: #999;
 }
 
 .main-content h2{

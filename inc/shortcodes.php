@@ -415,7 +415,7 @@ add_shortcode(
 				'orderby'      => 'date',
 				'order'        => 'DESC',
 				'post_ids'     => '',
-				'exclude_menu' => 'true',   // メニューに表示しない設定したアイテムは、表示しない
+				'kns_exclude_toc' => 1,   // メニューに表示しない設定したアイテムは、表示しない
 				'exclude_ids'  => '',
 			),
 			$atts
@@ -434,10 +434,10 @@ add_shortcode(
 		if ( $children ) { // 子ページを検索する
 
 			// 除外する id を設定する
-			if ( $exclude_menu === 'true' ) {
+			if ( $kns_exclude_toc === 'true' ) {
 				$ex_q      = array(
 					'post_type'      => 'page',
-					'meta_key'       => 'exclude_menu',
+					'meta_key'       => 'kns_exclude_toc',
 					'meta_value'     => 1,
 					'compare'        => '=',
 					'posts_per_page' => -1,
