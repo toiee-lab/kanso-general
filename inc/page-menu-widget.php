@@ -48,13 +48,13 @@ class PageToc_Widget extends WP_Widget {
 		// 目次起点設定を検索し、あれば設定する
 		$child_of = '';
 		$post_id  = get_the_ID();
-		$tsp      = get_post_meta( $post_id, 'toc_starting_point', true );
+		$tsp      = get_field( 'kns_toc_top' );
 		if ( $tsp ) {
 			$child_of = $post_id;
 		} else {
 			$ancs = get_post_ancestors( $post_id );
 			foreach ( $ancs as $a_id ) {
-				$tsp = get_post_meta( $a_id, 'toc_starting_point', true );
+				$tsp = get_field( 'kns_toc_top', $a_id );
 				if ( $tsp ) {
 					$child_of = $a_id;
 					break;
@@ -67,7 +67,7 @@ class PageToc_Widget extends WP_Widget {
 			$title       = get_the_title( $child_of );
 			$widget_text = get_post_meta( $child_of, 'kns_lead', true );
 
-			$depth = get_post_meta( $child_of, 'toc_starting_point_depth', true );
+			$depth = get_field( 'kns_toc_depth', $child_of );
 			$depth = is_numeric( $depth ) ? $depth : 0;
 		}
 
@@ -83,7 +83,7 @@ class PageToc_Widget extends WP_Widget {
 
 			$q         = array(
 				'post_type'      => 'page',
-				'meta_key'       => 'exclude_menu',
+				'meta_key'       => 'kns_exclude_toc',
 				'meta_value'     => 1,
 				'compare'        => '=',
 				'posts_per_page' => -1,

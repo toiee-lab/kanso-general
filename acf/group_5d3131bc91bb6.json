@@ -1,0 +1,98 @@
+{
+    "key": "group_5d3131bc91bb6",
+    "title": "KANSO目次設定",
+    "fields": [
+        {
+            "key": "field_5d3131c5c0eba",
+            "label": "目次に非表示",
+            "name": "kns_exclude_toc",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "チェックで非表示",
+            "default_value": 0,
+            "ui": 0,
+            "show_column": 0,
+            "show_column_sortable": 0,
+            "show_column_weight": 1000,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5d31320dc0ebb",
+            "label": "目次の起点にする",
+            "name": "kns_toc_top",
+            "type": "true_false",
+            "instructions": "KANSO目次ウィジェットに表示される目次を、このページを起点にし、このページの子ページが目次に表示されます。",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "チェックで目次の起点に設定",
+            "default_value": 0,
+            "ui": 0,
+            "show_column": 0,
+            "show_column_sortable": 0,
+            "show_column_weight": 1000,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5d3132cfc0ebc",
+            "label": "目次の深さ",
+            "name": "kns_toc_depth",
+            "type": "number",
+            "instructions": "表示する目次のレベル（深さ）を指定できます",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "show_column": 0,
+            "show_column_sortable": 0,
+            "show_column_weight": 1000,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1563508227
+}
