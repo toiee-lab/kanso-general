@@ -15,7 +15,7 @@ if ( is_home() || is_front_page() ) {
 	$the_id = get_the_ID();
 	get_template_part( 'template-parts/breadcrumb', 'page' );
 
-	if ( false === get_field('kns_hide_title' ) ) {
+	if ( true !== get_field('kns_hide_title' ) ) {
 		the_title( '<h1 class="main-title">', '</h1>' );
 		the_subtitle( '<h2 class="main-subtitle">', '</h2>');
 	}

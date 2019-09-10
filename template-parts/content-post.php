@@ -16,7 +16,7 @@
 		<?php the_category( ',' ); ?>
 	</div>
 	<?php
-	if ( false === get_field('kns_hide_title' ) ) {
+	if ( true !== get_field('kns_hide_title' ) ) {
 		the_title( '<h1 class="entry-title">', '</h1>' );
 		the_subtitle( '<h2 class="main-subtitle">', '</h2>' );
 	}
