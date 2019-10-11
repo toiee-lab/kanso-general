@@ -206,6 +206,15 @@ function kanso_general_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'kanso_general_scripts' );
 
+function kanso_block_editor_script() {
+	wp_enqueue_style( 'uikit', get_template_directory_uri() . '/css/uikit.min.css', array(), '3.1.6' );
+	wp_enqueue_style( 'base-style', get_stylesheet_uri(), array( 'uikit' ) );
+
+	wp_enqueue_script( 'uikit-js', get_template_directory_uri() . '/js/uikit.min.js', array(), '3.1.6' );
+	wp_enqueue_script( 'uikit-icon', get_template_directory_uri() . '/js/uikit-icons.min.js', array( 'uikit-js' ), '3.1.6' );
+}
+add_action( 'enqueue_block_editor_assets', 'kanso_block_editor_script' );
+
 /**
  * Implement the Custom Header feature.
  */
