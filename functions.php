@@ -192,7 +192,7 @@ function kanso_general_scripts() {
 	}
 
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery-uk-form', get_template_directory_uri() . '/js/kanso.js', array(), '20151215', true );
+	wp_enqueue_script( 'jquery-uk-form', get_template_directory_uri() . '/js/kanso.js', array(), '1.6.1', true );
 
 	wp_enqueue_style( 'uikit', get_template_directory_uri() . '/css/uikit.min.css', array(), '3.2.1' );
 	wp_enqueue_style( 'base-style', get_stylesheet_uri(), array( 'uikit' ) );
