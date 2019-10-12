@@ -12,9 +12,6 @@ jQuery(
 			function( index, el ){
 
 				switch ( el.type ) {
-					case 'text' :
-						el.classList.add( 'uk-input' );
-						break;
 					case 'radio' :
 						el.classList.add( 'uk-radio' );
 						break;
@@ -27,7 +24,10 @@ jQuery(
 					case 'submit' :
 						el.classList.add( 'uk-button' );
 						el.classList.add( 'uk-button-primary' );
-					default:
+						break;
+					default: /* text, email, password */
+						el.classList.add( 'uk-input' );
+						break;
 				}
 			}
 		);
