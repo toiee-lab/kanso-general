@@ -37,12 +37,12 @@ jQuery(
 		jQuery( 'label' ).addClass( 'uk-form-label' );
 		jQuery( '.comment-reply-link' ).addClass( 'uk-button uk-button-default' );
 
-		jQuery( 'button' ).each(
+		jQuery( 'button[type="submit"]' ).each(
 			function( index, el ){
 				if ( el.classList.contains( 'uk-button' ) ) {
 					// do nothing
 				} else {
-					el.classList.add( 'uk-button', 'uk-button-default' );
+					el.classList.add( 'uk-button', 'uk-button-default', 'uk-button-primary' );
 				}
 			}
 		);
